@@ -1,0 +1,41 @@
+nav {
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #010101;
+}
+
+#nav-conteiner {
+    width: 970px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+main {
+    margin-top: 0px;
+    width: 900px;
+    min-height: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.nav-button {
+    display: flex;
+    float: left;
+    outline: none;
+    margin: 13px;
+    &__a {
+        border: 0px;
+        margin-left: 15px;
+        margin-right: 15px;
+        color: white;
+        background-color: #010101;
+    }
+}
+
+.nav-button__a:hover {
+    color: rgb(194, 194, 194);
+}
+
+.nav-button__a:focus {
+    outline: none;
+}
