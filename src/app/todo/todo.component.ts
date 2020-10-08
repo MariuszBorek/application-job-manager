@@ -34,7 +34,8 @@ export class TodoComponent implements OnInit {
       topic: '',
       text: '',
       date: new Date(),
-      priority: false
+      priority: false,
+      execution: false
     };
     this.tasks.push(newTask);
   }
@@ -50,17 +51,30 @@ export class TodoComponent implements OnInit {
     }
   }
 
+  setExecution(task: Task): boolean  {
+    if (task.execution === false) {
+      task.execution = true;
+      console.log(task.execution);
+      return true;
+    } else {
+      task.execution = false;
+      return false;
+    }
+  }
+
   changeColor(isTrue: boolean): boolean {
     return isTrue;
   }
 
 
   deleteTask(taskToDelete: Task): void {
-    const idToDelete = taskToDelete.id;
-    const newTasks = this.tasks.filter((element) => {
-      return idToDelete !== element.id;
-    });
-    this.tasks = newTasks;
+    if (confirm('Are you sure you want to delete this task?')){
+      const idToDelete = taskToDelete.id;
+      const newTasks = this.tasks.filter((element) => {
+        return idToDelete !== element.id;
+      });
+      this.tasks = newTasks;
+    }
   }
 
 

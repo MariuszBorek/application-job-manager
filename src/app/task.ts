@@ -4,4 +4,5 @@ export interface Task {
   text: string;
   date: Date;
   priority: boolean;
+  execution: boolean;
 }

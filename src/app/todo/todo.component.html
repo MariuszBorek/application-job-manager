@@ -1,7 +1,7 @@
 <div>
     <h2>task list:</h2>
     <div>
-        <button id="add-task-button" (click)="addTask()">add task</button>
+        <button id="add-task-button" (click)="addTask()">add</button>
     </div>
     <div id="sort-toolbar">
         <div class="sort-button">sort by:</div>
@@ -16,7 +16,8 @@
                 <input class="topic-input" [(ngModel)]="task.topic" placeholder="topic">
                 <input class="text-input" [(ngModel)]="task.text" placeholder="task">
                 <input class="data-input" type="date" [(ngModel)]="task.date">
-                <button class="priority-button" ngDefaultControl [ngStyle]="{'background-color': task.priority ? '#1582f4' : 'white', 'color': task.priority ? 'white' : 'black'}" [(ngModel)]="task.priority" (click)="setPriority(task)">priority: {{ task.priority }}</button>
+                <button class="priority-button" ngDefaultControl [ngStyle]="{'background-color': task.priority ? '#1582f4' : 'white', 'color': task.priority ? 'white' : 'black'}" [(ngModel)]="task.priority" (click)="setPriority(task)">priority</button>
+                <button class="execution-button" ngDefaultControl [ngStyle]="{'background-color': task.execution ? '#4aca3d' : 'white', 'color': task.execution ? 'white' : 'black'}" [(ngModel)]="task.priority" (click)="setExecution(task)">done</button>
                 <button class="delete-button" (click)="deleteTask(task)">delete</button>
             </div>
         </li>

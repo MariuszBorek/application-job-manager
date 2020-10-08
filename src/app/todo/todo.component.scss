@@ -18,7 +18,7 @@ li {
 .badge {
     display: inline-block;
     font-size: small;
-    width: 20px;
+    width: 10px;
     color: white;
     padding: 10px 40px 0px 10px;
     background-color: #28282a;
@@ -28,7 +28,7 @@ li {
 
 #add-task-button {
     background-color: #0471e3;
-    width: 69px;
+    width: 59px;
     height: 30px;
     color: white;
     outline: none;
@@ -44,7 +44,7 @@ li {
     font-weight: bold;
     padding-left: 7px;
     width: 100px;
-    height: 30px;
+    height: 33px;
     outline: none;
     border-left: none;
     border-top: none;
@@ -53,8 +53,8 @@ li {
 }
 
 .text-input {
-    width: 417px;
-    height: 30px;
+    width: 410px;
+    height: 33px;
     padding-left: 7px;
     outline: none;
     border-left: none;
@@ -66,7 +66,7 @@ li {
 .data-input {
     font-family: Arial, Helvetica, sans-serif;
     width: 125px;
-    height: 30px;
+    height: 35px;
     padding-left: 7px;
     outline: none;
     border-left: none;
@@ -76,7 +76,18 @@ li {
 }
 
 .priority-button {
-    width: 90px;
+    width: 59px;
+    height: 35px;
+    outline: none;
+    border-left: none;
+    border-top: none;
+    border-right: 1px solid darkgray;
+    border-bottom: none;
+    border-radius: 0px;
+}
+
+.execution-button {
+    width: 59px;
     height: 35px;
     outline: none;
     border: none;
@@ -87,7 +98,7 @@ li {
     display: inline;
     justify-content: flex-end;
     background-color: #28282a;
-    width: 70px;
+    width: 59px;
     height: 35px;
     color: white;
     outline: none;
