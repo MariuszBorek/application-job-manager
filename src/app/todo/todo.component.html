@@ -1,18 +1,24 @@
 <div>
     <h2>task list:</h2>
     <div>
-        <button (click)="addTask()">add task</button>
+        <button id="add-task-button" (click)="addTask()">add task</button>
+    </div>
+    <div id="sort-toolbar">
+        <div class="sort-button">sort by:</div>
+        <div class="sort-button">topic</div>
+        <div class="sort-button">date</div>
+        <div class="sort-button">priority</div>
     </div>
     <ul>
         <li *ngFor="let task of tasks">
             <div class="single-task">
                 <span class="badge">{{ task.id }}</span>
-                <input [(ngModel)]="task.topic">
-                <input type="date" [(ngModel)]="task.date">
-                <button ngDefaultControl [(ngModel)]="task.priority" (click)="setPriority(task)">priority: {{ task.priority }}</button>
-                <button (click)="deleteTask(task)">delete</button>
+                <input class="topic-input" [(ngModel)]="task.topic" placeholder="topic">
+                <input class="text-input" [(ngModel)]="task.text" placeholder="task">
+                <input class="data-input" type="date" [(ngModel)]="task.date">
+                <button class="priority-button" ngDefaultControl [ngStyle]="{'background-color': task.priority ? '#1582f4' : 'white', 'color': task.priority ? 'white' : 'black'}" [(ngModel)]="task.priority" (click)="setPriority(task)">priority: {{ task.priority }}</button>
+                <button class="delete-button" (click)="deleteTask(task)">delete</button>
             </div>
-
         </li>
     </ul>
 </div>

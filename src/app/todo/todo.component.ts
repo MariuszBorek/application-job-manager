@@ -1,5 +1,5 @@
+import { isNull } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
-import { copyFile } from 'fs';
 import { Task } from '../task';
 
 @Component({
@@ -11,53 +11,61 @@ export class TodoComponent implements OnInit {
 
   tasks: Task[] = [];
 
-  sampleTask = {
-    id: 0,
-    topic: '',
-    text: '',
-    date: new Date(),
-    priority: true
-  };
-
-
   constructor() { }
 
+  getMaxId(): number {
+    if (!this.tasks.length) {
+      return 0;
+    }
+    const ids = this.tasks.map(task => task.id);
+    const maxId = Math.max(...ids);
+    return maxId;
+  }
+
   incrementId(): number {
-    const id = this.tasks.length + 1;
+    const id = this.getMaxId() + 1;
+    const sortedId = this.tasks.sort();
     return id;
   }
 
-
   addTask(): void {
-    console.log();
-    this.sampleTask.id = this.incrementId();
     const newTask: Task = {
       id: this.incrementId(),
       topic: '',
       text: '',
       date: new Date(),
-      priority: true
+      priority: false
     };
     this.tasks.push(newTask);
   }
 
-
-
-  setPriority(task: Task): void {
-    console.log('priority', task);
-    if (task.priority === true) {
-      task.priority = false;
-    } else {
+  setPriority(task: Task): boolean {
+    if (task.priority === false) {
       task.priority = true;
+
+      return true;
+    } else {
+      task.priority = false;
+      return false;
     }
   }
 
-  deleteTask(task: Task): void {
+  changeColor(isTrue: boolean): boolean {
+    return isTrue;
+  }
 
+
+  deleteTask(taskToDelete: Task): void {
+    const idToDelete = taskToDelete.id;
+    const newTasks = this.tasks.filter((element) => {
+      return idToDelete !== element.id;
+    });
+    this.tasks = newTasks;
   }
 
 
   ngOnInit(): void {
+    this.addTask();
   }
 
 }
