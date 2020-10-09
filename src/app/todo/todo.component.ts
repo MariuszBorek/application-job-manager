@@ -10,6 +10,8 @@ import { Task } from '../task';
 export class TodoComponent implements OnInit {
 
   tasks: Task[] = [];
+  archivedTasks: Task[] = [];
+  isHisotryTaskShown = false;
 
   constructor() { }
 
@@ -134,6 +136,35 @@ export class TodoComponent implements OnInit {
         return idToDelete !== element.id;
       });
       this.tasks = newTasks;
+    }
+  }
+
+  clearfinishedTasks(): void {
+    if (confirm('Are you sure you want to clear finished tasks?')) {
+      const newTasks = this.tasks.filter((element) => {
+        return element.execution === false;
+      });
+      this.tasks = newTasks;
+    }
+  }
+
+  archiveTasks(): void {
+    if (confirm('Are you sure you want to archive finished tasks?')) {
+      const newTasks = this.tasks.filter((element) => {
+        return element.execution === true;
+      });
+      for (let i = 0; i < newTasks.length; i++) {
+        this.archivedTasks.push(newTasks[i]);
+      }
+      this.clearfinishedTasks();
+    }
+  }
+
+  showHistory(): void {
+    if (!this.isHisotryTaskShown) {
+      this.isHisotryTaskShown = true;
+    } else {
+      this.isHisotryTaskShown = false;
     }
   }
 

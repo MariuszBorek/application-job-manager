@@ -2,10 +2,13 @@
     <h2>task list:</h2>
     <div>
         <button id="add-task-button" (click)="addTask()">add</button>
+        <button id="archive-tasks-button" (click)="archiveTasks()">archive</button>
+        <button id="show-task-history-button" (click)="showHistory()">history</button>
+        <button id="clear-tasks-button" (click)="clearfinishedTasks()">clear</button>
     </div>
     <div id="sort-toolbar">
-        <div class="sort-description">sort by:</div>
         <div>
+            <div class="sort-description">sort by:</div>
             <div class="sort-button" (click)="sortByNo()">no</div>
             <div class="sort-description">/</div>
             <div class="sort-button" (click)="sortByOldest()">oldest</div>
@@ -17,8 +20,8 @@
             <div class="sort-button" (click)="sortByUnfinished()">unfinished</div>
         </div>
     </div>
-    <ul>
-        <li *ngFor="let task of tasks">
+    <ul id="ul-task">
+        <li id="li-task" *ngFor="let task of tasks">
             <div class="single-task">
                 <span class="badge">{{ task.id }}</span>
                 <input class="topic-input" [(ngModel)]="task.topic" placeholder="topic">
@@ -30,4 +33,51 @@
             </div>
         </li>
     </ul>
+</div>
+
+
+<div id="history-field">
+
+    <div *ngIf="isHisotryTaskShown; then thenBlock else elseBlock"></div>
+
+    <ng-template #thenBlock>
+        <ul id="ul-history">
+            <li id="li-history">
+                <div class="task-history">
+                    <span> Topic / Some text, here is shown some text of the task, here is shown some  is iis text of the taskhere is shown some text of the taskhere is shown some text of the taskhere is shown some text of the task</span>
+                </div>
+            </li>
+            <li id="li-history">
+                <div class="task-history">
+                    <span> Topic / Some text, here is shown some text of the task</span>
+                </div>
+            </li>
+            <li id="li-history">
+                <div class="task-history">
+                    <span> Topic / Some text, here is shown some text of the task</span>
+                </div>
+            </li>
+            <li id="li-history">
+                <div class="task-history">
+                    <span> Topic / Some text, here is shown some text of the task</span>
+                </div>
+            </li>
+            <li id="li-history">
+                <div class="task-history">
+                    <span> Topic / Some text, here is shown some text of the task</span>
+                </div>
+            </li>
+        </ul>
+    </ng-template>
+
+    <ng-template #elseBlock>
+        <ul id="ul-history">
+            <li id="li-history" *ngFor="let task of archivedTasks">
+                <div class="task-history">
+                    <span>{{ task.topic }} / {{ task.text }} / {{ task.date }}</span>
+                </div>
+            </li>
+        </ul>
+    </ng-template>
+
 </div>
