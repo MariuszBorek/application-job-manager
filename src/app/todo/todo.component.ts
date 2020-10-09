@@ -1,5 +1,5 @@
-import { isNull } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
+import { element } from 'protractor';
 import { Task } from '../task';
 
 @Component({
@@ -12,6 +12,66 @@ export class TodoComponent implements OnInit {
   tasks: Task[] = [];
 
   constructor() { }
+
+  sortByUnfinished(): void {
+    const sortedTasks = this.tasks.sort((e1, e2) => {
+      if (e1.execution > e2.execution) {
+        return 1;
+      }
+      if (e1.execution < e2.execution) {
+        return -1;
+      }
+    });
+    this.tasks = sortedTasks;
+  }
+
+  sortByNo(): void {
+    const sortedTasks = this.tasks.sort((e1, e2) => {
+      if (e1.id > e2.id) {
+        return 1;
+      }
+      if (e1.id < e2.id) {
+        return -1;
+      }
+    });
+    this.tasks = sortedTasks;
+  }
+
+  sortByOldest(): void {
+    const sortedTasks = this.tasks.sort((e1, e2) => {
+      if (e1.date > e2.date) {
+        return 1;
+      }
+      if (e1.date < e2.date) {
+        return -1;
+      }
+    });
+    this.tasks = sortedTasks;
+  }
+
+  sortByNewest(): void {
+    const sortedTasks = this.tasks.sort((e1, e2) => {
+      if (e1.date > e2.date) {
+        return -1;
+      }
+      if (e1.date < e2.date) {
+        return 1;
+      }
+    });
+    this.tasks = sortedTasks;
+  }
+
+  sortByPriority(): void {
+    const sortedTasks = this.tasks.sort((e1, e2) => {
+      if (e1.priority > e2.priority) {
+        return -1;
+      }
+      if (e1.priority < e2.priority) {
+        return 1;
+      }
+    });
+    this.tasks = sortedTasks;
+  }
 
   getMaxId(): number {
     if (!this.tasks.length) {
@@ -51,7 +111,7 @@ export class TodoComponent implements OnInit {
     }
   }
 
-  setExecution(task: Task): boolean  {
+  setExecution(task: Task): boolean {
     if (task.execution === false) {
       task.execution = true;
       console.log(task.execution);
@@ -68,7 +128,7 @@ export class TodoComponent implements OnInit {
 
 
   deleteTask(taskToDelete: Task): void {
-    if (confirm('Are you sure you want to delete this task?')){
+    if (confirm('Are you sure you want to delete this task?')) {
       const idToDelete = taskToDelete.id;
       const newTasks = this.tasks.filter((element) => {
         return idToDelete !== element.id;
