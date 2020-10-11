@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { element } from 'protractor';
+// import { element } from 'protractor';
 import { Task } from '../task';
 
 @Component({

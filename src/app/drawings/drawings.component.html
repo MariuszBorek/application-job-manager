@@ -1,0 +1,51 @@
+<div>
+    <h2>drawing list:</h2>
+
+    <div id="toolbar">
+        <button id="add-sheet-button" (click)="addSheet()">add</button>
+        <button id="print-sheets-button" (click)="sortBySheetType(); printSheets()">print</button>
+    </div>
+
+    <div>
+        <ul id="ul-sheet">
+            <li id="li-sheet" *ngFor="let sheet of sheets">
+                <div class="single-sheet">
+                    <span class="badge">{{ sheet.id }}</span>
+                    <input class="no-input" [(ngModel)]="sheet.no" placeholder="sheet No.">
+                    <input class="description-input" [(ngModel)]="sheet.description" placeholder="description">
+                    <input class="edition-input" type="date" [(ngModel)]="sheet.edition">
+                    <input class="revision-input" type="number" [(ngModel)]="sheet.revision">
+                    <select class="sheet-type-select" [(ngModel)]="sheet.type">
+                      <option value="" selected>unknown</option>
+                      <option value="plan">plan</option>
+                      <option value="section">section</option>
+                      <option value="elevation">elevaction</option>
+                      <option value="element">element</option>
+                      <option value="scheme">scheme</option>
+                      <option value="masterplan">masterplan</option>
+                    </select>
+                    <button class="delete-button" (click)="deleteSheet(sheet)">delete</button>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div id="printout-field">
+
+        <div *ngIf="isPrintShown; then thenBlock else elseBlock"></div>
+
+        <ng-template #thenBlock>
+            <h3>list of drawings:</h3>
+            <ul id="ul-printout">
+                <li id="li-printout" *ngFor="let sheet of sheets">
+                    <div class="sheet-printout">
+                        <span>{{ sheet.no }}_{{ sheet.description }}_{{ sheet.edition }}_rev._{{ sheet.revision }}_{{ sheet.type }}</span>
+                    </div>
+                </li>
+            </ul>
+        </ng-template>
+
+        <ng-template #elseBlock>
+        </ng-template>
+
+    </div>

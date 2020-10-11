@@ -42,42 +42,16 @@
 
     <ng-template #thenBlock>
         <ul id="ul-history">
-            <li id="li-history">
-                <div class="task-history">
-                    <span> Topic / Some text, here is shown some text of the task, here is shown some  is iis text of the taskhere is shown some text of the taskhere is shown some text of the taskhere is shown some text of the task</span>
-                </div>
-            </li>
-            <li id="li-history">
-                <div class="task-history">
-                    <span> Topic / Some text, here is shown some text of the task</span>
-                </div>
-            </li>
-            <li id="li-history">
-                <div class="task-history">
-                    <span> Topic / Some text, here is shown some text of the task</span>
-                </div>
-            </li>
-            <li id="li-history">
-                <div class="task-history">
-                    <span> Topic / Some text, here is shown some text of the task</span>
-                </div>
-            </li>
-            <li id="li-history">
-                <div class="task-history">
-                    <span> Topic / Some text, here is shown some text of the task</span>
-                </div>
-            </li>
-        </ul>
-    </ng-template>
-
-    <ng-template #elseBlock>
-        <ul id="ul-history">
             <li id="li-history" *ngFor="let task of archivedTasks">
                 <div class="task-history">
                     <span>{{ task.topic }} / {{ task.text }} / {{ task.date }}</span>
                 </div>
             </li>
         </ul>
+    </ng-template>
+
+    <ng-template #elseBlock>
+
     </ng-template>
 
 </div>
