@@ -1,0 +1,99 @@
+#ul-note {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    margin-left: 10px;
+}
+
+#li-note {
+    display: flex;
+    list-style-type: none;
+    padding: 0px;
+    margin-bottom: 5px;
+    background-color: gray;
+    border: none;
+}
+
+#note-div {
+    float: left;
+    width: 394px;
+}
+
+h3 {
+    color: #d3d3d3;
+    margin: 0 0 5px 5px;
+}
+
+.badge {
+    display: inline-block;
+    font-size: small;
+    width: 10px;
+    color: white;
+    padding: 10px 40px 0px 10px;
+    background-color: #9999ff;
+    height: 25px;
+    border-radius: 4px 0 0 4px;
+}
+
+#add-note-button {
+    background-color: #0471e3;
+    width: 59px;
+    height: 30px;
+    color: white;
+    outline: none;
+    border: none;
+    border-radius: 4px;
+}
+
+#add-note-button:hover {
+    background-color: #1582f4;
+}
+
+#areatext-block {
+    float: left;
+    &__textarea {
+        font-family: Arial, Helvetica, sans-serif;
+        margin-top: 0px;
+        border-radius: 4px 4px 4px 4px;
+        width: 500px;
+        height: 600px;
+        color: white;
+        outline: none;
+        border: 1px solid darkgray;
+        background-color: #28282a;
+        resize: none;
+    }
+}
+
+#toolbar {
+    margin-bottom: 23px;
+}
+
+#topic-text-div {
+    float: left;
+    color: #d3d3d3;
+    font-size: 14px;
+    width: 320px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#delete-button {
+    float: left;
+    background-color: #28282a;
+    margin-left: 5px;
+    width: 59px;
+    height: 20px;
+    color: white;
+    outline: none;
+    border: none;
+}
+
+#delete-button:hover {
+    background-color: red;
+}
+
+#topic-bold {
+    color: white;
+}

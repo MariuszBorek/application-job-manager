@@ -1,11 +1,9 @@
 <div>
-    <h2>drawing list:</h2>
-
+    <h2>drawings</h2>
     <div id="toolbar">
         <button id="add-sheet-button" (click)="addSheet()">add</button>
         <button id="print-sheets-button" (click)="sortBySheetType(); printSheets()">print</button>
     </div>
-
     <div>
         <ul id="ul-sheet">
             <li id="li-sheet" *ngFor="let sheet of sheets">

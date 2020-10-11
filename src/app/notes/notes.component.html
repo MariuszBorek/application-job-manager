@@ -1,1 +1,25 @@
-<p>notes works!</p>
+<div>
+    <h2>notes</h2>
+    <div id="toolbar">
+        <button id="add-note-button" (click)="addNote()">add</button>
+    </div>
+
+    <div id="areatext-block">
+        <textarea id="areatext-block__textarea"></textarea>
+    </div>
+
+    <div id="note-div">
+        <h3>notes</h3>
+        <ul id="ul-note">
+            <li id="li-note" *ngFor="let note of notes">
+                <div class="single-note">
+                    <div id="topic-text-div"><strong id="topic-bold">{{ note.topic }}</strong> / {{ note.text }}</div>
+                    <button id="delete-button" (click)="deleteNote(note)">delete</button>
+                    <div style="clear: both;"></div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div style="clear: both;"></div>
+
+</div>
