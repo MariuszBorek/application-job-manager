@@ -5,6 +5,7 @@ import { ToolsComponent } from './tools/tools.component';
 import { JmComponent } from './jm/jm.component';
 import { DrawingsComponent } from './drawings/drawings.component';
 import { NotesComponent } from './notes/notes.component';
+import { LogInComponent } from './log-in/log-in.component';
 
 const routes: Routes = [
   { path: 'jm', component: JmComponent },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'drawings', component: DrawingsComponent },
   { path: 'notes', component: NotesComponent },
   { path: 'tools', component: ToolsComponent },
+  { path: 'log-in', component: LogInComponent }
 ];
 
 @NgModule({
@@ -24,5 +26,6 @@ export const routingComponents = [
   ToolsComponent,
   JmComponent,
   DrawingsComponent,
-  NotesComponent
+  NotesComponent,
+  LogInComponent
 ];

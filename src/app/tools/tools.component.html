@@ -1,17 +1,15 @@
 <div>
     <h2>tools</h2>
     <div id="toolbar">
-        <p id="calculator-word">calculator</p>
-        <button class="calculator-button" (click)="choseStairCalculator()">stair</button>
-        <button class="calculator-button" (click)="choseUValueCalculator()">U value</button>
+        <button class="calculator-button" (click)="choseStairCalculator()" routerLink="/tools/staircalculator" routerLinkActive="active">stairs</button>
+        <button class="calculator-button" (click)="choseUValueCalculator()" routerLink="/tools/uvaluecalculator" routerLinkActive="active">U value</button>
     </div>
 
     <div [ngSwitch]="toolChoice">
         <div *ngSwitchCase="0">
-            stair calc.
+            <app-tools-stair-calculator></app-tools-stair-calculator>
         </div>
         <div *ngSwitchCase="1">
-            u value calc.
+            <app-tools-u-value-calculator></app-tools-u-value-calculator>
         </div>
-
     </div>

@@ -4,12 +4,20 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ToolsStairCalculatorComponent } from './tools-stair-calculator/tools-stair-calculator.component';
+import { ToolsUValueCalculatorComponent } from './tools-u-value-calculator/tools-u-value-calculator.component';
+import { LogInComponent } from './log-in/log-in.component';
+
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     routingComponents,
+    ToolsStairCalculatorComponent,
+    ToolsUValueCalculatorComponent,
+    LogInComponent
   ],
   imports: [
     BrowserModule,

@@ -21,7 +21,7 @@ export class ToolsComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.choseStairCalculator();
+    this.choseUValueCalculator();
   }
 
 }
