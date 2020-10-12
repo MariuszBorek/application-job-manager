@@ -1,0 +1,30 @@
+#toolbar {
+    margin-bottom: 23px;
+}
+
+h2 {
+    margin-bottom: 4px;
+}
+
+#calculator-word {
+    margin: 0;
+    font-weight: 100;
+    color: #d3d3d3;
+    font-size: 14px;
+}
+
+.calculator-button {
+    background-color: #28282a;
+    cursor: pointer;
+    margin-right: 5px;
+    width: 59px;
+    height: 30px;
+    color: white;
+    outline: none;
+    border: none;
+    border-radius: 4px;
+}
+
+.calculator-button:hover {
+    background-color: #1582f4;
+}

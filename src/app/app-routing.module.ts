@@ -11,8 +11,7 @@ const routes: Routes = [
   { path: 'todo', component: TodoComponent },
   { path: 'drawings', component: DrawingsComponent },
   { path: 'notes', component: NotesComponent },
-  { path: 'tools', component: ToolsComponent }
-
+  { path: 'tools', component: ToolsComponent },
 ];
 
 @NgModule({

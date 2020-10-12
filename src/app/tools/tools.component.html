@@ -1,11 +1,17 @@
 <div>
+    <h2>tools</h2>
+    <div id="toolbar">
+        <p id="calculator-word">calculator</p>
+        <button class="calculator-button" (click)="choseStairCalculator()">stair</button>
+        <button class="calculator-button" (click)="choseUValueCalculator()">U value</button>
+    </div>
+
     <div [ngSwitch]="toolChoice">
-
-        <div>
-
+        <div *ngSwitchCase="0">
+            stair calc.
+        </div>
+        <div *ngSwitchCase="1">
+            u value calc.
         </div>
 
     </div>
-
-
-</div>
