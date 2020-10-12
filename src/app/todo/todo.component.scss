@@ -52,6 +52,7 @@
 
 #add-task-button {
     background-color: #0471e3;
+    cursor: pointer;
     width: 59px;
     height: 30px;
     color: white;
@@ -66,6 +67,7 @@
 
 #clear-tasks-button {
     background-color: #28282a;
+    cursor: pointer;
     margin-left: 5px;
     width: 59px;
     height: 30px;
@@ -81,6 +83,7 @@
 
 #archive-tasks-button {
     background-color: #28282a;
+    cursor: pointer;
     margin-left: 5px;
     width: 59px;
     height: 30px;
@@ -96,6 +99,7 @@
 
 #show-task-history-button {
     background-color: #28282a;
+    cursor: pointer;
     margin-left: 5px;
     width: 59px;
     height: 30px;
@@ -167,6 +171,7 @@
     display: inline;
     justify-content: flex-end;
     background-color: #28282a;
+    cursor: pointer;
     width: 59px;
     height: 35px;
     color: white;

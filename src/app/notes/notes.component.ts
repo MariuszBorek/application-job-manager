@@ -58,10 +58,11 @@ export class NotesComponent implements OnInit {
       text: ''
     };
     this.notes.push(newNote);
+    this.selectNote(newNote);
   }
 
   deleteNote(noteToDelete: Note): void {
-    if (confirm('Are you sure you want to delete this sheet?')) {
+    if (confirm('Are you sure you want to delete this note?')) {
       const idToDelete = noteToDelete.id;
       const newNotes = this.notes.filter((element) => {
         return idToDelete !== element.id;
@@ -75,6 +76,7 @@ export class NotesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.addNote();
   }
 
 }

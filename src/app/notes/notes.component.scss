@@ -42,6 +42,7 @@ h3 {
     color: white;
     outline: none;
     border: none;
+    cursor: pointer;
     border-radius: 4px;
 }
 
@@ -53,13 +54,16 @@ h3 {
     float: left;
     &__textarea {
         font-family: Arial, Helvetica, sans-serif;
+        padding: 5px;
+        font-size: 18px;
         margin-top: 0px;
-        border-radius: 4px 4px 4px 4px;
-        width: 500px;
+        // border-radius: 4px 4px 4px 4px;
+        width: 490px;
         height: 600px;
         color: white;
         outline: none;
-        border: 1px solid darkgray;
+        // border: 1px solid darkgray;
+        // border: none;
         background-color: #28282a;
         resize: none;
     }
@@ -71,6 +75,7 @@ h3 {
 
 .body-note {
     color: #d3d3d3;
+    cursor: pointer;
     font-size: 14px;
     width: 311px;
     height: 23px;
@@ -85,6 +90,7 @@ h3 {
 
 .delete-button {
     background-color: #28282a;
+    cursor: pointer;
     margin: 0 0 0 5px;
     width: 59px;
     height: 26px;
