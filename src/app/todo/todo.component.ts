@@ -86,7 +86,6 @@ export class TodoComponent implements OnInit {
 
   incrementId(): number {
     const id = this.getMaxId() + 1;
-    const sortedId = this.tasks.sort();
     return id;
   }
 

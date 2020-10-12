@@ -1,21 +1,20 @@
 <div>
     <h2>notes</h2>
     <div id="toolbar">
-        <button id="add-note-button" (click)="addNote()">add</button>
+        <button id="add-note-button" (click)="addNote(); selectNote(selectedNote)">add</button>
     </div>
 
     <div id="areatext-block">
-        <textarea id="areatext-block__textarea"></textarea>
+        <textarea id="areatext-block__textarea" [(ngModel)]="selectedNote.text"></textarea>
     </div>
 
     <div id="note-div">
         <h3>notes</h3>
         <ul id="ul-note">
             <li id="li-note" *ngFor="let note of notes">
-                <div class="single-note">
-                    <div id="topic-text-div"><strong id="topic-bold">{{ note.topic }}</strong> / {{ note.text }}</div>
-                    <button id="delete-button" (click)="deleteNote(note)">delete</button>
-                    <div style="clear: both;"></div>
+                <div class="single-note" (click)="selectNote(note)">
+                    <input class="body-note" [(ngModel)]="note.text" disabled>
+                    <button class="delete-button" (click)="deleteNote(note)">delete</button>
                 </div>
             </li>
         </ul>

@@ -24,7 +24,6 @@ export class DrawingsComponent implements OnInit {
 
   incrementId(): number {
     const id = this.getMaxId() + 1;
-    const sortedId = this.sheets.sort();
     return id;
   }
 
