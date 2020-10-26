@@ -39,21 +39,10 @@
     margin-top: 22px;
 }
 
-.badge {
-    display: inline-block;
-    font-size: small;
-    width: 10px;
-    color: white;
-    padding: 10px 40px 0px 10px;
-    background-color: #9999ff;
-    height: 25px;
-    border-radius: 4px 0 0 4px;
-}
-
 #add-task-button {
     background-color: #0471e3;
     cursor: pointer;
-    width: 59px;
+    width: 80px;
     height: 30px;
     color: white;
     outline: none;
@@ -182,6 +171,23 @@
 
 .delete-button:hover {
     background-color: red;
+}
+
+.save-button {
+    display: inline;
+    justify-content: flex-end;
+    background-color: #9999ff;
+    cursor: pointer;
+    width: 60px;
+    height: 35px;
+    color: white;
+    outline: none;
+    border: none;
+    border-radius: 4px 0px 0px 4px;
+}
+
+.save-button:hover {
+    background-color: #4aca3d;
 }
 
 #sort-toolbar {

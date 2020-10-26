@@ -1,7 +1,7 @@
 <div>
     <h2>tasks</h2>
     <div>
-        <button id="add-task-button" (click)="addTask()">add</button>
+        <button id="add-task-button" (click)="addRow()">add row</button>
         <button id="archive-tasks-button" (click)="archiveTasks()">archive</button>
         <button id="show-task-history-button" (click)="showHistory()">history</button>
         <button id="clear-tasks-button" (click)="clearfinishedTasks()">clear</button>
@@ -23,7 +23,7 @@
     <ul id="ul-task">
         <li id="li-task" *ngFor="let task of tasks">
             <div class="single-task">
-                <span class="badge">{{ task.id }}</span>
+                <button class="save-button" (click)="addTask(task)">save</button>
                 <input class="topic-input" [(ngModel)]="task.topic" placeholder="topic">
                 <input class="text-input" [(ngModel)]="task.text" placeholder="task">
                 <input class="data-input" type="date" [(ngModel)]="task.date">

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-// import { element } from 'protractor';
+import { discardPeriodicTasks } from '@angular/core/testing';
 import { Task } from '../task';
+import { TodoService } from '../todo.service';
 
 @Component({
   selector: 'app-todo',
@@ -13,7 +14,53 @@ export class TodoComponent implements OnInit {
   archivedTasks: Task[] = [];
   isHisotryTaskShown = false;
 
-  constructor() { }
+
+  constructor(private todoService: TodoService) { }
+
+  getSize(): number {
+    return this.tasks.length;
+  }
+
+  getTasks(): void {
+    this.todoService.getTasks()
+      .subscribe(tasks => this.tasks = tasks);
+  }
+
+
+  addRow(): void {
+    const newTask: Task = {
+          id: null,
+          topic: '',
+          text: '',
+          date: new Date(),
+          priority: false,
+          execution: false
+        };
+    this.todoService.addTask(newTask)
+      .subscribe(task => {
+        this.tasks.push(task);
+      });
+  }
+
+  addTask(task: Task): void {
+    const newTask: Task = {
+          id: task.id,
+          topic: task.topic,
+          text: task.text,
+          date: task.date,
+          priority: task.priority,
+          execution: task.execution
+        };
+    this.todoService.updateTask(newTask)
+      .subscribe();
+  }
+
+  deleteTask(task: Task): void {
+    this.tasks = this.tasks.filter(t => t !== task);
+    this.todoService.deleteTask(task).subscribe();
+  }
+
+  // --------------------------------------------------------
 
   sortByUnfinished(): void {
     const sortedTasks = this.tasks.sort((e1, e2) => {
@@ -75,31 +122,31 @@ export class TodoComponent implements OnInit {
     this.tasks = sortedTasks;
   }
 
-  getMaxId(): number {
-    if (!this.tasks.length) {
-      return 0;
-    }
-    const ids = this.tasks.map(task => task.id);
-    const maxId = Math.max(...ids);
-    return maxId;
-  }
+  // getMaxId(): number {
+  //   if (!this.tasks.length) {
+  //     return 0;
+  //   }
+  //   const ids = this.tasks.map(task => task.id);
+  //   const maxId = Math.max(...ids);
+  //   return maxId;
+  // }
 
-  incrementId(): number {
-    const id = this.getMaxId() + 1;
-    return id;
-  }
+  // incrementId(): number {
+  //   const id = this.getMaxId() + 1;
+  //   return id;
+  // }
 
-  addTask(): void {
-    const newTask: Task = {
-      id: this.incrementId(),
-      topic: '',
-      text: '',
-      date: new Date(),
-      priority: false,
-      execution: false
-    };
-    this.tasks.push(newTask);
-  }
+  // addTask(): void {
+  //   const newTask: Task = {
+  //     id: 0,
+  //     topic: '',
+  //     text: '',
+  //     date: new Date(),
+  //     priority: false,
+  //     execution: false
+  //   };
+  //   this.tasks.push(newTask);
+  // }
 
   setPriority(task: Task): boolean {
     if (task.priority === false) {
@@ -128,15 +175,16 @@ export class TodoComponent implements OnInit {
   }
 
 
-  deleteTask(taskToDelete: Task): void {
-    if (confirm('Are you sure you want to delete this task?')) {
-      const idToDelete = taskToDelete.id;
-      const newTasks = this.tasks.filter((element) => {
-        return idToDelete !== element.id;
-      });
-      this.tasks = newTasks;
-    }
-  }
+  // deleteTask(taskToDelete: Task): void {
+  //   if (confirm('Are you sure you want to delete this task?')) {
+  //     this.deleteTask();
+      // const idToDelete = taskToDelete.id;
+      // const newTasks = this.tasks.filter((element) => {
+      //   return idToDelete !== element.id;
+      // });
+      // this.tasks = newTasks;
+  //   }
+  // }
 
   clearfinishedTasks(): void {
     if (confirm('Are you sure you want to clear finished tasks?')) {
@@ -169,7 +217,7 @@ export class TodoComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.addTask();
+    this.getTasks();
   }
 
 }
