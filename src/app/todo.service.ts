@@ -40,5 +40,17 @@ export class TodoService {
     return this.http.delete<Task>(url, this.httpOptions);
   }
 
+  // ------------------------------------------------------------
+
+  getArchiveTasks(): Observable<Task[]> {
+    const url = `${this.tasksUrl}/archive`;
+    return this.http.get<Task[]>(url);
+  }
+
+  deleteFinishedTasks(tasks: Task[]): Observable<Task[]> {
+    const url = `${this.tasksUrl}/finished`;
+    return this.http.post<Task[]>(url, tasks, this.httpOptions);
+
+  }
 
 }

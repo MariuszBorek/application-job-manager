@@ -2,14 +2,14 @@
     <h2>tasks</h2>
     <div>
         <button id="add-task-button" (click)="addRow()">add row</button>
-        <button id="archive-tasks-button" (click)="archiveTasks()">archive</button>
-        <button id="show-task-history-button" (click)="showHistory()">history</button>
-        <button id="clear-tasks-button" (click)="clearfinishedTasks()">clear</button>
+        <button id="archive-tasks-button" (click)="archiveTasks()">archive finished</button>
+        <button id="show-task-history-button" (click)="showHistory()">print history</button>
+        <button id="clear-tasks-button" (click)="clearfinishedTasks()">clear finished</button>
     </div>
     <div id="sort-toolbar">
         <div>
             <div class="sort-description">sort by:</div>
-            <div class="sort-button" (click)="sortByNo()">no</div>
+            <div class="sort-button" (click)="sortByNo()">order of addition</div>
             <div class="sort-description">/</div>
             <div class="sort-button" (click)="sortByOldest()">oldest</div>
             <div class="sort-description">/</div>
@@ -26,7 +26,7 @@
                 <button class="save-button" (click)="addTask(task)">save</button>
                 <input class="topic-input" [(ngModel)]="task.topic" placeholder="topic">
                 <input class="text-input" [(ngModel)]="task.text" placeholder="task">
-                <input class="data-input" type="date" [(ngModel)]="task.date">
+                <input class="data-input" type="date" ngDefaultControl [(ngModel)]="task.date">
                 <button class="priority-button" ngDefaultControl [ngStyle]="{'background-color': task.priority ? '#1582f4' : 'white', 'color': task.priority ? 'white' : 'black'}" [(ngModel)]="task.priority" (click)="setPriority(task)">priority</button>
                 <button class="execution-button" ngDefaultControl [ngStyle]="{'background-color': task.execution ? '#4aca3d' : 'white', 'color': task.execution ? 'white' : 'black'}" [(ngModel)]="task.priority" (click)="setExecution(task)">done</button>
                 <button class="delete-button" (click)="deleteTask(task)">delete</button>
