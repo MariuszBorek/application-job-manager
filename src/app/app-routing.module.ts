@@ -13,7 +13,8 @@ const routes: Routes = [
   { path: 'drawings', component: DrawingsComponent },
   { path: 'notes', component: NotesComponent },
   { path: 'tools', component: ToolsComponent },
-  { path: 'log-in', component: LogInComponent }
+  { path: 'log-in', component: LogInComponent },
+  { path: '',   redirectTo: '/jm', pathMatch: 'full' }
 ];
 
 @NgModule({
