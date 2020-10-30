@@ -6,6 +6,8 @@ import { JmComponent } from './jm/jm.component';
 import { DrawingsComponent } from './drawings/drawings.component';
 import { NotesComponent } from './notes/notes.component';
 import { LogInComponent } from './log-in/log-in.component';
+import { UserComponent } from './user/user.component';
+import { UserCreatorComponent } from './user-creator/user-creator.component';
 
 const routes: Routes = [
   { path: 'jm', component: JmComponent },
@@ -14,6 +16,8 @@ const routes: Routes = [
   { path: 'notes', component: NotesComponent },
   { path: 'tools', component: ToolsComponent },
   { path: 'log-in', component: LogInComponent },
+  { path: 'user', component: UserComponent },
+  { path: 'user-creator', component: UserCreatorComponent },
   { path: '',   redirectTo: '/jm', pathMatch: 'full' }
 ];
 
@@ -28,5 +32,7 @@ export const routingComponents = [
   JmComponent,
   DrawingsComponent,
   NotesComponent,
-  LogInComponent
+  LogInComponent,
+  UserComponent,
+  UserCreatorComponent
 ];

@@ -54,7 +54,7 @@ export class NotesComponent implements OnInit {
   }
 
   // getLastNote(): Note {
-  //   const note = this.notes[this.notes.length - 1];
+  //   const note = this.notes[this.notes.length];
   //   return note;
   // }
 

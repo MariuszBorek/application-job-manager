@@ -42,17 +42,29 @@ input {
 #button-container {
     &__block {
         margin-top: 10px;
-    }
-    &__submit {
-        background-color: #28282a;
-        width: 400px;
-        height: 30px;
-        color: white;
-        outline: none;
-        border: none;
-        border-radius: 4px;
-    }
-    &__submit:hover {
-        background-color: #0471e3;
+        &__submit {
+            background-color: #0471e3;
+            width: 400px;
+            height: 30px;
+            color: white;
+            outline: none;
+            border: none;
+            border-radius: 4px;
+        }
+        &__submit:hover {
+            background-color: #1582f4;
+        }
+        &__create-account {
+            background-color: #121218;
+            margin-top: 5px;
+            width: fit-content;
+            height: 30px;
+            color: white;
+            outline: none;
+            border: none;
+        }
+        &__create-account:hover {
+            color: #1582f4;
+        }
     }
 }
