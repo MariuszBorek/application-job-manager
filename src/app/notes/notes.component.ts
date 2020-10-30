@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Note } from '../note';
+import { NoteService } from '../note.service';
 
 @Component({
   selector: 'app-notes',
@@ -11,45 +12,40 @@ export class NotesComponent implements OnInit {
   notes: Note[] = [];
 
   selectedNote: Note = {
-    id: 0,
-    topic: '',
+    id: null,
     text: ''
   };
 
-  constructor() { }
+  constructor(private noteService: NoteService) { }
 
-  getMaxId(): number {
-    if (!this.notes.length) {
-      return 0;
-    }
-    const ids = this.notes.map(note => note.id);
-    const maxId = Math.max(...ids);
-    return maxId;
-  }
-
-  incrementId(): number {
-    const id = this.getMaxId() + 1;
-    const sortedId = this.notes.sort();
-    return id;
+  getNotes(): void {
+    this.noteService.getNotes()
+      .subscribe(notes => this.notes = notes);
   }
 
   addNote(): void {
     const newNote: Note = {
-      id: this.incrementId(),
-      topic: '',
+      id: null,
       text: ''
     };
-    this.notes.push(newNote);
-    this.selectNote(newNote);
+    this.noteService.addNote(newNote)
+    .subscribe(note => this.notes.push(note));
+    // this.selectNote(this.getLastNote());
   }
 
-  deleteNote(noteToDelete: Note): void {
+  saveNote(note: Note): void {
+    const newNote: Note = {
+      id: note.id,
+      text: note.text
+    };
+    this.noteService.updateNote(newNote)
+    .subscribe();
+  }
+
+  deleteNote(note: Note): void {
     if (confirm('Are you sure you want to delete this note?')) {
-      const idToDelete = noteToDelete.id;
-      const newNotes = this.notes.filter((element) => {
-        return idToDelete !== element.id;
-      });
-      this.notes = newNotes;
+    this.notes = this.notes.filter(n => n !== note);
+    this.noteService.deleteNote(note).subscribe();
     }
   }
 
@@ -57,8 +53,13 @@ export class NotesComponent implements OnInit {
     this.selectedNote = note;
   }
 
+  // getLastNote(): Note {
+  //   const note = this.notes[this.notes.length - 1];
+  //   return note;
+  // }
+
   ngOnInit(): void {
-    this.addNote();
+    this.getNotes();
   }
 
 }

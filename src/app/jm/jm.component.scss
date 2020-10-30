@@ -1,9 +1,20 @@
 #block-extension {
     margin-top: 20px;
-    &__industry {
-        font-size: 40px;
-    }
-    &__word {
-        font-size: 12px;
+    &__logo {
+        margin-top: 300px;
+        margin-left: auto;
+        margin-right: auto;
+        width: fit-content;
+        font-size: 50px;
+        &__target {
+            width: fit-content;
+            margin-left: 480px;
+            &__industry {
+                font-size: 40px;
+            }
+            &__word {
+                font-size: 12px;
+            }
+        }
     }
 }

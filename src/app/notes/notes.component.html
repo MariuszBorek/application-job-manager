@@ -1,7 +1,7 @@
 <div>
     <h2>notes</h2>
     <div id="toolbar">
-        <button id="add-note-button" (click)="addNote()">add</button>
+        <button id="add-note-button" (click)="addNote()">add note</button>
     </div>
 
     <div id="areatext-block">
@@ -13,6 +13,7 @@
         <ul id="ul-note">
             <li id="li-note" *ngFor="let note of notes">
                 <div class="single-note" (click)="selectNote(note)">
+                    <button class="save-button" (click)="saveNote(note)">save</button>
                     <input class="body-note" [(ngModel)]="note.text" disabled>
                     <button class="delete-button" (click)="deleteNote(note)">delete</button>
                 </div>
