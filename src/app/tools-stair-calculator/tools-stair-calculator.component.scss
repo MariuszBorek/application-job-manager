@@ -31,10 +31,10 @@ p {
     &__input-S {
         border-radius: 0px 0px 4px 4px;
     }
-    &__input-H:hover {
+    &__input-H:focus {
         border: 1px solid #0471e3;
     }
-    &__input-S:hover {
+    &__input-S:focus {
         border: 1px solid #0471e3;
     }
 }
@@ -43,9 +43,8 @@ p {
     margin-top: 10px;
     &__check {
         background-color: #28282a;
-        width: 59px;
+        width: 211px;
         height: 30px;
-        margin-left: 152px;
         color: white;
         outline: none;
         border: none;

@@ -1,8 +1,9 @@
 <div>
     <h2>tools</h2>
     <div id="toolbar">
-        <button class="calculator-button" (click)="choseUValueCalculator()" routerLink="/tools/uvaluecalculator" routerLinkActive="active">U value calculator</button>
-        <button class="calculator-button" (click)="choseStairCalculator()" routerLink="/tools/staircalculator" routerLinkActive="active">stairs calculator</button>
+        <button class="calculator-button" (click)="choseUValueCalculator()">U value</button>
+        <button class="calculator-button" (click)="choseStairCalculator()">stairs calc</button>
+        <button class="calculator-button" (click)="choseScupperCalculator()">scupper counter</button>
     </div>
 
     <div [ngSwitch]="toolChoice">
@@ -11,5 +12,8 @@
         </div>
         <div *ngSwitchCase="1">
             <app-tools-u-value-calculator></app-tools-u-value-calculator>
+        </div>
+        <div *ngSwitchCase="2">
+            <app-tools-scupper-calculator></app-tools-scupper-calculator>
         </div>
     </div>
