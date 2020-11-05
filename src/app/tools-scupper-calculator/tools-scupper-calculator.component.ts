@@ -13,7 +13,7 @@ export class ToolsScupperCalculatorComponent implements OnInit {
 
   constructor(private toolScupperService: ToolScupperService) { }
 
-  checkScuppers(projectName: string, roofArea: string, scupperSideX: string, scupperSideY: string, bottomScupperLevelOverRoof: string, waterLevel: string): Scupper {
+  checkScuppers(projectName: string, roofArea: string, scupperSideX: string, scupperSideY: string, bottomScupperLevelOverRoof: string, waterLevel: string): void {
     this.toolScupperService.checkScuppers(projectName,
       roofArea,
       scupperSideX,
