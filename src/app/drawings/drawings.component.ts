@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Sheet } from '../sheet';
+import { SheetService } from '../sheet.service';
 
 @Component({
   selector: 'app-drawings',
@@ -11,43 +12,73 @@ export class DrawingsComponent implements OnInit {
   sheets: Sheet[] = [];
   isPrintShown = false;
 
-  constructor() { }
+  constructor(private sheetService: SheetService) { }
 
-  getMaxId(): number {
-    if (!this.sheets.length) {
-      return 0;
-    }
-    const ids = this.sheets.map(sheet => sheet.id);
-    const maxId = Math.max(...ids);
-    return maxId;
+  getSheets(): void {
+    this.sheetService.getSheets()
+      .subscribe(sheets => this.sheets = sheets);
   }
 
-  incrementId(): number {
-    const id = this.getMaxId() + 1;
-    return id;
-  }
-
-  addSheet(): void {
+  addRow(): void {
     const newSheet: Sheet = {
-      id: this.incrementId(),
+      id: null,
       no: '',
       description: '',
       edition: null,
       revision: null,
-      type: ''
+      type: 'UNKNOWN'
     };
-    this.sheets.push(newSheet);
+    this.sheetService.addSheet(newSheet)
+      .subscribe(sheet => this.sheets.push(sheet));
   }
 
-  deleteSheet(sheetToDelete: Sheet): void {
+  addSheet(sheet: Sheet): void {
+    const newSheet: Sheet = {
+      id: sheet.id,
+      no: sheet.no,
+      description: sheet.description,
+      edition: sheet.edition,
+      revision: sheet.revision,
+      type: sheet.type
+    };
+    this.sheetService.updateSheet(newSheet)
+      .subscribe();
+  }
+
+  deleteSheet(sheet: Sheet): void {
     if (confirm('Are you sure you want to delete this sheet?')) {
-      const idToDelete = sheetToDelete.id;
-      const newSheets = this.sheets.filter((element) => {
-        return idToDelete !== element.id;
-      });
-      this.sheets = newSheets;
+      this.sheets = this.sheets.filter(s => s !== sheet);
+      this.sheetService.deleteSheet(sheet).subscribe();
     }
   }
+
+
+
+  // getMaxId(): number {
+  //   if (!this.sheets.length) {
+  //     return 0;
+  //   }
+  //   const ids = this.sheets.map(sheet => sheet.id);
+  //   const maxId = Math.max(...ids);
+  //   return maxId;
+  // }
+
+  // incrementId(): number {
+  //   const id = this.getMaxId() + 1;
+  //   return id;
+  // }
+
+
+
+  // deleteSheet(sheetToDelete: Sheet): void {
+  //   if (confirm('Are you sure you want to delete this sheet?')) {
+  //     const idToDelete = sheetToDelete.id;
+  //     const newSheets = this.sheets.filter((element) => {
+  //       return idToDelete !== element.id;
+  //     });
+  //     this.sheets = newSheets;
+  //   }
+  // }
 
   printSheets(): void {
     if (!this.isPrintShown) {
@@ -71,7 +102,7 @@ export class DrawingsComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.addSheet();
+  this.getSheets();
   }
 
 }

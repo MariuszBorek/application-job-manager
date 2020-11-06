@@ -14,6 +14,10 @@
     border: none;
 }
 
+#li-note:hover {
+    background-color: rgb(141, 141, 141);
+}
+
 #note-div {
     float: left;
     width: 394px;
@@ -37,7 +41,7 @@ h3 {
 
 #add-note-button {
     background-color: #0471e3;
-    width: 59px;
+    width: 120px;
     height: 30px;
     color: white;
     outline: none;
@@ -74,21 +78,37 @@ h3 {
     color: #d3d3d3;
     cursor: pointer;
     font-size: 14px;
-    width: 311px;
+    width: 262px;
     height: 23px;
     overflow: hidden;
     text-overflow: ellipsis;
-    padding-left: 7px;
     outline: none;
     border: none;
     background-color: gray;
     margin: 0;
 }
 
+.body-note:hover {
+    background-color: rgb(141, 141, 141);
+}
+
+.save-button {
+    background-color: #52b8fc;
+    cursor: pointer;
+    width: 59px;
+    height: 26px;
+    color: white;
+    outline: none;
+    border: none;
+}
+
+.save-button:hover {
+    background-color: #4aca3d;
+}
+
 .delete-button {
     background-color: #28282a;
     cursor: pointer;
-    margin: 0 0 0 5px;
     width: 59px;
     height: 26px;
     color: white;

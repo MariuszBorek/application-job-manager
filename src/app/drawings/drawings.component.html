@@ -1,26 +1,26 @@
 <div>
     <h2>drawings</h2>
     <div id="toolbar">
-        <button id="add-sheet-button" (click)="addSheet()">add</button>
-        <button id="print-sheets-button" (click)="sortBySheetType(); printSheets()">print</button>
+        <button id="add-sheet-button" (click)="addRow()">add sheet</button>
+        <button id="print-sheets-button" (click)="sortBySheetType(); printSheets()">preapre sheet list</button>
     </div>
     <div>
         <ul id="ul-sheet">
             <li id="li-sheet" *ngFor="let sheet of sheets">
                 <div class="single-sheet">
-                    <span class="badge">{{ sheet.id }}</span>
+                    <button class="save-button" (click)="addSheet(sheet)">save</button>
                     <input class="no-input" [(ngModel)]="sheet.no" placeholder="sheet No.">
                     <input class="description-input" [(ngModel)]="sheet.description" placeholder="description">
                     <input class="edition-input" type="date" [(ngModel)]="sheet.edition">
                     <input class="revision-input" type="number" [(ngModel)]="sheet.revision">
                     <select class="sheet-type-select" [(ngModel)]="sheet.type">
-                      <option value="" selected>unknown</option>
-                      <option value="plan">plan</option>
-                      <option value="section">section</option>
-                      <option value="elevation">elevaction</option>
-                      <option value="element">element</option>
-                      <option value="scheme">scheme</option>
-                      <option value="masterplan">masterplan</option>
+                      <option value="UNKNOWN" selected>unknown</option>
+                      <option value="PLAN">plan</option>
+                      <option value="SECTION">section</option>
+                      <option value="ELEVATION">elevation</option>
+                      <option value="ELEMENT">element</option>
+                      <option value="SCHEME">scheme</option>
+                      <option value="MASTER_PLAN">master plan</option>
                     </select>
                     <button class="delete-button" (click)="deleteSheet(sheet)">delete</button>
                 </div>

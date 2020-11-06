@@ -27,7 +27,7 @@ export class TodoService {
   }
 
   updateTask(task: Task): Observable<Task> {
-    const url = `${this.tasksUrl}/${task.id}`;
+    const url = `${this.tasksUrl}/update`;
     return this.http.put<Task>(url, task, this.httpOptions);
   }
 
@@ -39,8 +39,6 @@ export class TodoService {
     const url = `${this.tasksUrl}/${task.id}`;
     return this.http.delete<Task>(url, this.httpOptions);
   }
-
-  // ------------------------------------------------------------
 
   getArchiveTasks(): Observable<Task[]> {
     const url = `${this.tasksUrl}/archive`;

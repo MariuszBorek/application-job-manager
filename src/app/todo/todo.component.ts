@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { discardPeriodicTasks } from '@angular/core/testing';
+// import { discardPeriodicTasks } from '@angular/core/testing';
 import { Task } from '../task';
 import { TodoService } from '../todo.service';
 
@@ -16,10 +16,6 @@ export class TodoComponent implements OnInit {
 
 
   constructor(private todoService: TodoService) { }
-
-  getSize(): number {
-    return this.tasks.length;
-  }
 
   getTasks(): void {
     this.todoService.getTasks()
@@ -56,8 +52,10 @@ export class TodoComponent implements OnInit {
   }
 
   deleteTask(task: Task): void {
+    if (confirm('Are you sure you want to delete this sheet?')) {
     this.tasks = this.tasks.filter(t => t !== task);
     this.todoService.deleteTask(task).subscribe();
+    }
   }
 
   archiveTasks(): void {
@@ -66,19 +64,50 @@ export class TodoComponent implements OnInit {
   }
 
   clearfinishedTasks(): void {
+    var tasksToDelete: Task[] = [];
     if (confirm('Are you sure you want to clear finished tasks?')) {
-      const tasksToDelete: Task[] = [];
       this.tasks.forEach(task => {
         if (task.execution === true) {
           tasksToDelete.push(task);
         }
       });
       this.todoService.deleteFinishedTasks(tasksToDelete).subscribe();
-      this.getTasks();
+    }
+    location.reload();
+  }
+
+  setPriority(task: Task): boolean {
+    if (task.priority === false) {
+      task.priority = true;
+
+      return true;
+    } else {
+      task.priority = false;
+      return false;
     }
   }
 
-  // --------------------------------------------------------
+  setExecution(task: Task): boolean {
+    if (task.execution === false) {
+      task.execution = true;
+      return true;
+    } else {
+      task.execution = false;
+      return false;
+    }
+  }
+
+  changeColor(isTrue: boolean): boolean {
+    return isTrue;
+  }
+
+  showHistory(): void {
+    if (!this.isHisotryTaskShown) {
+      this.isHisotryTaskShown = true;
+    } else {
+      this.isHisotryTaskShown = false;
+    }
+  }
 
   sortByUnfinished(): void {
     const sortedTasks = this.tasks.sort((e1, e2) => {
@@ -138,61 +167,6 @@ export class TodoComponent implements OnInit {
       }
     });
     this.tasks = sortedTasks;
-  }
-
-  setPriority(task: Task): boolean {
-    if (task.priority === false) {
-      task.priority = true;
-
-      return true;
-    } else {
-      task.priority = false;
-      return false;
-    }
-  }
-
-  setExecution(task: Task): boolean {
-    if (task.execution === false) {
-      task.execution = true;
-      return true;
-    } else {
-      task.execution = false;
-      return false;
-    }
-  }
-
-  changeColor(isTrue: boolean): boolean {
-    return isTrue;
-  }
-
-
-  // clearfinishedTasks(): void {
-  //   if (confirm('Are you sure you want to clear finished tasks?')) {
-  //     const newTasks = this.tasks.filter((element) => {
-  //       return element.execution === false;
-  //     });
-  //     this.tasks = newTasks;
-  //   }
-  // }
-
-  // archiveTasks(): void {
-  //   if (confirm('Are you sure you want to archive finished tasks?')) {
-  //     const newTasks = this.tasks.filter((element) => {
-  //       return element.execution === true;
-  //     });
-  //     for (let i = 0; i < newTasks.length; i++) {
-  //       this.archivedTasks.push(newTasks[i]);
-  //     }
-  //     this.clearfinishedTasks();
-  //   }
-  // }
-
-  showHistory(): void {
-    if (!this.isHisotryTaskShown) {
-      this.isHisotryTaskShown = true;
-    } else {
-      this.isHisotryTaskShown = false;
-    }
   }
 
 

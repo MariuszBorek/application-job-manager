@@ -19,6 +19,10 @@ export class ToolsComponent implements OnInit {
     this.toolChoice = 1;
   }
 
+  choseScupperCalculator(): void {
+    this.toolChoice = 2;
+  }
+
 
   ngOnInit(): void {
     this.choseUValueCalculator();
