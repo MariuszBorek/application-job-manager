@@ -1,7 +1,7 @@
 export interface Scupper {
   id: number;
   projectName: string;
-  roofArea: string;
+  roofArea: number;
   scupperSideX: number;
   scupperSideY: number;
   realScupperArea: number;

@@ -31,4 +31,8 @@ export class ToolScupperService {
     return this.http.post<Scupper>(this.scuppersUrl, scupper, this.httpOptions);
   }
 
+  findAll(): Observable<Scupper[]> {
+    return this.http.get<Scupper[]>(this.scuppersUrl);
+  }
+
 }
