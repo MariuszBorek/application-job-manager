@@ -14,6 +14,11 @@ input {
     border-bottom: 1px solid darkgray;
 }
 
+#next {
+    clear: both;
+    height: 20px;
+}
+
 .add-check-scupper {
     &__input-x-side {
         border-radius: 4px 4px 0px 0px;
@@ -99,7 +104,7 @@ h3 {
     margin-left: 10px;
     padding: 10px;
     font-size: 18px;
-    width: 300px;
+    width: 290px;
     height: 297px;
     color: white;
     outline: none;
@@ -196,6 +201,24 @@ li {
 }
 
 .decription-list {
+    color: #d3d3d3;
+    font-size: 14px;
+}
+
+.instruction {
+    background-color: #121218;
+    float: left;
+    width: 364px;
+    height: 317px;
+    margin-left: 5px;
+    &__img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+}
+
+#img-description {
+    padding: 5px;
     color: #d3d3d3;
     font-size: 14px;
 }
