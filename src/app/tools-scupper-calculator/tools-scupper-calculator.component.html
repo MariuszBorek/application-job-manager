@@ -113,7 +113,9 @@
                         <span>{{ scupper.waterLevel }} / </span>
                         <span>{{ scupper.bottomScupperLevelOverRoof }} / </span>
                         <span>{{ scupper.numberOfScuppers }}</span>
-                        <button class="delete-button" (click)="deleteScupper(scupper)">delete</button>
+                    </div>
+                    <div>
+                        <button class="delete-button__delete-scupper-from-list" (click)="deleteScupper(scupper)">delete</button>
                     </div>
                 </li>
             </ul>
