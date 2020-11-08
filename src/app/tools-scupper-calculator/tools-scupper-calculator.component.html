@@ -5,20 +5,20 @@
             <input type="text" class="add-check-scupper__input-project-name" placeholder="project name" id="projectName" #projectName>
         </div>
         <div>
-            <input class="add-check-scupper__input-roof-area" type="number" placeholder="roof area" id="roofArea" #roofArea>
+            <input class="add-check-scupper__input-roof-area" type="number" placeholder="roof area" id="roofArea [m2]" #roofArea>
         </div>
         <div>
-            <input class="add-check-scupper__input-scupper-bottom" type="number" placeholder="level of the scupper(bottom)" id="bottomScupperLevelOverRoof" #bottomScupperLevelOverRoof>
+            <input class="add-check-scupper__input-scupper-bottom" type="number" placeholder="S - level of the scupper [cm]" id="bottomScupperLevelOverRoof" #bottomScupperLevelOverRoof>
         </div>
         <div>
-            <input class="add-check-scupper__input-water-level" type="number" placeholder="water level" id="waterLevel" #waterLevel>
+            <input class="add-check-scupper__input-water-level" type="number" placeholder="W - water level [cm]" id="waterLevel" #waterLevel>
         </div>
 
         <div>
-            <input class="add-check-scupper__input-x-side" type="number" placeholder="X side of the scupper" id="scupperSideX" #scupperSideX>
+            <input class="add-check-scupper__input-x-side" type="number" placeholder="X side [cm]" id="scupperSideX" #scupperSideX>
         </div>
         <div>
-            <input class="add-check-scupper__input-y-side" type="number" placeholder="Y side of the scupper" id="scupperSideY" #scupperSideY>
+            <input class="add-check-scupper__input-y-side" type="number" placeholder="Y side [cm]" id="scupperSideY" #scupperSideY>
         </div>
 
         <div id="button-container">
@@ -62,22 +62,38 @@
             <div class="display__detailed-info__rest">{{ scupper.numberOfScuppers }} <span class="display__desc">/precise number of scuppers</span></div>
         </div>
     </div>
+    <div class="instruction">
+        <div>
+            <img class="instruction__img" [src]="instructionImg">
+        </div>
+        <div id="img-description">
+            <div>
+                W - water level (defaul 10 cm)
+            </div>
+            <div>
+                S - bottom of the scupper (defaul 5 cm)
+            </div>
+        </div>
+    </div>
+
+
+
     <div id="next-line"></div>
     <div>
         <div>
             <div class="find">
                 <div class="find__input">
-                    <input class="find__input__field" type="text" placeholder="find(project name)" id="find-project-name" #findNrojectName>
+                    <input class="find__input__field" type="text" placeholder="find(project name)" id="find-project-name" #findProjectName>
                 </div>
                 <div class="find__button">
-                    <button class="find__button__find" (click)="findByScupperName(findNrojectName)">find</button>
+                    <button class="find__button__find" (click)="findByProjectName(findProjectName.value)">find</button>
                 </div>
             </div>
 
             <button class="find__button__all" (click)="findAllScuppers()">show saved scuppers</button>
             <button class="find__button__all" (click)="hideScuppers()">hide saved scuppers</button>
             <button class="find__button__clean" (click)="cleanAllScuppers()">clean all</button>
-            <div id="next-line"></div>
+            <div id="next"></div>
 
         </div>
         <div id="display-founded-scuppers">

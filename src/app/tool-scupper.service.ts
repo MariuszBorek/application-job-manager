@@ -17,7 +17,12 @@ export class ToolScupperService {
 
   constructor(private http: HttpClient) { }
 
-  checkScuppers(projectName: string, roofArea: string, scupperSideX: string, scupperSideY: string, bottomScupperLevelOverRoof: string, waterLevel: string): Observable<Scupper> {
+  checkScuppers(projectName: string,
+    roofArea: string,
+    scupperSideX: string,
+    scupperSideY: string,
+    bottomScupperLevelOverRoof: string,
+    waterLevel: string): Observable<Scupper> {
     const url = `${this.scuppersUrl}/check?projectName=${projectName}
     &roofArea=${roofArea}
     &scupperSideX=${scupperSideX}
@@ -31,8 +36,18 @@ export class ToolScupperService {
     return this.http.post<Scupper>(this.scuppersUrl, scupper, this.httpOptions);
   }
 
+  findByProjectName(projectName: string): Observable<Scupper[]> {
+    const url = `${this.scuppersUrl}/find-by-project-name/${projectName}`;
+    return this.http.get<Scupper[]>(url);
+  }
+
   findAll(): Observable<Scupper[]> {
     return this.http.get<Scupper[]>(this.scuppersUrl);
+  }
+
+  clearAllScuppers(): Observable<Scupper[]>  {
+    const url = `${this.scuppersUrl}/clear-saved-scuppers`;
+    return this.http.delete<Scupper[]>(url);
   }
 
 }

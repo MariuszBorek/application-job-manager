@@ -25,7 +25,7 @@ export class ToolsComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.choseUValueCalculator();
+    this.choseScupperCalculator();
   }
 
 }
