@@ -3,28 +3,26 @@
 
     <div class="create-user">
         <div>
-            <label for="name">name</label>
-            <input type="text" id="name" #name>
+            <input type="text" placeholder="name" id="name" #name>
         </div>
         <div>
-            <label for="surname">surname</label>
-            <input type="text" id="surname" #surname>
+            <input type="text" placeholder="surname" id="surname" #surname>
         </div>
         <div>
-
-            <label for="email">e-mail</label>
-            <input type="email" id="email" #email>
+            <input type="email" placeholder="e mail" id="email" #email>
         </div>
         <div>
-            <label for="name">password</label>
-            <input type="password" id="pasword" #password>
-
+            <input type="password" placeholder="password" id="password" #password>
         </div>
 
-        <button (click)="createUser(name.value,
+        <button class="create-buttom" (click)="createUser(name.value,
         surname.value,
         email.value,
-        password.value); name.value=''; surname.value=''; email.value=''; password.value=''">create</button>
+        password.value);
+        name.value='';
+        surname.value='';
+        email.value='';
+        password.value=''">create</button>
     </div>
 
 </div>

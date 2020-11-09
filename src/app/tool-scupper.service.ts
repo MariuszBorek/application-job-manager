@@ -45,6 +45,11 @@ export class ToolScupperService {
     return this.http.get<Scupper[]>(this.scuppersUrl);
   }
 
+  deleteScupperFromList(scupper: Scupper): Observable<Scupper[]> {
+    const url = `${this.scuppersUrl}/${scupper.id}`;
+    return this.http.delete<Scupper[]>(url, this.httpOptions);
+  }
+
   clearAllScuppers(): Observable<Scupper[]>  {
     const url = `${this.scuppersUrl}/clear-saved-scuppers`;
     return this.http.delete<Scupper[]>(url);
