@@ -14,20 +14,15 @@
         <div>
             <input type="password" placeholder="password" id="password" #password>
         </div>
-        <div>
-            <input type="password" placeholder="repeat password" id="repeatPassword" #repeatPassword>
-        </div>
 
         <button class="create-buttom" (click)="createUser(name.value,
         surname.value,
         email.value,
-        password.value,
-        repeatPassword.value);
+        password.value);
         name.value='';
         surname.value='';
         email.value='';
-        password.value='';
-        repeatPassword.value=''">create</button>
+        password.value=''">create</button>
     </div>
 
 </div>
