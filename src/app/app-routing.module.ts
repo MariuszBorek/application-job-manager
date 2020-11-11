@@ -10,15 +10,15 @@ import { UserComponent } from './user/user.component';
 import { UserCreatorComponent } from './user-creator/user-creator.component';
 
 const routes: Routes = [
-  { path: 'jm', component: JmComponent },
-  { path: 'todo', component: TodoComponent },
-  { path: 'drawings', component: DrawingsComponent },
-  { path: 'notes', component: NotesComponent },
-  { path: 'tools', component: ToolsComponent },
-  { path: 'log-in', component: LogInComponent },
-  { path: 'user', component: UserComponent },
-  { path: 'user-creator', component: UserCreatorComponent },
-  { path: '',   redirectTo: '/jm', pathMatch: 'full' }
+  // { path: 'jm', component: JmComponent },
+  // { path: 'todo', component: TodoComponent },
+  // { path: 'drawings', component: DrawingsComponent },
+  // { path: 'notes', component: NotesComponent },
+  // { path: 'tools', component: ToolsComponent },
+  // { path: 'log-in', component: LogInComponent },
+  // { path: 'user', component: UserComponent },
+  // { path: 'user-creator', component: UserCreatorComponent },
+  // { path: '',   redirectTo: '/jm', pathMatch: 'full' }
 ];
 
 @NgModule({

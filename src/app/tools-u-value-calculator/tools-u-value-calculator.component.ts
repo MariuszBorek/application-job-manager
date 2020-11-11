@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Row } from '../row';
+import { User } from '../user';
 
 @Component({
   selector: 'app-tools-u-value-calculator',
@@ -7,6 +8,8 @@ import { Row } from '../row';
   styleUrls: ['./tools-u-value-calculator.component.scss']
 })
 export class ToolsUValueCalculatorComponent implements OnInit {
+
+  @Input() user: User;
 
   rows: Row[] = [];
   rsi: number;

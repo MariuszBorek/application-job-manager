@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Sheet } from '../sheet';
 import { SheetService } from '../sheet.service';
+import { User } from '../user';
 
 @Component({
   selector: 'app-drawings',
@@ -8,6 +9,8 @@ import { SheetService } from '../sheet.service';
   styleUrls: ['./drawings.component.scss']
 })
 export class DrawingsComponent implements OnInit {
+
+  @Input() user: User;
 
   sheets: Sheet[] = [];
   isPrintShown = false;

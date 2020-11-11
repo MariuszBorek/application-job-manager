@@ -1,8 +1,39 @@
 <div>
     <div id="block-extension">
+        <div id="greeting-container">
+            <div *ngIf="user">
+                <span id="greating">Welcome {{ user.name }}!</span>
+            </div>
+        </div>
         <div id="block-extension__logo">Job Manager</div>
         <div id="block-extension__logo__target">
             <span id="block-extension__logo__target__industry">architect</span><span id="block-extension__logo__target__word">extension</span>
         </div>
     </div>
+
+    <div class="user-creator">
+        <div>
+            <input type="text" placeholder="name" id="name" #name>
+        </div>
+        <div>
+            <input type="text" placeholder="surname" id="surname" #surname>
+        </div>
+        <div>
+            <input type="email" placeholder="e mail" id="email" #email>
+        </div>
+        <div>
+            <input type="password" placeholder="password" id="password" #password>
+        </div>
+
+        <button class="create-buttom" (click)="createUser(name.value,
+      surname.value,
+      email.value,
+      password.value);
+      name.value='';
+      surname.value='';
+      email.value='';
+      password.value=''">create</button>
+    </div>
+
+    <div id="next"></div>
 </div>

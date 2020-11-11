@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Note } from '../note';
 import { NoteService } from '../note.service';
+import { User } from '../user';
 
 @Component({
   selector: 'app-notes',
@@ -10,6 +11,7 @@ import { NoteService } from '../note.service';
 export class NotesComponent implements OnInit {
 
   notes: Note[] = [];
+  @Input() user: User;
 
   selectedNote: Note = {
     id: null,

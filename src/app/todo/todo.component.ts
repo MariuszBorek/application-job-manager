@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 // import { discardPeriodicTasks } from '@angular/core/testing';
 import { Task } from '../task';
 import { TodoService } from '../todo.service';
+import { User } from '../user';
 
 @Component({
   selector: 'app-todo',
@@ -9,6 +10,8 @@ import { TodoService } from '../todo.service';
   styleUrls: ['./todo.component.scss']
 })
 export class TodoComponent implements OnInit {
+
+  @Input() user: User;
 
   tasks: Task[] = [];
   archivedTasks: Task[] = [];
@@ -25,13 +28,13 @@ export class TodoComponent implements OnInit {
 
   addRow(): void {
     const newTask: Task = {
-          id: null,
-          topic: '',
-          text: '',
-          date: null,
-          priority: false,
-          execution: false
-        };
+      id: null,
+      topic: '',
+      text: '',
+      date: null,
+      priority: false,
+      execution: false
+    };
     this.todoService.addTask(newTask)
       .subscribe(task => {
         this.tasks.push(task);
@@ -40,21 +43,21 @@ export class TodoComponent implements OnInit {
 
   addTask(task: Task): void {
     const newTask: Task = {
-          id: task.id,
-          topic: task.topic,
-          text: task.text,
-          date: task.date,
-          priority: task.priority,
-          execution: task.execution
-        };
+      id: task.id,
+      topic: task.topic,
+      text: task.text,
+      date: task.date,
+      priority: task.priority,
+      execution: task.execution
+    };
     this.todoService.updateTask(newTask)
       .subscribe();
   }
 
   deleteTask(task: Task): void {
     if (confirm('Are you sure you want to delete this sheet?')) {
-    this.tasks = this.tasks.filter(t => t !== task);
-    this.todoService.deleteTask(task).subscribe();
+      this.tasks = this.tasks.filter(t => t !== task);
+      this.todoService.deleteTask(task).subscribe();
     }
   }
 

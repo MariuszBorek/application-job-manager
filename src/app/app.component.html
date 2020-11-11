@@ -2,22 +2,28 @@
     <nav>
         <div id="nav-conteiner">
             <div class="nav-button">
-                <button class="nav-button__a" routerLink="/jm" routerLinkActive="active">𝓙𝓜</button>
+                <button class="nav-button__a" (click)="chooseTabJm()">𝓙𝓜</button>
             </div>
             <div class="nav-button">
-                <button class="nav-button__a" routerLink="/todo" routerLinkActive="active">todo</button>
+                <button class="nav-button__a" (click)="chooseTabTodo()">todo</button>
             </div>
             <div class="nav-button">
-                <button class="nav-button__a" routerLink="/drawings" routerLinkActive="active">drawings</button>
+                <button class="nav-button__a" (click)="chooseTabDrawings()">drawings</button>
             </div>
             <div class="nav-button">
-                <button class="nav-button__a" routerLink="/notes" routerLinkActive="active">notes</button>
+                <button class="nav-button__a" (click)="chooseTabNotes()">notes</button>
             </div>
             <div class="nav-button">
-                <button class="nav-button__a" routerLink="/tools" routerLinkActive="active">tools</button>
+                <button class="nav-button__a" (click)="chooseTabTools()">tools</button>
             </div>
             <div class="nav-button">
-                <button id="log-in-button" class="nav-button__a" routerLink="/log-in" routerLinkActive="active">log in</button>
+                <form>
+                    <div id="login-container">
+                        <input type="text" id="jm-id-input" name="email" [(ngModel)]="email" placeholder="JM id">
+                        <input type="password" name="password" [(ngModel)]="password" placeholder="password">
+                        <button type="submit" (click)="login()" id="button-container__block__submit" class="nav-button__login">log in</button>
+                    </div>
+                </form>
             </div>
             <div style="clear: both;"></div>
         </div>
@@ -25,7 +31,23 @@
 </header>
 <main>
     <article>
-        <router-outlet></router-outlet>
+        <div [ngSwitch]="choice">
+            <div *ngSwitchCase="0">
+                <app-jm [user]="gotUser"></app-jm>
+            </div>
+            <div *ngSwitchCase="1">
+                <app-todo></app-todo>
+            </div>
+            <div *ngSwitchCase="2">
+                <app-drawings></app-drawings>
+            </div>
+            <div *ngSwitchCase="3">
+                <app-notes></app-notes>
+            </div>
+            <div *ngSwitchCase="4">
+                <app-tools></app-tools>
+            </div>
+        </div>
     </article>
 </main>
 <footer>
