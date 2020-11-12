@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from './user';
+import { Project } from './project';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,9 @@ export class LoginService {
     return this.http.get<User>(url, { responseType: 'json' });
   }
 
-
-
+  getProjects(id: number): Observable<Project[]> {
+    const url = `${this.loginUrl}/projects/${id}`;
+    return this.http.get<Project[]>(url);
+  }
 
 }

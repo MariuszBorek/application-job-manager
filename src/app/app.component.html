@@ -17,6 +17,10 @@
                 <button class="nav-button__a" (click)="chooseTabTools()">tools</button>
             </div>
             <div class="nav-button">
+                <button class="nav-button__a" (click)="showProjects()">projects</button>
+            </div>
+            <div class="nav-button">
+
                 <form>
                     <div id="login-container">
                         <input type="text" id="jm-id-input" name="email" [(ngModel)]="email" placeholder="JM id">
@@ -31,12 +35,23 @@
 </header>
 <main>
     <article>
+        <div>
+            <ul id="ul-sheet">
+                <li id="li-sheet" *ngFor="let project of projects">
+                    <div class="single-sheet">
+                        <button (click)="chooseProject(project)" class="delete-button">choose</button>
+                        <span>{{ project.title }}</span>
+                        <button class="delete-button">delete</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
         <div [ngSwitch]="choice">
             <div *ngSwitchCase="0">
-                <app-jm [user]="gotUser"></app-jm>
+                <app-jm [user]="gotUser" [project]="choosenProject"></app-jm>
             </div>
             <div *ngSwitchCase="1">
-                <app-todo></app-todo>
+                <app-todo [user]="gotUser" [project]="choosenProject"></app-todo>
             </div>
             <div *ngSwitchCase="2">
                 <app-drawings></app-drawings>

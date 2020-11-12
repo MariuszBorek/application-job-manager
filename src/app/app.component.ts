@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { User } from './user';
 import { LoginService } from './login.service';
+import { Project } from './project';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,8 @@ export class AppComponent {
   email: string;
   password: string;
   gotUser: User;
+  projects: Project[];
+  choosenProject: Project;
 
   constructor(private loginSevice: LoginService) { }
 
@@ -22,6 +25,17 @@ export class AppComponent {
       this.loginSevice.LogInUser(this.email, this.password)
       .subscribe(user => this.gotUser = user);
     }
+  }
+
+  showProjects(): void {
+    if (this.gotUser) {
+    this.loginSevice.getProjects(this.gotUser.id).subscribe(projects => this.projects = projects);
+    }
+  }
+
+  chooseProject(project: Project): void {
+    this.choosenProject = project;
+    this.projects = null;
   }
 
   chooseTabJm(): void {
@@ -47,6 +61,5 @@ export class AppComponent {
   ngOnInit(): void {
     this.chooseTabJm();
   }
-
 
 }

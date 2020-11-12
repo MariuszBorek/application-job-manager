@@ -4,6 +4,9 @@
             <div *ngIf="user">
                 <span id="greating">Welcome {{ user.name }}!</span>
             </div>
+            <div *ngIf="project">
+                <span id="greating">Project: {{ project.title }}</span>
+            </div>
         </div>
         <div id="block-extension__logo">Job Manager</div>
         <div id="block-extension__logo__target">
@@ -12,6 +15,7 @@
     </div>
 
     <div class="user-creator">
+        <span id="creator-instruction">create user</span>
         <div>
             <input type="text" placeholder="name" id="name" #name>
         </div>
@@ -32,7 +36,19 @@
       name.value='';
       surname.value='';
       email.value='';
-      password.value=''">create</button>
+      password.value=''">create account</button>
+    </div>
+
+    <div class="user-creator">
+        <span id="creator-instruction">create project</span>
+        <div>
+            <input type="text" placeholder="title" id="title" #title>
+        </div>
+        <div>
+            <input type="text" placeholder="description" id="description" #description>
+        </div>
+        <button class="create-buttom" (click)="createProject(title.value, description.value);
+        title.value=''; description.value=''">create project</button>
     </div>
 
     <div id="next"></div>

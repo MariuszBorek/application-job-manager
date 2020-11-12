@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserCreatorService } from '../user-creator.service';
 import { User } from '../user';
+import { Project } from '../project';
 
 @Component({
   selector: 'app-user-creator',
@@ -24,6 +25,18 @@ export class UserCreatorComponent implements OnInit {
       projects: null
     };
     this.userCreatorService.addUser(newUser).subscribe();
+  }
+
+  createProject(id: number, title: string, description: string): void {
+    const newProject: Project = {
+      id: null,
+      title,
+      description,
+      tasks: null,
+      sheets: null,
+      notes: null,
+    };
+    this.userCreatorService.addProject(id, newProject).subscribe();
   }
 
 }
