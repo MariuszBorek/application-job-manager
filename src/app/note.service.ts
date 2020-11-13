@@ -8,7 +8,7 @@ import { Note } from './note';
 })
 export class NoteService {
 
-  private notesUrl = 'http://localhost:8080/api/notes';
+  private notesUrl = 'http://localhost:8080/api/users/project/notes';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -16,21 +16,23 @@ export class NoteService {
 
   constructor(private http: HttpClient) { }
 
-  getNotes(): Observable<Note[]> {
-    return this.http.get<Note[]>(this.notesUrl);
+  getNotes(userId: number, projectId: number): Observable<Note[]> {
+    const url = `${this.notesUrl}/${userId}/${projectId}`;
+    return this.http.get<Note[]>(url);
   }
 
-  addNote(note: Note): Observable<Note> {
-    return this.http.post<Note>(this.notesUrl, note, this.httpOptions);
+  addNote(userId: number, projectId: number, note: Note): Observable<Note> {
+    const url = `${this.notesUrl}/${userId}/${projectId}`;
+    return this.http.post<Note>(url, note, this.httpOptions);
   }
 
-  updateNote(note: Note): Observable<Note> {
-    const url = `${this.notesUrl}/update`;
+  updateNote(userId: number, projectId: number, note: Note): Observable<Note> {
+    const url = `${this.notesUrl}/${userId}/${projectId}`;
     return this.http.put<Note>(url, note, this.httpOptions);
   }
 
-  deleteNote(note: Note): Observable<Note> {
-    const url = `${this.notesUrl}/${note.id}`;
+  deleteNote(userId: number, projectId: number, note: Note): Observable<Note> {
+    const url = `${this.notesUrl}/${userId}/${projectId}/${note.id}`;
     return this.http.delete<Note>(url, this.httpOptions);
   }
 

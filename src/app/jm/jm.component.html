@@ -2,10 +2,10 @@
     <div id="block-extension">
         <div id="greeting-container">
             <div *ngIf="user">
-                <span id="greating">Welcome {{ user.name }}!</span>
+                <span id="greeting-container__user">welcome {{ user.name }}!</span>
             </div>
             <div *ngIf="project">
-                <span id="greating">Project: {{ project.title }}</span>
+                <span id="greeting-container__project">chosen project: {{ project.title }}</span>
             </div>
         </div>
         <div id="block-extension__logo">Job Manager</div>

@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Sheet } from '../sheet';
 import { SheetService } from '../sheet.service';
 import { User } from '../user';
+import { Project } from '../project';
 
 @Component({
   selector: 'app-drawings',
@@ -11,31 +12,38 @@ import { User } from '../user';
 export class DrawingsComponent implements OnInit {
 
   @Input() user: User;
+  @Input() project: Project;
 
   sheets: Sheet[] = [];
   isPrintShown = false;
 
   constructor(private sheetService: SheetService) { }
 
+
   getSheets(): void {
-    this.sheetService.getSheets()
-      .subscribe(sheets => this.sheets = sheets);
+    if (this.project) {
+      this.sheetService.getSheets(this.user.id, this.project.id)
+        .subscribe(sheets => this.sheets = sheets);
+    }
   }
 
   addRow(): void {
-    const newSheet: Sheet = {
-      id: null,
-      no: '',
-      description: '',
-      edition: null,
-      revision: null,
-      type: 'UNKNOWN'
-    };
-    this.sheetService.addSheet(newSheet)
-      .subscribe(sheet => this.sheets.push(sheet));
+    if (this.project) {
+      const newSheet: Sheet = {
+        id: null,
+        no: '',
+        description: '',
+        edition: null,
+        revision: null,
+        type: 'UNKNOWN'
+      };
+      this.sheetService.addSheet(this.user.id, this.project.id, newSheet)
+        .subscribe(sheet => this.sheets.push(sheet));
+    }
   }
 
   addSheet(sheet: Sheet): void {
+    if (this.project) {
     const newSheet: Sheet = {
       id: sheet.id,
       no: sheet.no,
@@ -44,44 +52,17 @@ export class DrawingsComponent implements OnInit {
       revision: sheet.revision,
       type: sheet.type
     };
-    this.sheetService.updateSheet(newSheet)
+    this.sheetService.updateSheet(this.user.id, this.project.id, newSheet)
       .subscribe();
-  }
-
-  deleteSheet(sheet: Sheet): void {
-    if (confirm('Are you sure you want to delete this sheet?')) {
-      this.sheets = this.sheets.filter(s => s !== sheet);
-      this.sheetService.deleteSheet(sheet).subscribe();
     }
   }
 
-
-
-  // getMaxId(): number {
-  //   if (!this.sheets.length) {
-  //     return 0;
-  //   }
-  //   const ids = this.sheets.map(sheet => sheet.id);
-  //   const maxId = Math.max(...ids);
-  //   return maxId;
-  // }
-
-  // incrementId(): number {
-  //   const id = this.getMaxId() + 1;
-  //   return id;
-  // }
-
-
-
-  // deleteSheet(sheetToDelete: Sheet): void {
-  //   if (confirm('Are you sure you want to delete this sheet?')) {
-  //     const idToDelete = sheetToDelete.id;
-  //     const newSheets = this.sheets.filter((element) => {
-  //       return idToDelete !== element.id;
-  //     });
-  //     this.sheets = newSheets;
-  //   }
-  // }
+  deleteSheet(sheet: Sheet): void {
+    if (this.project && confirm('Are you sure you want to delete this sheet?')) {
+      this.sheets = this.sheets.filter(s => s !== sheet);
+      this.sheetService.deleteSheet(this.user.id, this.project.id, sheet).subscribe();
+    }
+  }
 
   printSheets(): void {
     if (!this.isPrintShown) {
@@ -105,7 +86,7 @@ export class DrawingsComponent implements OnInit {
 
 
   ngOnInit(): void {
-  this.getSheets();
+    this.getSheets();
   }
 
 }

@@ -11,6 +11,7 @@
         &__target {
             width: fit-content;
             margin-left: 350px;
+            margin-right: 57px;
             &__industry {
                 font-size: 40px;
             }
@@ -24,6 +25,12 @@
 #greeting-container {
     font-size: 20px;
     min-height: 60px;
+    margin-left: 0px;
+    padding-left: 0px;
+    &__user {
+        margin-bottom: 10px;
+    }
+    &__project {}
 }
 
 .user-creator {

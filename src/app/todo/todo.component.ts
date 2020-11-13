@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Task } from '../task';
 import { TodoService } from '../todo.service';
-import { UserService } from '../user.service';
 import { User } from '../user';
 import { Project } from '../project';
 
@@ -20,20 +19,17 @@ export class TodoComponent implements OnInit {
   isHisotryTaskShown = false;
 
 
-  constructor(private userService: UserService, private todoService: TodoService) { }
+  constructor(private todoService: TodoService) { }
 
   getTasks(): void {
-    this.userService.getTasks(this.user.id, this.project.id)
+    if (this.project) {
+    this.todoService.getTasks(this.user.id, this.project.id)
       .subscribe(tasks => this.tasks = tasks);
+    }
   }
 
-  // getTasks(): void {
-  //   this.todoService.getTasks()
-  //     .subscribe(tasks => this.tasks = tasks);
-  // }
-
-
   addRow(): void {
+    if (this.project) {
     const newTask: Task = {
       id: null,
       topic: '',
@@ -42,86 +38,57 @@ export class TodoComponent implements OnInit {
       priority: false,
       execution: false
     };
-    this.userService.addTask(this.user.id, this.project.id, newTask)
+    this.todoService.addTask(this.user.id, this.project.id, newTask)
       .subscribe(task => {
         this.tasks.push(task);
       });
-  }
-
-  // addRow(): void {
-  //   const newTask: Task = {
-  //     id: null,
-  //     topic: '',
-  //     text: '',
-  //     date: null,
-  //     priority: false,
-  //     execution: false
-  //   };
-  //   this.todoService.addTask(newTask)
-  //     .subscribe(task => {
-  //       this.tasks.push(task);
-  //     });
-  // }
-
-
-  addTask(task: Task): void {
-    const newTask: Task = {
-      id: task.id,
-      topic: task.topic,
-      text: task.text,
-      date: task.date,
-      priority: task.priority,
-      execution: task.execution
-    };
-    this.userService.updateTask(this.user.id, this.project.id, newTask)
-      .subscribe();
-  }
-
-  // addTask(task: Task): void {
-  //   const newTask: Task = {
-  //     id: task.id,
-  //     topic: task.topic,
-  //     text: task.text,
-  //     date: task.date,
-  //     priority: task.priority,
-  //     execution: task.execution
-  //   };
-  //   this.todoService.updateTask(newTask)
-  //     .subscribe();
-  // }
-
-  deleteTask(task: Task): void {
-    if (confirm('Are you sure you want to delete this sheet?')) {
-      this.tasks = this.tasks.filter(t => t !== task);
-      this.userService.deleteTask(this.user.id, this.project.id, task).subscribe();
     }
   }
 
+  addTask(task: Task): void {
+    if (this.project) {
+      const newTask: Task = {
+        id: task.id,
+        topic: task.topic,
+        text: task.text,
+        date: task.date,
+        priority: task.priority,
+        execution: task.execution
+      };
+      this.todoService.updateTask(this.user.id, this.project.id, newTask)
+        .subscribe();
+    }
+  }
 
-  // deleteTask(task: Task): void {
-  //   if (confirm('Are you sure you want to delete this sheet?')) {
-  //     this.tasks = this.tasks.filter(t => t !== task);
-  //     this.todoService.deleteTask(task).subscribe();
-  //   }
-  // }
+  deleteTask(task: Task): void {
+    if (this.project && confirm('Are you sure you want to delete this sheet?')) {
+      this.tasks = this.tasks.filter(t => t !== task);
+      this.todoService.deleteTask(this.user.id, this.project.id, task).subscribe();
+    }
+  }
 
   archiveTasks(): void {
-    this.todoService.getArchiveTasks()
-      .subscribe(tasks => this.archivedTasks = tasks);
+    if (this.project) {
+      this.todoService.getArchiveTasks(this.user.id, this.project.id)
+        .subscribe(tasks => this.archivedTasks = tasks);
+    }
   }
 
   clearfinishedTasks(): void {
     const tasksToDelete: Task[] = [];
-    if (confirm('Are you sure you want to clear finished tasks?')) {
-      this.tasks.forEach(task => {
-        if (task.execution === true) {
-          tasksToDelete.push(task);
-        }
-      });
-      this.todoService.deleteFinishedTasks(tasksToDelete).subscribe();
+    if (this.project) {
+      if (confirm('Are you sure you want to clear finished tasks?')) {
+        this.tasks.forEach(task => {
+          if (task.execution === true) {
+            tasksToDelete.push(task);
+          }
+        });
+        this.todoService.deleteFinishedTasks(this.user.id, this.project.id, tasksToDelete).subscribe();
+      }
     }
-    location.reload();
+    // location.reload();
   }
+
 
   setPriority(task: Task): boolean {
     if (task.priority === false) {
@@ -215,7 +182,6 @@ export class TodoComponent implements OnInit {
     });
     this.tasks = sortedTasks;
   }
-
 
   ngOnInit(): void {
     if (this.project) {

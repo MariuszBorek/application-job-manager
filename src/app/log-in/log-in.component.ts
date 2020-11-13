@@ -17,11 +17,11 @@ export class LogInComponent implements OnInit {
 
   constructor(private loginSevice: LoginService, private router: Router) { }
 
-  login(): void {
-    this.loginSevice.LogInUser(this.email, this.password).subscribe(user => this.user = user);
-    console.log(this.user);
-    this.router.navigate(['/todo']);
-  }
+  // login(): void {
+  //   this.loginSevice.LogInUser(this.email, this.password).subscribe(user => this.user = user);
+  //   console.log(this.user);
+  //   this.router.navigate(['/todo']);
+  // }
 
   ngOnInit(): void {
   }

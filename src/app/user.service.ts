@@ -23,25 +23,25 @@ export class UserService {
     return this.http.post<User>(this.usersUrl, login, this.httpOptions);
   }
 
-  getTasks(userId: number, projectId: number): Observable<Task[]> {
-    const url = `${this.usersUrl}/project/task/${userId}/${projectId}`;
-    return this.http.get<Task[]>(url);
-  }
+  // getTasks(userId: number, projectId: number): Observable<Task[]> {
+  //   const url = `${this.usersUrl}/project/task/${userId}/${projectId}`;
+  //   return this.http.get<Task[]>(url);
+  // }
 
-  addTask(userId: number, projectId: number, task: Task): Observable<Task> {
-    const url = `${this.usersUrl}/project/task/${userId}/${projectId}`;
-    return this.http.post<Task>(url, task, this.httpOptions);
-  }
+  // addTask(userId: number, projectId: number, task: Task): Observable<Task> {
+  //   const url = `${this.usersUrl}/project/task/${userId}/${projectId}`;
+  //   return this.http.post<Task>(url, task, this.httpOptions);
+  // }
 
-  updateTask(userId: number, projectId: number, task: Task): Observable<Task> {
-    const url = `${this.usersUrl}/project/task/${userId}/${projectId}`;
-    return this.http.put<Task>(url, task, this.httpOptions);
-  }
+  // updateTask(userId: number, projectId: number, task: Task): Observable<Task> {
+  //   const url = `${this.usersUrl}/project/task/${userId}/${projectId}`;
+  //   return this.http.put<Task>(url, task, this.httpOptions);
+  // }
 
-  deleteTask(userId: number, projectId: number, task: Task): Observable<Task> {
-    const url = `${this.usersUrl}/project/task/${userId}/${projectId}/${task.id}`;
-    return this.http.delete<Task>(url, this.httpOptions);
-  }
+  // deleteTask(userId: number, projectId: number, task: Task): Observable<Task> {
+  //   const url = `${this.usersUrl}/project/task/${userId}/${projectId}/${task.id}`;
+  //   return this.http.delete<Task>(url, this.httpOptions);
+  // }
 
 
 }
