@@ -8,7 +8,7 @@ import { Task } from './task';
 })
 export class TodoService {
 
-  private tasksUrl = 'http://localhost:8080/api/users/project/task';
+  private tasksUrl = 'http://localhost:8080/api/users/projects/tasks';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })

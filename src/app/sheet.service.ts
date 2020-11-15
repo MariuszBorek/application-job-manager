@@ -8,7 +8,7 @@ import { Sheet } from './sheet';
 })
 export class SheetService {
 
-  private sheetsUrl = 'http://localhost:8080/api/users/project/sheets';
+  private sheetsUrl = 'http://localhost:8080/api/users/projects/sheets';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })

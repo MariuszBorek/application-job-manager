@@ -47,7 +47,6 @@ export class ToolsScupperCalculatorComponent implements OnInit {
 
   deleteScupper(scupper: Scupper): void {
     this.toolScupperService.deleteScupperFromList(scupper).subscribe(scuppers => this.scuppers = scuppers);
-    console.log(scupper);
   }
 
   hideScuppers(): void {

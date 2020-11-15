@@ -22,7 +22,7 @@ export class UserCreatorService {
   }
 
   addProject(id: number, project: Project): Observable<User> {
-    const url = `${this.usersUrl}/${id}`;
+    const url = `${this.usersUrl}/projects/${id}`;
     return this.http.post<User>(url, project, this.httpOptions);
   }
 

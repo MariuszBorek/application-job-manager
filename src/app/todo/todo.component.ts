@@ -83,7 +83,7 @@ export class TodoComponent implements OnInit {
             tasksToDelete.push(task);
           }
         });
-        this.todoService.deleteFinishedTasks(this.user.id, this.project.id, tasksToDelete).subscribe();
+        this.todoService.deleteFinishedTasks(this.user.id, this.project.id, tasksToDelete).subscribe(tasks => this.tasks = tasks);
       }
     }
     // location.reload();
