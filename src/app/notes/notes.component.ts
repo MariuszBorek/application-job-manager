@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Note } from '../note';
 import { NoteService } from '../note.service';
+import { User } from '../user';
+import { Project } from '../project';
 
 @Component({
   selector: 'app-notes',
@@ -10,6 +12,8 @@ import { NoteService } from '../note.service';
 export class NotesComponent implements OnInit {
 
   notes: Note[] = [];
+  @Input() user: User;
+  @Input() project: Project;
 
   selectedNote: Note = {
     id: null,
@@ -19,33 +23,39 @@ export class NotesComponent implements OnInit {
   constructor(private noteService: NoteService) { }
 
   getNotes(): void {
-    this.noteService.getNotes()
-      .subscribe(notes => this.notes = notes);
+    if (this.project) {
+      this.noteService.getNotes(this.user.id, this.project.id)
+        .subscribe(notes => this.notes = notes);
+    }
   }
 
   addNote(): void {
-    const newNote: Note = {
-      id: null,
-      text: ''
-    };
-    this.noteService.addNote(newNote)
-    .subscribe(note => this.notes.push(note));
-    // this.selectNote(this.getLastNote());
+    if (this.project) {
+      const newNote: Note = {
+        id: null,
+        text: ''
+      };
+      this.noteService.addNote(this.user.id, this.project.id, newNote)
+        .subscribe(note => this.notes.push(note));
+      // this.selectNote(this.getLastNote());
+    }
   }
 
   saveNote(note: Note): void {
-    const newNote: Note = {
-      id: note.id,
-      text: note.text
-    };
-    this.noteService.updateNote(newNote)
-    .subscribe();
+    if (this.project) {
+      const newNote: Note = {
+        id: note.id,
+        text: note.text
+      };
+      this.noteService.updateNote(this.user.id, this.project.id, newNote)
+        .subscribe();
+    }
   }
 
   deleteNote(note: Note): void {
-    if (confirm('Are you sure you want to delete this note?')) {
-    this.notes = this.notes.filter(n => n !== note);
-    this.noteService.deleteNote(note).subscribe();
+    if (this.project && confirm('Are you sure you want to delete this note?')) {
+      this.notes = this.notes.filter(n => n !== note);
+      this.noteService.deleteNote(this.user.id, this.project.id, note).subscribe();
     }
   }
 

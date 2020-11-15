@@ -8,7 +8,7 @@ import { Sheet } from './sheet';
 })
 export class SheetService {
 
-  private sheetsUrl = 'http://localhost:8080/api/sheets';
+  private sheetsUrl = 'http://localhost:8080/api/users/projects/sheets';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -16,21 +16,23 @@ export class SheetService {
 
   constructor(private http: HttpClient) { }
 
-  getSheets(): Observable<Sheet[]> {
-    return this.http.get<Sheet[]>(this.sheetsUrl);
+  getSheets(userId: number, projectId: number): Observable<Sheet[]> {
+    const url = `${this.sheetsUrl}/${userId}/${projectId}`;
+    return this.http.get<Sheet[]>(url);
   }
 
-  addSheet(sheet: Sheet): Observable<Sheet> {
-    return this.http.post<Sheet>(this.sheetsUrl, sheet, this.httpOptions);
+  addSheet(userId: number, projectId: number, sheet: Sheet): Observable<Sheet> {
+    const url = `${this.sheetsUrl}/${userId}/${projectId}`;
+    return this.http.post<Sheet>(url, sheet, this.httpOptions);
   }
 
-  updateSheet(sheet: Sheet): Observable<Sheet> {
-    const url = `${this.sheetsUrl}/update`;
+  updateSheet(userId: number, projectId: number, sheet: Sheet): Observable<Sheet> {
+    const url = `${this.sheetsUrl}/${userId}/${projectId}`;
     return this.http.put<Sheet>(url, sheet, this.httpOptions);
   }
 
-  deleteSheet(sheet: Sheet): Observable<Sheet> {
-    const url = `${this.sheetsUrl}/${sheet.id}`;
+  deleteSheet(userId: number, projectId: number, sheet: Sheet): Observable<Sheet> {
+    const url = `${this.sheetsUrl}/${userId}/${projectId}/${sheet.id}`;
     return this.http.delete<Sheet>(url, this.httpOptions);
   }
 

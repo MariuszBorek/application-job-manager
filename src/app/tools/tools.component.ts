@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { User } from '../user';
 
 @Component({
   selector: 'app-tools',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tools.component.scss']
 })
 export class ToolsComponent implements OnInit {
+
+  @Input() user: User;
 
   toolChoice: number;
 

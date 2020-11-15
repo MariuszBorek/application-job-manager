@@ -1,8 +1,55 @@
 <div>
     <div id="block-extension">
+        <div id="greeting-container">
+            <div *ngIf="user">
+                <span id="greeting-container__user">welcome {{ user.name }}!</span>
+            </div>
+            <div *ngIf="project">
+                <span id="greeting-container__project">chosen project: {{ project.title }}</span>
+            </div>
+        </div>
         <div id="block-extension__logo">Job Manager</div>
         <div id="block-extension__logo__target">
             <span id="block-extension__logo__target__industry">architect</span><span id="block-extension__logo__target__word">extension</span>
         </div>
     </div>
+
+    <div class="user-creator">
+        <span id="creator-instruction">create user</span>
+        <div>
+            <input type="text" placeholder="name" id="name" #name>
+        </div>
+        <div>
+            <input type="text" placeholder="surname" id="surname" #surname>
+        </div>
+        <div>
+            <input type="email" placeholder="e mail" id="email" #email>
+        </div>
+        <div>
+            <input type="password" placeholder="password" id="password" #password>
+        </div>
+
+        <button class="create-buttom" (click)="createUser(name.value,
+      surname.value,
+      email.value,
+      password.value);
+      name.value='';
+      surname.value='';
+      email.value='';
+      password.value=''">create account</button>
+    </div>
+
+    <div class="user-creator">
+        <span id="creator-instruction">create project</span>
+        <div>
+            <input type="text" placeholder="title" id="title" #title>
+        </div>
+        <div>
+            <input type="text" placeholder="description" id="description" #description>
+        </div>
+        <button class="create-buttom" (click)="createProject(title.value, description.value);
+        title.value=''; description.value=''">create project</button>
+    </div>
+
+    <div id="next"></div>
 </div>

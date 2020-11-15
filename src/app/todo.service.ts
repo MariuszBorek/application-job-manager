@@ -8,7 +8,7 @@ import { Task } from './task';
 })
 export class TodoService {
 
-  private tasksUrl = 'http://localhost:8080/api/tasks';
+  private tasksUrl = 'http://localhost:8080/api/users/projects/tasks';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -16,37 +16,33 @@ export class TodoService {
 
   constructor(private http: HttpClient) { }
 
-
-  getTasks(): Observable<Task[]> {
-    return this.http.get<Task[]>(this.tasksUrl);
-  }
-
-  getTask(id: number): Observable<Task> {
-    const url = `${this.tasksUrl}/${id}`;
-    return this.http.get<Task>(url);
-  }
-
-  updateTask(task: Task): Observable<Task> {
-    const url = `${this.tasksUrl}/update`;
-    return this.http.put<Task>(url, task, this.httpOptions);
-  }
-
-  addTask(task: Task): Observable<Task> {
-    return this.http.post<Task>(this.tasksUrl, task, this.httpOptions);
-  }
-
-  deleteTask(task: Task): Observable<Task> {
-    const url = `${this.tasksUrl}/${task.id}`;
-    return this.http.delete<Task>(url, this.httpOptions);
-  }
-
-  getArchiveTasks(): Observable<Task[]> {
-    const url = `${this.tasksUrl}/archive`;
+  getTasks(userId: number, projectId: number): Observable<Task[]> {
+    const url = `${this.tasksUrl}/${userId}/${projectId}`;
     return this.http.get<Task[]>(url);
   }
 
-  deleteFinishedTasks(tasks: Task[]): Observable<Task[]> {
-    const url = `${this.tasksUrl}/finished`;
+  addTask(userId: number, projectId: number, task: Task): Observable<Task> {
+    const url = `${this.tasksUrl}/${userId}/${projectId}`;
+    return this.http.post<Task>(url, task, this.httpOptions);
+  }
+
+  updateTask(userId: number, projectId: number, task: Task): Observable<Task> {
+    const url = `${this.tasksUrl}/${userId}/${projectId}`;
+    return this.http.put<Task>(url, task, this.httpOptions);
+  }
+
+  deleteTask(userId: number, projectId: number, task: Task): Observable<Task> {
+    const url = `${this.tasksUrl}/${userId}/${projectId}/${task.id}`;
+    return this.http.delete<Task>(url, this.httpOptions);
+  }
+
+  getArchiveTasks(userId: number, projectId: number): Observable<Task[]> {
+    const url = `${this.tasksUrl}/archive/${userId}/${projectId}`;
+    return this.http.get<Task[]>(url);
+  }
+
+  deleteFinishedTasks(userId: number, projectId: number, tasks: Task[]): Observable<Task[]> {
+    const url = `${this.tasksUrl}/finished/${userId}/${projectId}`;
     return this.http.post<Task[]>(url, tasks, this.httpOptions);
 
   }

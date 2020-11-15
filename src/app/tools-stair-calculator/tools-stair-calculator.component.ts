@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { User } from '../user';
 
 @Component({
   selector: 'app-tools-stair-calculator',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tools-stair-calculator.component.scss']
 })
 export class ToolsStairCalculatorComponent implements OnInit {
+
+  @Input() user: User;
 
   valueH: number;
   valueS: number;

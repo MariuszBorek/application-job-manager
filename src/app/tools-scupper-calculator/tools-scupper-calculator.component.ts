@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ToolScupperService } from '../tool-scupper.service';
 import { Scupper } from '../scupper';
+import { User } from '../user';
 
 @Component({
   selector: 'app-tools-scupper-calculator',
@@ -8,6 +9,8 @@ import { Scupper } from '../scupper';
   styleUrls: ['./tools-scupper-calculator.component.scss']
 })
 export class ToolsScupperCalculatorComponent implements OnInit {
+
+  @Input() user: User;
 
   scupper: Scupper;
   scuppers: Scupper[];
@@ -44,7 +47,6 @@ export class ToolsScupperCalculatorComponent implements OnInit {
 
   deleteScupper(scupper: Scupper): void {
     this.toolScupperService.deleteScupperFromList(scupper).subscribe(scuppers => this.scuppers = scuppers);
-    console.log(scupper);
   }
 
   hideScuppers(): void {

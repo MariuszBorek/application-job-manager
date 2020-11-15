@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { ToolsStairCalculatorComponent } from './tools-stair-calculator/tools-stair-calculator.component';
 import { ToolsUValueCalculatorComponent } from './tools-u-value-calculator/tools-u-value-calculator.component';
 import { ToolsScupperCalculatorComponent } from './tools-scupper-calculator/tools-scupper-calculator.component';
+import { LoginService } from './login.service';
 
 
 
@@ -26,7 +27,7 @@ import { ToolsScupperCalculatorComponent } from './tools-scupper-calculator/tool
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
