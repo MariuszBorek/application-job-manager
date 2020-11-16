@@ -3,6 +3,7 @@ import { Task } from '../task';
 import { TodoService } from '../todo.service';
 import { User } from '../user';
 import { Project } from '../project';
+import { TaskArchive } from '../task-archive';
 
 @Component({
   selector: 'app-todo',
@@ -15,7 +16,7 @@ export class TodoComponent implements OnInit {
   @Input() project: Project;
 
   tasks: Task[] = [];
-  archivedTasks: Task[] = [];
+  archivedTasks: TaskArchive[] = [];
   isHisotryTaskShown = false;
 
 
@@ -68,9 +69,10 @@ export class TodoComponent implements OnInit {
   }
 
   archiveTasks(): void {
-    if (this.project) {
-      this.todoService.getArchiveTasks(this.user.id, this.project.id)
-        .subscribe(tasks => this.archivedTasks = tasks);
+    if (this.project && confirm('Are you sure you want to archived finished tasks?')) {
+      this.todoService.archiveTasks(this.user.id, this.project.id, this.tasks)
+        .subscribe(archivedTasks => this.archivedTasks = archivedTasks);
+        this.clearfinishedTasks();
     }
   }
 
@@ -86,7 +88,6 @@ export class TodoComponent implements OnInit {
         this.todoService.deleteFinishedTasks(this.user.id, this.project.id, tasksToDelete).subscribe(tasks => this.tasks = tasks);
       }
     }
-    // location.reload();
   }
 
 

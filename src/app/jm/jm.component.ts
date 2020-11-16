@@ -33,6 +33,7 @@ export class JmComponent implements OnInit {
       title,
       description,
       tasks: null,
+      taskarchive: null,
       sheets: null,
       notes: null,
     };
