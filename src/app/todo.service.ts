@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Task } from './task';
+import { TaskArchive } from './task-archive';
 
 @Injectable({
   providedIn: 'root'
@@ -36,9 +37,14 @@ export class TodoService {
     return this.http.delete<Task>(url, this.httpOptions);
   }
 
-  getArchiveTasks(userId: number, projectId: number): Observable<Task[]> {
+  // getArchiveTasks(userId: number, projectId: number): Observable<Task[]> {
+  //   const url = `${this.tasksUrl}/archive/${userId}/${projectId}`;
+  //   return this.http.get<Task[]>(url);
+  // }
+
+  archiveTasks(userId: number, projectId: number, tasks: Task[]): Observable<TaskArchive[]> {
     const url = `${this.tasksUrl}/archive/${userId}/${projectId}`;
-    return this.http.get<Task[]>(url);
+    return this.http.post<Task[]>(url, tasks, this.httpOptions);
   }
 
   deleteFinishedTasks(userId: number, projectId: number, tasks: Task[]): Observable<Task[]> {
