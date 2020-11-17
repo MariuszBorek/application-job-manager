@@ -61,7 +61,7 @@
                 <app-notes [user]="gotUser" [project]="choosenProject"></app-notes>
             </div>
             <div *ngSwitchCase="4">
-                <app-tools></app-tools>
+                <app-tools [user]="gotUser" [project]="choosenProject"></app-tools>
             </div>
         </div>
     </article>

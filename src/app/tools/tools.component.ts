@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { User } from '../user';
+import { Project } from '../project';
 
 @Component({
   selector: 'app-tools',
@@ -9,6 +10,7 @@ import { User } from '../user';
 export class ToolsComponent implements OnInit {
 
   @Input() user: User;
+  @Input() project: Project;
 
   toolChoice: number;
 
