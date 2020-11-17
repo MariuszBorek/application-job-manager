@@ -32,26 +32,28 @@ export class ToolScupperService {
     return this.http.get<Scupper>(url);
   }
 
-  saveScupper(scupper: Scupper): Observable<Scupper> {
-    return this.http.post<Scupper>(this.scuppersUrl, scupper, this.httpOptions);
+  saveScupper(userId: number, projectId: number, scupper: Scupper): Observable<Scupper> {
+    const url = `${this.scuppersUrl}/${userId}/${projectId}`;
+    return this.http.post<Scupper>(url, scupper, this.httpOptions);
   }
 
-  findByProjectName(projectName: string): Observable<Scupper[]> {
-    const url = `${this.scuppersUrl}/find-by-project-name/${projectName}`;
+  findAll(userId: number, projectId: number): Observable<Scupper[]> {
+    const url = `${this.scuppersUrl}/${userId}/${projectId}`;
     return this.http.get<Scupper[]>(url);
   }
 
-  findAll(): Observable<Scupper[]> {
-    return this.http.get<Scupper[]>(this.scuppersUrl);
+  findByProjectName(userId: number, projectId: number, projectName: string): Observable<Scupper[]> {
+    const url = `${this.scuppersUrl}/find-by-project-name/${userId}/${projectId}/${projectName}`;
+    return this.http.get<Scupper[]>(url);
   }
 
-  deleteScupperFromList(scupper: Scupper): Observable<Scupper[]> {
-    const url = `${this.scuppersUrl}/${scupper.id}`;
+  deleteScupperFromList(userId: number, projectId: number, scupper: Scupper): Observable<Scupper[]> {
+    const url = `${this.scuppersUrl}/${userId}/${projectId}/${scupper.id}`;
     return this.http.delete<Scupper[]>(url, this.httpOptions);
   }
 
-  clearAllScuppers(): Observable<Scupper[]>  {
-    const url = `${this.scuppersUrl}/clear-saved-scuppers`;
+  clearAllScuppers(userId: number, projectId: number): Observable<Scupper[]>  {
+    const url = `${this.scuppersUrl}/clear-saved-scuppers/${userId}/${projectId}`;
     return this.http.delete<Scupper[]>(url);
   }
 

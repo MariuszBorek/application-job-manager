@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ToolScupperService } from '../tool-scupper.service';
 import { Scupper } from '../scupper';
 import { User } from '../user';
+import { Project } from '../project';
 
 @Component({
   selector: 'app-tools-scupper-calculator',
@@ -11,9 +12,11 @@ import { User } from '../user';
 export class ToolsScupperCalculatorComponent implements OnInit {
 
   @Input() user: User;
+  @Input() project: Project;
 
   scupper: Scupper;
   scuppers: Scupper[];
+
   instructionImg = 'assets/images/instructionscupper.png';
 
   constructor(private toolScupperService: ToolScupperService) { }
@@ -33,20 +36,20 @@ export class ToolsScupperCalculatorComponent implements OnInit {
   }
 
   findByProjectName(phrase: string): void {
-    this.toolScupperService.findByProjectName(phrase).subscribe(scuppers => this.scuppers = scuppers);
+    this.toolScupperService.findByProjectName(this.user.id, this.project.id, phrase).subscribe(scuppers => this.scuppers = scuppers);
   }
 
   saveScupper(): void {
-    this.toolScupperService.saveScupper(this.scupper).subscribe();
+    this.toolScupperService.saveScupper(this.user.id, this.project.id, this.scupper).subscribe();
   }
 
   findAllScuppers(): void {
-    this.toolScupperService.findAll()
+    this.toolScupperService.findAll(this.user.id, this.project.id)
       .subscribe(scuppers => this.scuppers = scuppers);
   }
 
   deleteScupper(scupper: Scupper): void {
-    this.toolScupperService.deleteScupperFromList(scupper).subscribe(scuppers => this.scuppers = scuppers);
+    this.toolScupperService.deleteScupperFromList(this.user.id, this.project.id, scupper).subscribe(scuppers => this.scuppers = scuppers);
   }
 
   hideScuppers(): void {
@@ -55,7 +58,8 @@ export class ToolsScupperCalculatorComponent implements OnInit {
 
   cleanAllScuppers(): void {
     if (confirm('Are you sure you want to clear all saved scuppers?')) {
-      this.toolScupperService.clearAllScuppers().subscribe(scuppers => this.scuppers = scuppers);
+      this.toolScupperService.clearAllScuppers(this.user.id, this.project.id).subscribe(scuppers => this.scuppers = scuppers);
+      this.findAllScuppers();
     }
   }
 
