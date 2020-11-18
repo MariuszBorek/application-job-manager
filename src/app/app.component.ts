@@ -10,6 +10,8 @@ import { Project } from './project';
 })
 export class AppComponent {
 
+  title = 'j-manager';
+
   choice: number;
 
   email: string;
@@ -36,6 +38,10 @@ export class AppComponent {
   chooseProject(project: Project): void {
     this.choosenProject = project;
     this.projects = null;
+  }
+
+  removeProject(projectId: number): void {
+    this.loginSevice.deleteProject(projectId).subscribe(projects => this.projects = projects);
   }
 
   chooseTabJm(): void {

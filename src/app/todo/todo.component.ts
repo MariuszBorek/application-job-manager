@@ -19,7 +19,6 @@ export class TodoComponent implements OnInit {
   archivedTasks: TaskArchive[] = [];
   isHisotryTaskShown = false;
 
-
   constructor(private todoService: TodoService) { }
 
   getTasks(): void {

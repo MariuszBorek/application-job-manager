@@ -36,6 +36,7 @@ export class JmComponent implements OnInit {
       taskarchive: null,
       sheets: null,
       notes: null,
+      scuppers: null
     };
     this.userCreatorService.addProject(this.user.id, newProject).subscribe();
   }
