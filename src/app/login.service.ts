@@ -9,7 +9,7 @@ import { Project } from './project';
 })
 export class LoginService {
 
-  loginUrl = 'http://localhost:8080//api/users';
+  loginUrl = 'http://localhost:8080/api/users';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -25,6 +25,11 @@ export class LoginService {
   getProjects(id: number): Observable<Project[]> {
     const url = `${this.loginUrl}/projects/${id}`;
     return this.http.get<Project[]>(url);
+  }
+
+  deleteProject(projectId: number): Observable<Project[]> {
+    const url = `${this.loginUrl}/projects/${projectId}`;
+    return this.http.delete<Project[]>(url, this.httpOptions);
   }
 
 }
