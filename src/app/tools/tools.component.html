@@ -1,19 +1,19 @@
 <div>
     <h2>tools</h2>
     <div id="toolbar">
+        <button class="calculator-button" (click)="choseScupperCalculator()">scupper counter</button>
         <button class="calculator-button" (click)="choseUValueCalculator()">U value</button>
         <button class="calculator-button" (click)="choseStairCalculator()">stairs calc</button>
-        <button class="calculator-button" (click)="choseScupperCalculator()">scupper counter</button>
     </div>
 
     <div [ngSwitch]="toolChoice">
         <div *ngSwitchCase="0">
-            <app-tools-stair-calculator></app-tools-stair-calculator>
+            <app-tools-scupper-calculator [user]="user" [project]="project"></app-tools-scupper-calculator>
         </div>
         <div *ngSwitchCase="1">
             <app-tools-u-value-calculator></app-tools-u-value-calculator>
         </div>
         <div *ngSwitchCase="2">
-            <app-tools-scupper-calculator [user]="user" [project]="project"></app-tools-scupper-calculator>
+            <app-tools-stair-calculator></app-tools-stair-calculator>
         </div>
     </div>

@@ -16,7 +16,7 @@ export class ToolsComponent implements OnInit {
 
   constructor() { }
 
-  choseStairCalculator(): void {
+  choseScupperCalculator(): void {
     this.toolChoice = 0;
   }
 
@@ -24,10 +24,9 @@ export class ToolsComponent implements OnInit {
     this.toolChoice = 1;
   }
 
-  choseScupperCalculator(): void {
+  choseStairCalculator(): void {
     this.toolChoice = 2;
   }
-
 
   ngOnInit(): void {
     this.choseScupperCalculator();

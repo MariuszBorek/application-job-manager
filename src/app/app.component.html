@@ -42,7 +42,7 @@
                     <div class="single-project">
                         <button class="single-project__choose" (click)="chooseProject(project)">choose</button>
                         <input class="body-note" [(ngModel)]="project.title" disabled>
-                        <button class="single-project__delete" (click)="removeProject(project.id); showProjects()">delete</button>
+                        <button class="single-project__delete" (click)="removeProject(project.id)">delete</button>
                     </div>
                 </li>
             </ul>
