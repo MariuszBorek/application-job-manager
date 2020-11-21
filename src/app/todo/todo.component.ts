@@ -14,6 +14,8 @@ export class TodoComponent implements OnInit {
 
   @Input() user: User;
   @Input() project: Project;
+  @Input() username: string;
+  @Input() password: string;
 
   tasks: Task[] = [];
   archivedTasks: TaskArchive[] = [];
@@ -23,25 +25,25 @@ export class TodoComponent implements OnInit {
 
   getTasks(): void {
     if (this.project) {
-    this.todoService.getTasks(this.user.id, this.project.id)
-      .subscribe(tasks => this.tasks = tasks);
+      this.todoService.getTasks(this.username, this.password, this.user.id, this.project.id)
+        .subscribe(tasks => this.tasks = tasks);
     }
   }
 
   addRow(): void {
     if (this.project) {
-    const newTask: Task = {
-      id: null,
-      topic: '',
-      text: '',
-      date: null,
-      priority: false,
-      execution: false
-    };
-    this.todoService.addTask(this.user.id, this.project.id, newTask)
-      .subscribe(task => {
-        this.tasks.push(task);
-      });
+      const newTask: Task = {
+        id: null,
+        topic: '',
+        text: '',
+        date: null,
+        priority: false,
+        execution: false
+      };
+      this.todoService.addTask(this.username, this.password, this.user.id, this.project.id, newTask)
+        .subscribe(task => {
+          this.tasks.push(task);
+        });
     }
   }
 
@@ -55,7 +57,7 @@ export class TodoComponent implements OnInit {
         priority: task.priority,
         execution: task.execution
       };
-      this.todoService.updateTask(this.user.id, this.project.id, newTask)
+      this.todoService.updateTask(this.username, this.password, this.user.id, this.project.id, newTask)
         .subscribe();
     }
   }
@@ -63,15 +65,15 @@ export class TodoComponent implements OnInit {
   deleteTask(task: Task): void {
     if (this.project && confirm('Are you sure you want to delete this sheet?')) {
       this.tasks = this.tasks.filter(t => t !== task);
-      this.todoService.deleteTask(this.user.id, this.project.id, task).subscribe();
+      this.todoService.deleteTask(this.username, this.password, this.user.id, this.project.id, task).subscribe();
     }
   }
 
   archiveTasks(): void {
     if (this.project && confirm('Are you sure you want to archived finished tasks?')) {
-      this.todoService.archiveTasks(this.user.id, this.project.id, this.tasks)
+      this.todoService.archiveTasks(this.username, this.password, this.user.id, this.project.id, this.tasks)
         .subscribe(archivedTasks => this.archivedTasks = archivedTasks);
-        this.clearfinishedTasks();
+      this.clearfinishedTasks();
     }
   }
 
@@ -84,7 +86,12 @@ export class TodoComponent implements OnInit {
             tasksToDelete.push(task);
           }
         });
-        this.todoService.deleteFinishedTasks(this.user.id, this.project.id, tasksToDelete).subscribe(tasks => this.tasks = tasks);
+        this.todoService.deleteFinishedTasks(this.username,
+          this.password,
+          this.user.id,
+          this.project.id,
+          tasksToDelete)
+          .subscribe(tasks => this.tasks = tasks);
       }
     }
   }

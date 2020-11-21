@@ -9,7 +9,7 @@ import { Project } from './project';
 })
 export class UserCreatorService {
 
-  private usersUrl = 'http://localhost:8080/api/users';
+  private usersUrl = 'http://localhost:8080/api';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -18,12 +18,13 @@ export class UserCreatorService {
   constructor(private http: HttpClient) { }
 
   addUser(user: User): Observable<User> {
-    return this.http.post<User>(this.usersUrl, user, this.httpOptions);
+    const url = `${this.usersUrl}/create`;
+    return this.http.post<User>(url, user, this.httpOptions);
   }
 
-  addProject(id: number, project: Project): Observable<User> {
-    const url = `${this.usersUrl}/projects/${id}`;
-    return this.http.post<User>(url, project, this.httpOptions);
+  addProject(username: string, password: string, id: number, project: Project): Observable<User> {
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password), 'Content-Type': 'application/json' });
+    const url = `${this.usersUrl}/users/projects/${id}`;
+    return this.http.post<User>(url, project, { headers });
   }
-
 }

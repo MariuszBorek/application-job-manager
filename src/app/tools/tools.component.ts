@@ -11,6 +11,8 @@ export class ToolsComponent implements OnInit {
 
   @Input() user: User;
   @Input() project: Project;
+  @Input() username: string;
+  @Input() password: string;
 
   toolChoice: number;
 

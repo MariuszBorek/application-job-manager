@@ -12,6 +12,8 @@ export class JmComponent implements OnInit {
 
   @Input() user: User;
   @Input() project: Project;
+  @Input() username: string;
+  @Input() password: string;
 
   constructor(private userCreatorService: UserCreatorService) { }
 
@@ -38,7 +40,7 @@ export class JmComponent implements OnInit {
       notes: null,
       scuppers: null
     };
-    this.userCreatorService.addProject(this.user.id, newProject).subscribe();
+    this.userCreatorService.addProject(this.username, this.password, this.user.id, newProject).subscribe();
   }
 
   ngOnInit(): void {

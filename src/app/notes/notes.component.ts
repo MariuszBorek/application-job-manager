@@ -14,6 +14,8 @@ export class NotesComponent implements OnInit {
   notes: Note[] = [];
   @Input() user: User;
   @Input() project: Project;
+  @Input() username: string;
+  @Input() password: string;
 
   selectedNote: Note = {
     id: null,
@@ -24,7 +26,7 @@ export class NotesComponent implements OnInit {
 
   getNotes(): void {
     if (this.project) {
-      this.noteService.getNotes(this.user.id, this.project.id)
+      this.noteService.getNotes(this.username, this.password, this.user.id, this.project.id)
         .subscribe(notes => this.notes = notes);
     }
   }
@@ -35,7 +37,7 @@ export class NotesComponent implements OnInit {
         id: null,
         text: ''
       };
-      this.noteService.addNote(this.user.id, this.project.id, newNote)
+      this.noteService.addNote(this.username, this.password, this.user.id, this.project.id, newNote)
         .subscribe(note => this.notes.push(note));
       // this.selectNote(this.getLastNote());
     }
@@ -47,7 +49,7 @@ export class NotesComponent implements OnInit {
         id: note.id,
         text: note.text
       };
-      this.noteService.updateNote(this.user.id, this.project.id, newNote)
+      this.noteService.updateNote(this.username, this.password, this.user.id, this.project.id, newNote)
         .subscribe();
     }
   }
@@ -55,7 +57,7 @@ export class NotesComponent implements OnInit {
   deleteNote(note: Note): void {
     if (this.project && confirm('Are you sure you want to delete this note?')) {
       this.notes = this.notes.filter(n => n !== note);
-      this.noteService.deleteNote(this.user.id, this.project.id, note).subscribe();
+      this.noteService.deleteNote(this.username, this.password, this.user.id, this.project.id, note).subscribe();
     }
   }
 
