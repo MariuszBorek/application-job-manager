@@ -21,11 +21,11 @@
                 <button class="nav-button__project" (click)="showProjects()">projects</button>
             </div>
             <div class="nav-button">
-                <form>
+                <form action="login" method="post">
                     <div id="login-container">
-                        <input type="text" id="jm-id-input" name="email" [(ngModel)]="email" placeholder="JM id">
+                        <input type="text" name="username" [(ngModel)]="username" id="jm-id-input" placeholder="JM id">
                         <input type="password" name="password" [(ngModel)]="password" placeholder="password">
-                        <button type="submit" (click)="login()" id="button-container__block__submit" class="nav-button__login">log in</button>
+                        <button name="login" (click)="login()" id="button-container__block__submit" class="nav-button__login">log in</button>
                     </div>
                 </form>
             </div>
@@ -42,26 +42,26 @@
                     <div class="single-project">
                         <button class="single-project__choose" (click)="chooseProject(project)">choose</button>
                         <input class="body-note" [(ngModel)]="project.title" disabled>
-                        <button class="single-project__delete" (click)="removeProject(project.id); showProjects()">delete</button>
+                        <button class="single-project__delete" (click)="removeProject(project.id)">delete</button>
                     </div>
                 </li>
             </ul>
         </div>
         <div [ngSwitch]="choice">
             <div *ngSwitchCase="0">
-                <app-jm [user]="gotUser" [project]="choosenProject"></app-jm>
+                <app-jm [user]="gotUser" [project]="choosenProject" [username]="username" [password]="password"></app-jm>
             </div>
             <div *ngSwitchCase="1">
-                <app-todo [user]="gotUser" [project]="choosenProject"></app-todo>
+                <app-todo [user]="gotUser" [project]="choosenProject" [username]="username" [password]="password"></app-todo>
             </div>
             <div *ngSwitchCase="2">
-                <app-drawings [user]="gotUser" [project]="choosenProject"></app-drawings>
+                <app-drawings [user]="gotUser" [project]="choosenProject" [username]="username" [password]="password"></app-drawings>
             </div>
             <div *ngSwitchCase="3">
-                <app-notes [user]="gotUser" [project]="choosenProject"></app-notes>
+                <app-notes [user]="gotUser" [project]="choosenProject" [username]="username" [password]="password"></app-notes>
             </div>
             <div *ngSwitchCase="4">
-                <app-tools [user]="gotUser" [project]="choosenProject"></app-tools>
+                <app-tools [user]="gotUser" [project]="choosenProject" [username]="username" [password]="password"></app-tools>
             </div>
         </div>
     </article>

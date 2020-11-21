@@ -13,6 +13,8 @@ export class DrawingsComponent implements OnInit {
 
   @Input() user: User;
   @Input() project: Project;
+  @Input() username: string;
+  @Input() password: string;
 
   sheets: Sheet[] = [];
   isPrintShown = false;
@@ -22,7 +24,7 @@ export class DrawingsComponent implements OnInit {
 
   getSheets(): void {
     if (this.project) {
-      this.sheetService.getSheets(this.user.id, this.project.id)
+      this.sheetService.getSheets(this.username, this.password, this.user.id, this.project.id)
         .subscribe(sheets => this.sheets = sheets);
     }
   }
@@ -37,7 +39,7 @@ export class DrawingsComponent implements OnInit {
         revision: null,
         type: 'UNKNOWN'
       };
-      this.sheetService.addSheet(this.user.id, this.project.id, newSheet)
+      this.sheetService.addSheet(this.username, this.password, this.user.id, this.project.id, newSheet)
         .subscribe(sheet => this.sheets.push(sheet));
     }
   }
@@ -52,7 +54,7 @@ export class DrawingsComponent implements OnInit {
       revision: sheet.revision,
       type: sheet.type
     };
-    this.sheetService.updateSheet(this.user.id, this.project.id, newSheet)
+    this.sheetService.updateSheet(this.username, this.password, this.user.id, this.project.id, newSheet)
       .subscribe();
     }
   }
@@ -60,7 +62,7 @@ export class DrawingsComponent implements OnInit {
   deleteSheet(sheet: Sheet): void {
     if (this.project && confirm('Are you sure you want to delete this sheet?')) {
       this.sheets = this.sheets.filter(s => s !== sheet);
-      this.sheetService.deleteSheet(this.user.id, this.project.id, sheet).subscribe();
+      this.sheetService.deleteSheet(this.username, this.password, this.user.id, this.project.id, sheet).subscribe();
     }
   }
 

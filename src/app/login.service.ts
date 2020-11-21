@@ -17,19 +17,26 @@ export class LoginService {
 
   constructor(private http: HttpClient) { }
 
-  LogInUser(email: string, password: string): Observable<User> {
-    const url = `${this.loginUrl}/login/${email}/${password}`;
-    return this.http.get<User>(url, { responseType: 'json' });
+  LogInUser(username: string, password: string): Observable<User> {
+    const headers = this.baseAuth(username, password);
+    const url = `${this.loginUrl}/login/${username}/${password}`;
+    return this.http.get<User>(url, { headers, responseType: 'json' });
   }
 
-  getProjects(id: number): Observable<Project[]> {
+  getProjects(username: string, password: string, id: number): Observable<Project[]> {
+    const headers = this.baseAuth(username, password);
     const url = `${this.loginUrl}/projects/${id}`;
-    return this.http.get<Project[]>(url);
+    return this.http.get<Project[]>(url, { headers, responseType: 'json' });
   }
 
-  deleteProject(projectId: number): Observable<Project[]> {
+  deleteProject(username: string, password: string, projectId: number): Observable<Project[]> {
+    const headers = this.baseAuth(username, password);
     const url = `${this.loginUrl}/projects/${projectId}`;
-    return this.http.delete<Project[]>(url, this.httpOptions);
+    return this.http.delete<Project[]>(url, {headers});
+  }
+
+  private baseAuth(username: string, password: string): HttpHeaders {
+    return new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password), 'Content-Type': 'application/json' });
   }
 
 }

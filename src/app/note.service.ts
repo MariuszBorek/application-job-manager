@@ -10,30 +10,38 @@ export class NoteService {
 
   private notesUrl = 'http://localhost:8080/api/users/projects/notes';
 
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  };
+  // httpOptions = {
+  //   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  // };
 
   constructor(private http: HttpClient) { }
 
-  getNotes(userId: number, projectId: number): Observable<Note[]> {
+  getNotes(username: string, password: string, userId: number, projectId: number): Observable<Note[]> {
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password), reposnseType: 'json' });
     const url = `${this.notesUrl}/${userId}/${projectId}`;
-    return this.http.get<Note[]>(url);
+    return this.http.get<Note[]>(url, { headers });
   }
 
-  addNote(userId: number, projectId: number, note: Note): Observable<Note> {
+  addNote(username: string, password: string, userId: number, projectId: number, note: Note): Observable<Note> {
+    const headers = this.baseAuth(username, password);
     const url = `${this.notesUrl}/${userId}/${projectId}`;
-    return this.http.post<Note>(url, note, this.httpOptions);
+    return this.http.post<Note>(url, note,  { headers });
   }
 
-  updateNote(userId: number, projectId: number, note: Note): Observable<Note> {
+  updateNote(username: string, password: string, userId: number, projectId: number, note: Note): Observable<Note> {
+    const headers = this.baseAuth(username, password);
     const url = `${this.notesUrl}/${userId}/${projectId}`;
-    return this.http.put<Note>(url, note, this.httpOptions);
+    return this.http.put<Note>(url, note, { headers });
   }
 
-  deleteNote(userId: number, projectId: number, note: Note): Observable<Note> {
+  deleteNote(username: string, password: string, userId: number, projectId: number, note: Note): Observable<Note> {
+    const headers = this.baseAuth(username, password);
     const url = `${this.notesUrl}/${userId}/${projectId}/${note.id}`;
-    return this.http.delete<Note>(url, this.httpOptions);
+    return this.http.delete<Note>(url,  { headers });
+  }
+
+  private baseAuth(username: string, password: string): HttpHeaders {
+    return new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password), 'Content-Type': 'application/json' });
   }
 
 

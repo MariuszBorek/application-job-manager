@@ -111,7 +111,7 @@ input {
     &__choose {
         display: inline;
         justify-content: flex-end;
-        background-color: #0471e3;
+        background-color: #e30447;
         cursor: pointer;
         width: 59px;
         height: 35px;
@@ -121,7 +121,7 @@ input {
         border-radius: 4px 0px 0px 4px;
     }
     &__choose:hover {
-        background-color: #1582f4;
+        background-color: #f41558;
     }
     &__delete {
         display: inline;
