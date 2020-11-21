@@ -29,8 +29,7 @@ export class ToolsScupperCalculatorComponent implements OnInit {
     scupperSideY: string,
     bottomScupperLevelOverRoof: string,
     waterLevel: string): void {
-    this.toolScupperService.checkScuppers(this.username,
-      this.password,
+    this.toolScupperService.checkScuppers(
       projectName,
       roofArea,
       scupperSideX,
@@ -40,38 +39,46 @@ export class ToolsScupperCalculatorComponent implements OnInit {
   }
 
   findByProjectName(phrase: string): void {
+    if (this.project) {
     this.toolScupperService.findByProjectName(this.username,
       this.password,
       this.user.id,
       this.project.id,
       phrase)
       .subscribe(scuppers => this.scuppers = scuppers);
+    }
   }
 
   saveScupper(): void {
+    if (this.project) {
     this.toolScupperService.saveScupper(this.username,
       this.password,
       this.user.id,
       this.project.id,
       this.scupper)
       .subscribe();
+    }
   }
 
   findAllScuppers(): void {
+    if (this.project) {
     this.toolScupperService.findAll(this.username,
       this.password,
       this.user.id,
       this.project.id)
       .subscribe(scuppers => this.scuppers = scuppers);
+    }
   }
 
   deleteScupper(scupper: Scupper): void {
+    if (this.project) {
     this.toolScupperService.deleteScupperFromList(this.username,
       this.password,
       this.user.id,
       this.project.id,
       scupper)
       .subscribe(scuppers => this.scuppers = scuppers);
+    }
   }
 
   hideScuppers(): void {
@@ -79,7 +86,7 @@ export class ToolsScupperCalculatorComponent implements OnInit {
   }
 
   cleanAllScuppers(): void {
-    if (confirm('Are you sure you want to clear all saved scuppers?')) {
+    if (this.project && confirm('Are you sure you want to clear all saved scuppers?')) {
       this.toolScupperService.clearAllScuppers(this.username,
         this.password,
         this.user.id,

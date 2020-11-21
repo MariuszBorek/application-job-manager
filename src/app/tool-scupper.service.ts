@@ -17,15 +17,13 @@ export class ToolScupperService {
 
   constructor(private http: HttpClient) { }
 
-  checkScuppers(username: string,
-    password: string,
+  checkScuppers(
     projectName: string,
     roofArea: string,
     scupperSideX: string,
     scupperSideY: string,
     bottomScupperLevelOverRoof: string,
     waterLevel: string): Observable<Scupper> {
-    // const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
     const url = `${this.scuppersUrl}/check?projectName=${projectName}
     &roofArea=${roofArea}
     &scupperSideX=${scupperSideX}
@@ -34,24 +32,6 @@ export class ToolScupperService {
     &waterLevel=${waterLevel}`;
     return this.http.get<Scupper>(url);
   }
-
-  // checkScuppers(username: string,
-  //   password: string,
-  //   projectName: string,
-  //   roofArea: string,
-  //   scupperSideX: string,
-  //   scupperSideY: string,
-  //   bottomScupperLevelOverRoof: string,
-  //   waterLevel: string): Observable<Scupper> {
-  //   const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
-  //   const url = `${this.scuppersUrl}/check?projectName=${projectName}
-  //   &roofArea=${roofArea}
-  //   &scupperSideX=${scupperSideX}
-  //   &scupperSideY=${scupperSideY}
-  //   &bottomScupperLevelOverRoof=${bottomScupperLevelOverRoof}
-  //   &waterLevel=${waterLevel}`;
-  //   return this.http.get<Scupper>(url, { headers });
-  // }
 
   saveScupper(username: string, password: string, userId: number, projectId: number, scupper: Scupper): Observable<Scupper> {
     const headers = this.baseAuth(username, password);
