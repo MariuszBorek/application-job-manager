@@ -25,20 +25,24 @@ export class AppComponent {
   login(): void {
     if (this.username && this.password) {
       this.loginSevice.LogInUser(this.username, this.password)
-      .subscribe(user => this.gotUser = user);
+        .subscribe(user => this.gotUser = user);
     }
   }
 
-  // login(): void {
-  //   if (this.email && this.password) {
-  //     this.loginSevice.LogInUser(this.email, this.password)
-  //     .subscribe(user => this.gotUser = user);
-  //   }
-  // }
+  logout(): void {
+    this.username = null;
+    this.password = null;
+    location.reload();
+    // this.loginSevice.LogOutUser()
+    // .subscribe(() => {
+    //   this.username = null;
+    //   this.password = null;
+    // });
+  }
 
   showProjects(): void {
     if (this.gotUser) {
-    this.loginSevice.getProjects(this.username, this.password, this.gotUser.id).subscribe(projects => this.projects = projects);
+      this.loginSevice.getProjects(this.username, this.password, this.gotUser.id).subscribe(projects => this.projects = projects);
     }
   }
 

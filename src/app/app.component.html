@@ -17,17 +17,27 @@
             <div class="nav-button">
                 <button class="nav-button__a" (click)="chooseTabTools()">tools</button>
             </div>
-            <div class="nav-button">
-                <button class="nav-button__project" (click)="showProjects()">projects</button>
+            <div *ngIf="gotUser">
+                <div class="nav-button">
+                    <button class="nav-button__project" (click)="showProjects()">projects</button>
+                </div>
             </div>
-            <div class="nav-button">
-                <form action="login" method="post">
-                    <div id="login-container">
-                        <input type="text" name="username" [(ngModel)]="username" id="jm-id-input" placeholder="JM id">
-                        <input type="password" name="password" [(ngModel)]="password" placeholder="password">
-                        <button name="login" (click)="login()" id="button-container__block__submit" class="nav-button__login">log in</button>
-                    </div>
-                </form>
+
+            <div *ngIf="!gotUser">
+                <div class="nav-button">
+                    <form action="login" method="post">
+                        <div id="login-container">
+                            <input type="text" name="username" [(ngModel)]="username" id="jm-id-input" placeholder="JM id">
+                            <input type="password" name="password" [(ngModel)]="password" placeholder="password">
+                            <button name="login" (click)="login()" id="button-container__block__submit" class="nav-button__login">log in</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div *ngIf="gotUser">
+                <div class="nav-button">
+                    <button name="loginout" (click)="logout()" id="button-container__block__logout" class="nav-button__logout">log out</button>
+                </div>
             </div>
 
             <div style="clear: both;"></div>

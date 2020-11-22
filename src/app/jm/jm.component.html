@@ -14,22 +14,23 @@
         </div>
     </div>
 
-    <div class="user-creator">
-        <span id="creator-instruction">create user</span>
-        <div>
-            <input type="text" placeholder="name" id="name" #name>
-        </div>
-        <div>
-            <input type="text" placeholder="surname" id="surname" #surname>
-        </div>
-        <div>
-            <input type="email" placeholder="e mail" id="email" #email>
-        </div>
-        <div>
-            <input type="password" placeholder="password" id="password" #password>
-        </div>
+    <div *ngIf="!user">
+        <div class="user-creator">
+            <span id="creator-instruction">create user</span>
+            <div>
+                <input type="text" placeholder="name" id="name" #name>
+            </div>
+            <div>
+                <input type="text" placeholder="surname" id="surname" #surname>
+            </div>
+            <div>
+                <input type="email" placeholder="e mail" id="email" #email>
+            </div>
+            <div>
+                <input type="password" placeholder="password" id="password" #password>
+            </div>
 
-        <button class="create-buttom" (click)="createUser(name.value,
+            <button class="create-buttom" (click)="createUser(name.value,
       surname.value,
       email.value,
       password.value);
@@ -37,18 +38,22 @@
       surname.value='';
       email.value='';
       password.value=''">create account</button>
+        </div>
     </div>
 
-    <div class="user-creator">
-        <span id="creator-instruction">create project</span>
-        <div>
-            <input type="text" placeholder="title" id="title" #title>
+
+    <div *ngIf="user">
+        <div class="user-creator">
+            <span id="creator-instruction">create new project</span>
+            <div>
+                <input type="text" placeholder="title" id="title" #title>
+            </div>
+            <div>
+                <input type="text" placeholder="description" id="description" #description>
+            </div>
+            <button class="create-buttom" (click)="createProject(title.value, description.value);
+        title.value=''; description.value=''">create new project</button>
         </div>
-        <div>
-            <input type="text" placeholder="description" id="description" #description>
-        </div>
-        <button class="create-buttom" (click)="createProject(title.value, description.value);
-        title.value=''; description.value=''">create project</button>
     </div>
 
     <div id="next"></div>
