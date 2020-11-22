@@ -23,6 +23,11 @@ export class LoginService {
     return this.http.get<User>(url, { headers, responseType: 'json' });
   }
 
+  LogOutUser(): Observable<any> {
+    const url = `http://localhost:8080/logout`;
+    return this.http.get<any>(url);
+  }
+
   getProjects(username: string, password: string, id: number): Observable<Project[]> {
     const headers = this.baseAuth(username, password);
     const url = `${this.loginUrl}/projects/${id}`;

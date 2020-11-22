@@ -10,9 +10,6 @@ import { ToolsUValueCalculatorComponent } from './tools-u-value-calculator/tools
 import { ToolsScupperCalculatorComponent } from './tools-scupper-calculator/tools-scupper-calculator.component';
 import { LoginService } from './login.service';
 
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
