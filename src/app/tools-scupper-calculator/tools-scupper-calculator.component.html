@@ -5,7 +5,7 @@
             <input type="text" class="add-check-scupper__input-project-name" placeholder="name" id="projectName" #projectName>
         </div>
         <div>
-            <input class="add-check-scupper__input-roof-area" type="number" placeholder="roof area [m2]" id="roofArea [m2]" #roofArea>
+            <input class="add-check-scupper__input-roof-area" type="number" placeholder="roof area [m2] *required" id="roofArea" #roofArea>
         </div>
         <div>
             <input class="add-check-scupper__input-scupper-bottom" type="number" placeholder="S - level of the scupper [cm]" id="bottomScupperLevelOverRoof" #bottomScupperLevelOverRoof>
@@ -73,17 +73,22 @@
             <div>
                 S - bottom of the scupper (defaul 5 cm)
             </div>
+            <div>
+                X - height (defaul 10 cm)
+            </div>
+            <div>
+                Y - height (defaul 10 cm)
+            </div>
+            <br> default - fields with default values ​​may be empty
         </div>
     </div>
-
-
 
     <div id="next-line"></div>
     <div>
         <div>
             <div class="find">
                 <div class="find__input">
-                    <input class="find__input__field" type="text" placeholder="find(project name)" id="find-project-name" #findProjectName>
+                    <input class="find__input__field" type="text" placeholder="find by name" id="find-project-name" #findProjectName>
                 </div>
                 <div class="find__button">
                     <button class="find__button__find" (click)="findByProjectName(findProjectName.value)">find</button>
