@@ -8,7 +8,7 @@ import { Note } from './note';
 })
 export class NoteService {
 
-  private notesUrl = 'http://localhost:8080/api/users/projects/notes';
+  private notesUrl = 'https://jm-backend.herokuapp.com/api/users/projects/notes';
 
   // httpOptions = {
   //   headers: new HttpHeaders({ 'Content-Type': 'application/json' })

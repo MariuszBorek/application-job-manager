@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from './user';
-import { Login } from './login';
+import { Login } from './Login';
 import { Task } from './task';
 
 @Injectable({
@@ -10,7 +10,7 @@ import { Task } from './task';
 })
 export class UserService {
 
-  private usersUrl = 'http://localhost:8080/api/users';
+  private usersUrl = 'https://jm-backend.herokuapp.com/api/users';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
