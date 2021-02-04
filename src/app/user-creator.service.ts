@@ -9,7 +9,7 @@ import { Project } from './project';
 })
 export class UserCreatorService {
 
-  private usersUrl = 'http://localhost:8080/api';
+  private usersUrl = 'https://jm-backend.herokuapp.com/api';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
