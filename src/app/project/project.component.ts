@@ -13,11 +13,16 @@ import { UserCreatorService } from '../user-creator.service';
 })
 export class ProjectComponent implements OnInit {
 
-
   projects: Project[];
 
-
   constructor(public authenticationService: AuthenticationService, private loginSevice: LoginService, private userCreatorService: UserCreatorService, private router: Router) { }
+
+checkIfProjectsExist(): boolean {
+  if(typeof this.projects === "undefined" || this.projects.length === 0) {
+    return false;
+  }
+  return true;
+}
 
   showProjects(): void {
       this.loginSevice.getProjects().subscribe(projects => this.projects = projects);
@@ -34,6 +39,7 @@ export class ProjectComponent implements OnInit {
   removeProject(projectId: number): void {
     this.loginSevice.deleteProject(projectId).subscribe(projects => {
       this.projects = projects;
+      localStorage.removeItem('project');
       window.location.reload();
     });
   }

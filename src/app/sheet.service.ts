@@ -8,7 +8,9 @@ import { Sheet } from './sheet';
 })
 export class SheetService {
 
-  private sheetsUrl = 'https://jm-backend.herokuapp.com/api/users/projects/sheets';
+  // private sheetsUrl = 'https://jm-backend.herokuapp.com/api/users/projects/sheets';
+  private sheetsUrl = 'http://localhost:8080/api/users/projects/sheets';
+
 
   constructor(private http: HttpClient) { }
 

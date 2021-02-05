@@ -47,3 +47,8 @@
         </ng-template>
 
     </div>
+
+    <div class="empty-list" *ngIf="!checkIfSheetsExist()">
+        You do not have any drawing yet. Above you can create one.<br> Remember to first select the project for which you want to create a new drawing.
+    </div>
+</div>

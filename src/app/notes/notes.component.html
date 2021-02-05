@@ -20,6 +20,9 @@
             </li>
         </ul>
     </div>
+    <div class="empty-list" *ngIf="!checkIfNotesExist()">
+        You do not have any note yet. Above you can create one.<br> Remember to first select the project for which you want to create a new note.
+    </div>
     <div style="clear: both;"></div>
 
 </div>

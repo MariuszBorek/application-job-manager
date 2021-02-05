@@ -10,6 +10,7 @@ import { NoteService } from '../note.service';
 export class NotesComponent implements OnInit {
 
   notes: Note[] = [];
+  choosenProject: string;
 
   selectedNote: Note = {
     id: null,
@@ -18,42 +19,55 @@ export class NotesComponent implements OnInit {
 
   constructor(private noteService: NoteService) { }
 
+  getProjectIfChoosen() {
+    this.choosenProject = localStorage.getItem('project');
+}
+
+  checkIfNotesExist(): boolean {
+    if(this.notes.length === 0) {
+      return false;
+    }
+    return true;
+  }
+
   getNotes(): void {
-    // if (this.project) {
+    if (this.choosenProject) {
       this.noteService.getNotes()
         .subscribe(notes => this.notes = notes);
-    // }
+    }
   }
 
 
   addNote(): void {
-    // if (this.project) {
+    if (this.choosenProject) {
       const newNote: Note = {
         id: null,
-        text: ''
+        text: 'Click on a note and edit'
       };
       this.noteService.addNote(newNote)
         .subscribe(note => this.notes.push(note));
-      // this.selectNote(this.getLastNote());
-    // }
+
+    } else {
+      alert('First select the project for which you want to create a new note.');
+    }
   }
 
   saveNote(note: Note): void {
-    // if (this.project) {
+    if (this.choosenProject) {
       const newNote: Note = {
         id: note.id,
         text: note.text
       };
       this.noteService.updateNote(newNote)
         .subscribe();
-    // }
+    }
   }
 
   deleteNote(note: Note): void {
-    // if (this.project && confirm('Are you sure you want to delete this note?')) {
+    if (this.choosenProject && confirm('Are you sure you want to delete this note?')) {
       this.notes = this.notes.filter(n => n !== note);
       this.noteService.deleteNote(note).subscribe();
-    // }
+    }
   }
 
   selectNote(note: Note): void {
@@ -67,6 +81,7 @@ export class NotesComponent implements OnInit {
 
   ngOnInit(): void {
     this.getNotes();
+    this.getProjectIfChoosen();
   }
 
 }
