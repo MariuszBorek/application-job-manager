@@ -8,8 +8,8 @@ import { Scupper } from './scupper';
 })
 export class ToolScupperService {
 
-  // private scuppersUrl = 'https://jm-backend.herokuapp.com/api/tools/scuppers';
-  private scuppersUrl = 'http://localhost:8080/api/tools/scuppers';
+  private scuppersUrl = 'https://jm-backend.herokuapp.com/api/tools/scuppers';
+  // private scuppersUrl = 'http://localhost:8080/api/tools/scuppers';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
