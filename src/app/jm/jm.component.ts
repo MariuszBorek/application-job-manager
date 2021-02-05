@@ -13,6 +13,8 @@ export class JmComponent implements OnInit {
 
   userEmail = this.getUserEmail();
   chosenProject = this.getProjectTitle();
+  isAwake: string;
+
 
   constructor(private userCreatorService: UserCreatorService, public authenticationService: AuthenticationService, private router: Router) { }
 
@@ -36,7 +38,14 @@ export class JmComponent implements OnInit {
     return localStorage.getItem('projectTitle');
   }
 
-  ngOnInit(): void {
+  private onWakeUpServer() {
+    this.userCreatorService.wakeUpServer().subscribe(isAwake => this.isAwake = isAwake);
   }
+
+  ngOnInit(): void {
+    this.onWakeUpServer();
+  }
+
+
 
 }

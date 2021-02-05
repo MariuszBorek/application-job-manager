@@ -18,6 +18,11 @@ export class UserCreatorService {
 
   constructor(private http: HttpClient) { }
 
+  wakeUpServer(): Observable<string> {
+    const url = `${this.usersUrl}/wake-up`;
+    return this.http.get<string>(url);
+  }
+
   private getUserEmail(): string {
     return sessionStorage.getItem('username');
   }

@@ -72,3 +72,18 @@ input {
 .info {
     font-size: 15px;
 }
+
+.info-loading-server {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 970px;
+    color: white;
+    // background-color: black;
+    min-height: 65px;
+}
+
+.info-text {
+    padding-top: 15px;
+    text-align: center;
+    color: red;
+}
