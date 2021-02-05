@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,6 +9,10 @@ import { ToolsStairCalculatorComponent } from './tools-stair-calculator/tools-st
 import { ToolsUValueCalculatorComponent } from './tools-u-value-calculator/tools-u-value-calculator.component';
 import { ToolsScupperCalculatorComponent } from './tools-scupper-calculator/tools-scupper-calculator.component';
 import { LoginService } from './login.service';
+import { BasicAuthHttpInterceptorService } from './service/basic-auth-http-interceptor.service';
+import { LoginComponent } from './login/login.component';
+import { LogoutComponent } from './logout/logout.component';
+import { ProjectComponent } from './project/project.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +20,10 @@ import { LoginService } from './login.service';
     routingComponents,
     ToolsStairCalculatorComponent,
     ToolsUValueCalculatorComponent,
-    ToolsScupperCalculatorComponent
+    ToolsScupperCalculatorComponent,
+    LoginComponent,
+    LogoutComponent,
+    ProjectComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +31,13 @@ import { LoginService } from './login.service';
     FormsModule,
     HttpClientModule
   ],
-  providers: [LoginService],
+  providers: [LoginService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: BasicAuthHttpInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

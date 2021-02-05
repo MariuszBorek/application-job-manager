@@ -17,14 +17,17 @@ export class UserCreatorService {
 
   constructor(private http: HttpClient) { }
 
+  private getUserEmail(): string {
+    return sessionStorage.getItem('username');
+  }
+
   addUser(user: User): Observable<User> {
     const url = `${this.usersUrl}/create`;
     return this.http.post<User>(url, user, this.httpOptions);
   }
 
-  addProject(username: string, password: string, id: number, project: Project): Observable<User> {
-    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password), 'Content-Type': 'application/json' });
-    const url = `${this.usersUrl}/users/projects/${id}`;
-    return this.http.post<User>(url, project, { headers });
+  addProject(project: Project): Observable<User> {
+    const url = `${this.usersUrl}/users/projects/${this.getUserEmail()}`;
+    return this.http.post<User>(url, project);
   }
 }

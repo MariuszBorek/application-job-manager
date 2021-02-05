@@ -11,11 +11,6 @@ import { Project } from '../project';
 })
 export class ToolsScupperCalculatorComponent implements OnInit {
 
-  @Input() user: User;
-  @Input() project: Project;
-  @Input() username: string;
-  @Input() password: string;
-
   scupper: Scupper;
   scuppers: Scupper[];
 
@@ -39,46 +34,31 @@ export class ToolsScupperCalculatorComponent implements OnInit {
   }
 
   findByProjectName(phrase: string): void {
-    if (this.project) {
-    this.toolScupperService.findByProjectName(this.username,
-      this.password,
-      this.user.id,
-      this.project.id,
-      phrase)
+    // if (this.project) {
+    this.toolScupperService.findByProjectName(phrase)
       .subscribe(scuppers => this.scuppers = scuppers);
-    }
+    // }
   }
 
   saveScupper(): void {
-    if (this.project) {
-    this.toolScupperService.saveScupper(this.username,
-      this.password,
-      this.user.id,
-      this.project.id,
-      this.scupper)
+    // if (this.project) {
+    this.toolScupperService.saveScupper(this.scupper)
       .subscribe();
-    }
+    // }
   }
 
   findAllScuppers(): void {
-    if (this.project) {
-    this.toolScupperService.findAll(this.username,
-      this.password,
-      this.user.id,
-      this.project.id)
+    // if (this.project) {
+    this.toolScupperService.findAll()
       .subscribe(scuppers => this.scuppers = scuppers);
-    }
+    // }
   }
 
   deleteScupper(scupper: Scupper): void {
-    if (this.project) {
-    this.toolScupperService.deleteScupperFromList(this.username,
-      this.password,
-      this.user.id,
-      this.project.id,
-      scupper)
+    // if (this.project) {
+    this.toolScupperService.deleteScupperFromList(scupper)
       .subscribe(scuppers => this.scuppers = scuppers);
-    }
+    // }
   }
 
   hideScuppers(): void {
@@ -86,14 +66,11 @@ export class ToolsScupperCalculatorComponent implements OnInit {
   }
 
   cleanAllScuppers(): void {
-    if (this.project && confirm('Are you sure you want to clear all saved scuppers?')) {
-      this.toolScupperService.clearAllScuppers(this.username,
-        this.password,
-        this.user.id,
-        this.project.id)
+    // if (this.project && confirm('Are you sure you want to clear all saved scuppers?')) {
+      this.toolScupperService.clearAllScuppers()
         .subscribe(scuppers => this.scuppers = scuppers);
       this.findAllScuppers();
-    }
+    // }
   }
 
   scupperInitial(): Scupper {

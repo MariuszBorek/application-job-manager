@@ -13,45 +13,44 @@ export class TodoService {
 
   constructor(private http: HttpClient) { }
 
-  getTasks(username: string, password: string, userId: number, projectId: number): Observable<Task[]> {
-    const headers = this.baseAuth(username, password);
-    const url = `${this.tasksUrl}/${userId}/${projectId}`;
-    return this.http.get<Task[]>(url, { headers });
+  private getUserEmail(): string {
+    return sessionStorage.getItem('username');
   }
 
-  addTask(username: string, password: string, userId: number, projectId: number, task: Task): Observable<Task> {
-    const headers = this.baseAuth(username, password);
-    const url = `${this.tasksUrl}/${userId}/${projectId}`;
-    return this.http.post<Task>(url, task, { headers });
+  private getProjectId(): string {
+    return localStorage.getItem('project');
   }
 
-  updateTask(username: string, password: string, userId: number, projectId: number, task: Task): Observable<Task> {
-    const headers = this.baseAuth(username, password);
-    const url = `${this.tasksUrl}/${userId}/${projectId}`;
-    return this.http.put<Task>(url, task, { headers });
+  getTasks(): Observable<Task[]> {
+    const url = `${this.tasksUrl}/${this.getUserEmail()}/${this.getProjectId()}`;
+    return this.http.get<Task[]>(url);
   }
 
-  deleteTask(username: string, password: string, userId: number, projectId: number, task: Task): Observable<Task> {
-    const headers = this.baseAuth(username, password);
-    const url = `${this.tasksUrl}/${userId}/${projectId}/${task.id}`;
-    return this.http.delete<Task>(url, { headers });
+  addTask(task: Task): Observable<Task> {
+    const url = `${this.tasksUrl}/${this.getUserEmail()}/${this.getProjectId()}`;
+    return this.http.post<Task>(url, task);
   }
 
-  archiveTasks(username: string, password: string, userId: number, projectId: number, tasks: Task[]): Observable<TaskArchive[]> {
-    const headers = this.baseAuth(username, password);
-    const url = `${this.tasksUrl}/archive/${userId}/${projectId}`;
-    return this.http.post<Task[]>(url, tasks, { headers });
+  updateTask(task: Task): Observable<Task> {
+    const url = `${this.tasksUrl}/${this.getUserEmail()}/${this.getProjectId()}`;
+    return this.http.put<Task>(url, task);
   }
 
-  deleteFinishedTasks(username: string, password: string, userId: number, projectId: number, tasks: Task[]): Observable<Task[]> {
-    const headers = this.baseAuth(username, password);
-    const url = `${this.tasksUrl}/finished/${userId}/${projectId}`;
-    return this.http.post<Task[]>(url, tasks, { headers });
+  deleteTask(task: Task): Observable<Task> {
+    const url = `${this.tasksUrl}/${this.getUserEmail()}/${this.getProjectId()}/${task.id}`;
+    return this.http.delete<Task>(url);
+  }
+
+  archiveTasks(tasks: Task[]): Observable<TaskArchive[]> {
+    const url = `${this.tasksUrl}/archive/${this.getUserEmail()}/${this.getProjectId()}`;
+    return this.http.post<Task[]>(url, tasks);
+  }
+
+  deleteFinishedTasks(tasks: Task[]): Observable<Task[]> {
+    const url = `${this.tasksUrl}/finished/${this.getUserEmail()}/${this.getProjectId()}`;
+    return this.http.post<Task[]>(url, tasks);
 
   }
 
-  private baseAuth(username: string, password: string): HttpHeaders {
-    return new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password), 'Content-Type': 'application/json' });
-  }
 
 }

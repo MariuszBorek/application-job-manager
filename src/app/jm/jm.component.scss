@@ -22,15 +22,14 @@
     }
 }
 
-#greeting-container {
-    font-size: 20px;
-    min-height: 60px;
+.greeting-container {
+    font-size: 17px;
+    min-height: 45px;
     margin-left: 0px;
     padding-left: 0px;
     &__user {
         margin-bottom: 10px;
     }
-    &__project {}
 }
 
 .user-creator {
@@ -68,4 +67,8 @@ input {
 
 .create-buttom:hover {
     background-color: #1582f4;
+}
+
+.info {
+    font-size: 15px;
 }
