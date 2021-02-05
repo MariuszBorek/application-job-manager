@@ -40,6 +40,8 @@ export class AuthenticationService {
   logOut() {
     sessionStorage.removeItem('username');
     sessionStorage.removeItem('basicauth');
+    localStorage.removeItem('project');
+    localStorage.removeItem('projectTitle');
 
   }
 }
