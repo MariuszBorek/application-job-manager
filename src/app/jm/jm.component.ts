@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { UserCreatorService } from '../user-creator.service';
 import { User } from '../user';
 import { AuthenticationService } from '../service/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-jm',
@@ -13,7 +14,7 @@ export class JmComponent implements OnInit {
   userEmail = this.getUserEmail();
   chosenProject = this.getProjectTitle();
 
-  constructor(private userCreatorService: UserCreatorService, public authenticationService: AuthenticationService) { }
+  constructor(private userCreatorService: UserCreatorService, public authenticationService: AuthenticationService, private router: Router) { }
 
   createUser(name: string, surname: string, email: string, password: string): void {
     const newUser: User = {
@@ -24,7 +25,7 @@ export class JmComponent implements OnInit {
       password,
       projects: null
     };
-    this.userCreatorService.addUser(newUser).subscribe();
+    this.userCreatorService.addUser(newUser).subscribe(e => this.router.navigate(['log-in']));
   }
 
   private getUserEmail(): string {
