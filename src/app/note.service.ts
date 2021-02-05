@@ -10,39 +10,35 @@ export class NoteService {
 
   private notesUrl = 'https://jm-backend.herokuapp.com/api/users/projects/notes';
 
-  // httpOptions = {
-  //   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  // };
-
   constructor(private http: HttpClient) { }
 
-  getNotes(username: string, password: string, userId: number, projectId: number): Observable<Note[]> {
-    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password), reposnseType: 'json' });
-    const url = `${this.notesUrl}/${userId}/${projectId}`;
-    return this.http.get<Note[]>(url, { headers });
+  private getUserEmail(): string {
+    return sessionStorage.getItem('username');
   }
 
-  addNote(username: string, password: string, userId: number, projectId: number, note: Note): Observable<Note> {
-    const headers = this.baseAuth(username, password);
-    const url = `${this.notesUrl}/${userId}/${projectId}`;
-    return this.http.post<Note>(url, note,  { headers });
+  private getProjectId(): string {
+    return localStorage.getItem('project');
   }
 
-  updateNote(username: string, password: string, userId: number, projectId: number, note: Note): Observable<Note> {
-    const headers = this.baseAuth(username, password);
-    const url = `${this.notesUrl}/${userId}/${projectId}`;
-    return this.http.put<Note>(url, note, { headers });
+  getNotes(): Observable<Note[]> {
+    const url = `${this.notesUrl}/${this.getUserEmail()}/${this.getProjectId()}`;
+    return this.http.get<Note[]>(url);
   }
 
-  deleteNote(username: string, password: string, userId: number, projectId: number, note: Note): Observable<Note> {
-    const headers = this.baseAuth(username, password);
-    const url = `${this.notesUrl}/${userId}/${projectId}/${note.id}`;
-    return this.http.delete<Note>(url,  { headers });
+
+  addNote(note: Note): Observable<Note> {
+    const url = `${this.notesUrl}/${this.getUserEmail()}/${this.getProjectId()}`;
+    return this.http.post<Note>(url, note);
   }
 
-  private baseAuth(username: string, password: string): HttpHeaders {
-    return new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password), 'Content-Type': 'application/json' });
+  updateNote(note: Note): Observable<Note> {
+    const url = `${this.notesUrl}/${this.getUserEmail()}/${this.getProjectId()}`;
+    return this.http.put<Note>(url, note);
   }
 
+  deleteNote(note: Note): Observable<Note> {
+    const url = `${this.notesUrl}/${this.getUserEmail()}/${this.getProjectId()}/${note.id}`;
+    return this.http.delete<Note>(url);
+  }
 
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { UserCreatorService } from '../user-creator.service';
 import { User } from '../user';
-import { Project } from '../project';
+import { AuthenticationService } from '../service/authentication.service';
 
 @Component({
   selector: 'app-jm',
@@ -10,12 +10,10 @@ import { Project } from '../project';
 })
 export class JmComponent implements OnInit {
 
-  @Input() user: User;
-  @Input() project: Project;
-  @Input() username: string;
-  @Input() password: string;
+  userEmail = this.getUserEmail();
+  chosenProject = this.getProjectTitle();
 
-  constructor(private userCreatorService: UserCreatorService) { }
+  constructor(private userCreatorService: UserCreatorService, public authenticationService: AuthenticationService) { }
 
   createUser(name: string, surname: string, email: string, password: string): void {
     const newUser: User = {
@@ -29,18 +27,12 @@ export class JmComponent implements OnInit {
     this.userCreatorService.addUser(newUser).subscribe();
   }
 
-  createProject(title: string, description: string): void {
-    const newProject: Project = {
-      id: null,
-      title,
-      description,
-      tasks: null,
-      taskarchive: null,
-      sheets: null,
-      notes: null,
-      scuppers: null
-    };
-    this.userCreatorService.addProject(this.username, this.password, this.user.id, newProject).subscribe();
+  private getUserEmail(): string {
+    return sessionStorage.getItem('username');
+  }
+
+  private getProjectTitle(): string {
+    return localStorage.getItem('projectTitle');
   }
 
   ngOnInit(): void {

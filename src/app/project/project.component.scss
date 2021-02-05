@@ -1,0 +1,133 @@
+#ul-project {
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+// #li-project {
+//     display: flex;
+//     list-style-type: none;
+//     padding: 0px;
+//     margin-bottom: 5px;
+//     background-color: #EEE;
+//     height: 35px;
+//     border: none;
+//     border-radius: 6px 6px 6px 6px;
+// }
+.single-project {
+    background-color: gray;
+    margin-top: 5px;
+    border-radius: 5px;
+    &__choose {
+        display: inline;
+        justify-content: flex-end;
+        background-color: #e30447;
+        cursor: pointer;
+        width: 59px;
+        height: 35px;
+        color: white;
+        outline: none;
+        border: none;
+        border-radius: 4px 0px 0px 4px;
+    }
+    &__choose:hover {
+        background-color: #f41558;
+    }
+    &__delete {
+        display: inline;
+        justify-content: flex-end;
+        background-color: #28282a;
+        cursor: pointer;
+        width: 59px;
+        height: 35px;
+        color: white;
+        outline: none;
+        border: none;
+        border-radius: 0px 4px 4px 0px;
+    }
+    &__delete:hover {
+        background-color: red;
+    }
+}
+
+.body-note {
+    color: #d3d3d3;
+    font-size: 14px;
+    width: 770px;
+    height: 32px;
+    border-radius: 0px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    outline: none;
+    border: none;
+    background-color: gray;
+    margin: 0;
+}
+
+input {
+    width: 80px;
+    margin-right: 5px;
+    outline: none;
+    border: 1px solid darkgray;
+    border-radius: 4px 4px 4px 4px;
+    padding-left: 10px;
+}
+
+// ----------------------
+#block-extension {
+    float: left;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    &__logo {
+        margin-top: 150px;
+        margin-left: auto;
+        margin-right: auto;
+        width: fit-content;
+        font-size: 50px;
+        &__target {
+            width: fit-content;
+            margin-left: 350px;
+            margin-right: 57px;
+            &__industry {
+                font-size: 40px;
+            }
+            &__word {
+                font-size: 12px;
+            }
+        }
+    }
+}
+
+.create-buttom {
+    background-color: #0471e3;
+    cursor: pointer;
+    width: 200px;
+    height: 37px;
+    color: white;
+    outline: none;
+    border: none;
+    border-radius: 4px;
+}
+
+.create-buttom:hover {
+    background-color: #1582f4;
+}
+
+.input-create-field {
+    float: left;
+    width: 331px;
+    height: 33px;
+    outline: none;
+    border: 1px solid darkgray;
+    margin-bottom: 10px;
+    border-radius: 4px 4px 4px 4px;
+    padding-left: 10px;
+}
+
+.space {
+    min-height: 50px;
+}
+
+.container {
+    margin-top: 30px;
+}

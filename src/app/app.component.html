@@ -2,78 +2,36 @@
     <nav>
         <div id="nav-conteiner">
             <div class="nav-button">
-                <button class="nav-button__a" (click)="chooseTabJm()">𝓙𝓜</button>
-            </div>
-
-            <div class="nav-button">
-                <button class="nav-button__a" (click)="chooseTabTodo()">todo</button>
+                <button class="nav-button__a" routerLink="/jm">𝓙𝓜</button>
             </div>
             <div class="nav-button">
-                <button class="nav-button__a" (click)="chooseTabDrawings()">drawings</button>
+                <button class="nav-button__a" *ngIf="authenticationService.isUserLoggedIn()" routerLink="/project">projects</button>
             </div>
             <div class="nav-button">
-                <button class="nav-button__a" (click)="chooseTabNotes()">notes</button>
+                <button class="nav-button__a" *ngIf="authenticationService.isUserLoggedIn()" routerLink="/todo">todo</button>
             </div>
             <div class="nav-button">
-                <button class="nav-button__a" (click)="chooseTabTools()">tools</button>
+                <button class="nav-button__a" *ngIf="authenticationService.isUserLoggedIn()" routerLink="/drawings">drawings</button>
             </div>
-            <div *ngIf="gotUser">
-                <div class="nav-button">
-                    <button class="nav-button__project" (click)="showProjects()">projects</button>
-                </div>
+            <div class="nav-button">
+                <button class="nav-button__a" *ngIf="authenticationService.isUserLoggedIn()" routerLink="/notes">notes</button>
             </div>
-
-            <div *ngIf="!gotUser">
-                <div class="nav-button">
-                    <form action="login" method="post">
-                        <div id="login-container">
-                            <input type="text" name="username" [(ngModel)]="username" id="jm-id-input" placeholder="JM id">
-                            <input type="password" name="password" [(ngModel)]="password" placeholder="password">
-                            <button name="login" (click)="login()" id="button-container__block__submit" class="nav-button__login">log in</button>
-                        </div>
-                    </form>
-                </div>
+            <div class="nav-button">
+                <button class="nav-button__a" *ngIf="authenticationService.isUserLoggedIn()" routerLink="/tools-scupper-calculator">tools</button>
             </div>
-            <div *ngIf="gotUser">
-                <div class="nav-button">
-                    <button name="loginout" (click)="logout()" id="button-container__block__logout" class="nav-button__logout">log out</button>
-                </div>
+            <div class="nav-button">
+                <button class="nav-button__logout" *ngIf="authenticationService.isUserLoggedIn()" routerLink="/log-out">log out</button>
             </div>
-
+            <div class="nav-button">
+                <button class="nav-button__login" *ngIf="!authenticationService.isUserLoggedIn()" routerLink="/log-in">log in</button>
+            </div>
             <div style="clear: both;"></div>
         </div>
     </nav>
 </header>
 <main>
     <article>
-        <div>
-            <ul id="ul-project">
-                <li id="li-project" *ngFor="let project of projects">
-                    <div class="single-project">
-                        <button class="single-project__choose" (click)="chooseProject(project)">choose</button>
-                        <input class="body-note" [(ngModel)]="project.title" disabled>
-                        <button class="single-project__delete" (click)="removeProject(project.id)">delete</button>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <div [ngSwitch]="choice">
-            <div *ngSwitchCase="0">
-                <app-jm [user]="gotUser" [project]="choosenProject" [username]="username" [password]="password"></app-jm>
-            </div>
-            <div *ngSwitchCase="1">
-                <app-todo [user]="gotUser" [project]="choosenProject" [username]="username" [password]="password"></app-todo>
-            </div>
-            <div *ngSwitchCase="2">
-                <app-drawings [user]="gotUser" [project]="choosenProject" [username]="username" [password]="password"></app-drawings>
-            </div>
-            <div *ngSwitchCase="3">
-                <app-notes [user]="gotUser" [project]="choosenProject" [username]="username" [password]="password"></app-notes>
-            </div>
-            <div *ngSwitchCase="4">
-                <app-tools [user]="gotUser" [project]="choosenProject" [username]="username" [password]="password"></app-tools>
-            </div>
-        </div>
+        <router-outlet></router-outlet>
     </article>
 </main>
 <footer>

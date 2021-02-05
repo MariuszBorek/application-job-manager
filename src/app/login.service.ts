@@ -18,6 +18,11 @@ export class LoginService {
 
   constructor(private http: HttpClient) { }
 
+  private getUserEmail(): string {
+    return sessionStorage.getItem('username');
+  }
+
+
   LogInUser(username: string, password: string): Observable<User> {
     const headers = this.baseAuth(username, password);
     const url = `${this.loginUrl}/login/${username}/${password}`;
@@ -25,20 +30,18 @@ export class LoginService {
   }
 
   LogOutUser(): Observable<any> {
-    const url = `http://localhost:8080/logout`;
+    const url = `https://jm-backend.herokuapp.com/logout`;
     return this.http.get<any>(url);
   }
 
-  getProjects(username: string, password: string, id: number): Observable<Project[]> {
-    const headers = this.baseAuth(username, password);
-    const url = `${this.loginUrl}/projects/${id}`;
-    return this.http.get<Project[]>(url, { headers, responseType: 'json' });
+  getProjects(): Observable<Project[]> {
+    const url = `${this.loginUrl}/projects/${this.getUserEmail()}`;
+    return this.http.get<Project[]>(url);
   }
 
-  deleteProject(username: string, password: string, projectId: number): Observable<Project[]> {
-    const headers = this.baseAuth(username, password);
+  deleteProject(projectId: number): Observable<Project[]> {
     const url = `${this.loginUrl}/projects/${projectId}`;
-    return this.http.delete<Project[]>(url, {headers});
+    return this.http.delete<Project[]>(url);
   }
 
   private baseAuth(username: string, password: string): HttpHeaders {

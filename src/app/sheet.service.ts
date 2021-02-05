@@ -10,38 +10,35 @@ export class SheetService {
 
   private sheetsUrl = 'https://jm-backend.herokuapp.com/api/users/projects/sheets';
 
-  // httpOptions = {
-  //   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  // };
-
   constructor(private http: HttpClient) { }
 
-  getSheets(username: string, password: string, userId: number, projectId: number): Observable<Sheet[]> {
-    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
-    const url = `${this.sheetsUrl}/${userId}/${projectId}`;
-    return this.http.get<Sheet[]>(url, { headers });
+
+  private getUserEmail(): string {
+    return sessionStorage.getItem('username');
   }
 
-  addSheet(username: string, password: string, userId: number, projectId: number, sheet: Sheet): Observable<Sheet> {
-    const headers = this.baseAuth(username, password);
-    const url = `${this.sheetsUrl}/${userId}/${projectId}`;
-    return this.http.post<Sheet>(url, sheet, { headers });
+  private getProjectId(): string {
+    return localStorage.getItem('project');
   }
 
-  updateSheet(username: string, password: string, userId: number, projectId: number, sheet: Sheet): Observable<Sheet> {
-    const headers = this.baseAuth(username, password);
-    const url = `${this.sheetsUrl}/${userId}/${projectId}`;
-    return this.http.put<Sheet>(url, sheet, { headers });
+  getSheets(): Observable<Sheet[]> {
+    const url = `${this.sheetsUrl}/${this.getUserEmail()}/${this.getProjectId()}`;
+    return this.http.get<Sheet[]>(url);
   }
 
-  deleteSheet(username: string, password: string, userId: number, projectId: number, sheet: Sheet): Observable<Sheet> {
-    const headers = this.baseAuth(username, password);
-    const url = `${this.sheetsUrl}/${userId}/${projectId}/${sheet.id}`;
-    return this.http.delete<Sheet>(url, { headers });
+  addSheet(sheet: Sheet): Observable<Sheet> {
+    const url = `${this.sheetsUrl}/${this.getUserEmail()}/${this.getProjectId()}`;
+    return this.http.post<Sheet>(url, sheet);
   }
 
-  private baseAuth(username: string, password: string): HttpHeaders {
-    return new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password), 'Content-Type': 'application/json' });
+  updateSheet(sheet: Sheet): Observable<Sheet> {
+    const url = `${this.sheetsUrl}/${this.getUserEmail()}/${this.getProjectId()}`;
+    return this.http.put<Sheet>(url, sheet);
+  }
+
+  deleteSheet(sheet: Sheet): Observable<Sheet> {
+    const url = `${this.sheetsUrl}/${this.getUserEmail()}/${this.getProjectId()}/${sheet.id}`;
+    return this.http.delete<Sheet>(url);
   }
 
 }

@@ -1,0 +1,32 @@
+<div class="container">
+    <div>
+        <div class="user-creator">
+            <span id="creator-instruction">create new project</span>
+            <div>
+                <input class="input-create-field" type="text" placeholder="title" id="title" #title>
+            </div>
+            <div>
+                <input class="input-create-field" type="text" placeholder="description" id="description" #description>
+            </div>
+            <button class="create-buttom" (click)="createProject(title.value, description.value);
+  title.value=''; description.value=''">create new project</button>
+        </div>
+        <div></div>
+    </div>
+    <div style="clear: both;"></div>
+    <div class="space"></div>
+    <div>
+        <span id="creator-instruction">choose existing project</span>
+        <div class="user-creator">
+            <ul id="ul-project">
+                <li id="li-project" *ngFor="let project of projects">
+                    <div class="single-project">
+                        <button class="single-project__choose" (click)="chooseProject(project)">choose</button>
+                        <input class="body-note" [(ngModel)]="project.title" disabled>
+                        <button class="single-project__delete" (click)="removeProject(project.id)">delete</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </div>

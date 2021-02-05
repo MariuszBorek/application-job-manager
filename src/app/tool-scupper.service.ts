@@ -17,6 +17,14 @@ export class ToolScupperService {
 
   constructor(private http: HttpClient) { }
 
+  private getUserEmail(): string {
+    return sessionStorage.getItem('username');
+  }
+
+  private getProjectId(): string {
+    return localStorage.getItem('project');
+  }
+
   checkScuppers(
     projectName: string,
     roofArea: string,
@@ -33,37 +41,29 @@ export class ToolScupperService {
     return this.http.get<Scupper>(url);
   }
 
-  saveScupper(username: string, password: string, userId: number, projectId: number, scupper: Scupper): Observable<Scupper> {
-    const headers = this.baseAuth(username, password);
-    const url = `${this.scuppersUrl}/user/${userId}/${projectId}`;
-    return this.http.post<Scupper>(url, scupper, { headers });
+  saveScupper(scupper: Scupper): Observable<Scupper> {
+    const url = `${this.scuppersUrl}/user/${this.getUserEmail()}/${this.getProjectId()}`;
+    return this.http.post<Scupper>(url, scupper);
   }
 
-  findAll(username: string, password: string, userId: number, projectId: number): Observable<Scupper[]> {
-    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
-    const url = `${this.scuppersUrl}/user/${userId}/${projectId}`;
-    return this.http.get<Scupper[]>(url, { headers });
+  findAll(): Observable<Scupper[]> {
+    const url = `${this.scuppersUrl}/user/${this.getUserEmail()}/${this.getProjectId()}`;
+    return this.http.get<Scupper[]>(url);
   }
 
-  findByProjectName(username: string, password: string, userId: number, projectId: number, projectName: string): Observable<Scupper[]> {
-    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
-    const url = `${this.scuppersUrl}/user/find-by-project-name/${userId}/${projectId}/${projectName}`;
-    return this.http.get<Scupper[]>(url, { headers });
+  findByProjectName(projectName: string): Observable<Scupper[]> {
+    const url = `${this.scuppersUrl}/user/find-by-project-name/${this.getUserEmail()}/${this.getProjectId()}/${projectName}`;
+    return this.http.get<Scupper[]>(url);
   }
 
-  deleteScupperFromList(username: string, password: string, userId: number, projectId: number, scupper: Scupper): Observable<Scupper[]> {
-    const headers = this.baseAuth(username, password);
-    const url = `${this.scuppersUrl}/user/${userId}/${projectId}/${scupper.id}`;
-    return this.http.delete<Scupper[]>(url, { headers });
+  deleteScupperFromList(scupper: Scupper): Observable<Scupper[]> {
+    const url = `${this.scuppersUrl}/user/${this.getUserEmail()}/${this.getProjectId()}/${scupper.id}`;
+    return this.http.delete<Scupper[]>(url);
   }
 
-  clearAllScuppers(username: string, password: string, userId: number, projectId: number): Observable<Scupper[]> {
-    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
-    const url = `${this.scuppersUrl}/user/clear-saved-scuppers/${userId}/${projectId}`;
-    return this.http.delete<Scupper[]>(url, { headers });
+  clearAllScuppers(): Observable<Scupper[]> {
+    const url = `${this.scuppersUrl}/user/clear-saved-scuppers/${this.getUserEmail()}/${this.getProjectId()}`;
+    return this.http.delete<Scupper[]>(url);
   }
 
-  private baseAuth(username: string, password: string): HttpHeaders {
-    return new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password), 'Content-Type': 'application/json' });
-  }
 }
