@@ -13,75 +13,91 @@ export class TodoComponent implements OnInit {
   tasks: Task[] = [];
   archivedTasks: TaskArchive[] = [];
   isHisotryTaskShown = false;
+  choosenProject: string;
 
   constructor(private todoService: TodoService) { }
 
+  getProjectIfChoosen() {
+    this.choosenProject = localStorage.getItem('project');
+  }
+
+  checkIfTasksExist(): boolean {
+    if (this.tasks.length === 0) {
+      return false;
+    }
+    return true;
+  }
+
   getTasks(): void {
-      this.todoService.getTasks()
-        .subscribe(tasks => this.tasks = tasks);
+    if (this.choosenProject) {
+    this.todoService.getTasks()
+      .subscribe(tasks => this.tasks = tasks);
+    }
   }
 
 
   addRow(): void {
-    // if (this.project) {
-      const newTask: Task = {
-        id: null,
-        topic: '',
-        text: '',
-        date: null,
-        priority: false,
-        execution: false
-      };
-      this.todoService.addTask(newTask)
-        .subscribe(task => {
-          this.tasks.push(task);
-        });
-    // }
+    if (this.choosenProject) {
+    const newTask: Task = {
+      id: null,
+      topic: '',
+      text: '',
+      date: null,
+      priority: false,
+      execution: false
+    };
+    this.todoService.addTask(newTask)
+      .subscribe(task => {
+        this.tasks.push(task);
+      });
+    } else {
+      alert('First select the project for which you want to create a new task.');
+    }
   }
 
   addTask(task: Task): void {
-    // if (this.project) {
-      const newTask: Task = {
-        id: task.id,
-        topic: task.topic,
-        text: task.text,
-        date: task.date,
-        priority: task.priority,
-        execution: task.execution
-      };
-      this.todoService.updateTask(newTask)
-        .subscribe();
-    // }
+    if (this.choosenProject) {
+    const newTask: Task = {
+      id: task.id,
+      topic: task.topic,
+      text: task.text,
+      date: task.date,
+      priority: task.priority,
+      execution: task.execution
+    };
+    this.todoService.updateTask(newTask)
+      .subscribe();
+    }
   }
 
   deleteTask(task: Task): void {
-    // if (this.project && confirm('Are you sure you want to delete this sheet?')) {
-      this.tasks = this.tasks.filter(t => t !== task);
-      this.todoService.deleteTask(task).subscribe();
-    // }
+    if (this.choosenProject && confirm('Are you sure you want to delete this sheet?')) {
+    this.tasks = this.tasks.filter(t => t !== task);
+    this.todoService.deleteTask(task).subscribe();
+    }
   }
 
   archiveTasks(): void {
-    // if (this.project && confirm('Are you sure you want to archived finished tasks?')) {
-      this.todoService.archiveTasks(this.tasks)
-        .subscribe(archivedTasks => this.archivedTasks = archivedTasks);
-      this.clearfinishedTasks();
-    // }
+    if (this.choosenProject && confirm('Are you sure you want to archived finished tasks?')) {
+    this.todoService.archiveTasks(this.tasks)
+      .subscribe(archivedTasks => this.archivedTasks = archivedTasks);
+    this.clearfinishedTasks();
+    }
   }
 
   clearfinishedTasks(): void {
     const tasksToDelete: Task[] = [];
-    // if (this.project) {
-      if (confirm('Are you sure you want to clear finished tasks?')) {
-        this.tasks.forEach(task => {
-          if (task.execution === true) {
-            tasksToDelete.push(task);
-          }
-        });
-        this.todoService.deleteFinishedTasks(tasksToDelete)
-          .subscribe(tasks => this.tasks = tasks);
-      }
-    // }
+    if (this.choosenProject) {
+    if (confirm('Are you sure you want to clear finished tasks?')) {
+      this.tasks.forEach(task => {
+        if (task.execution === true) {
+          tasksToDelete.push(task);
+        }
+      });
+      this.todoService.deleteFinishedTasks(tasksToDelete)
+        .subscribe(tasks => this.tasks = tasks);
+    }
+    }
   }
 
 
@@ -179,8 +195,7 @@ export class TodoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // if (this.project) {
-      this.getTasks();
-    // }
+    this.getTasks();
+    this.getProjectIfChoosen();
   }
 }

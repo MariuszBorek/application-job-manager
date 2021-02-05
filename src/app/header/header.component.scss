@@ -1,0 +1,82 @@
+.nav-bar {
+    height: 45px;
+    background-color: #010101;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#nav-conteiner {
+    width: 905px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+
+#log-in-button {
+    margin-left: 380px;
+}
+
+.nav-button {
+    display: flex;
+    float: left;
+    outline: none;
+    margin-top: 13px;
+    &__a {
+        border: 0px;
+        margin-right: 70px;
+        color: #d3d3d3;
+        background-color: #010101;
+        cursor: pointer;
+    }
+    &__login {
+        border: 0px;
+        color: #0471e3;
+        background-color: #010101;
+        cursor: pointer;
+    }
+    &__logout {
+        position: absolute;
+        right: 0px;
+        border: 0px;
+        color: rgb(255, 91, 91);
+        background-color: #010101;
+        cursor: pointer;
+    }
+}
+
+.nav-button__a:hover {
+    color: white;
+}
+
+.nav-button__a:focus {
+    outline: none;
+}
+
+.nav-button__login:hover {
+    color: #1582f4;
+}
+
+.nav-button__login:focus {
+    outline: none;
+}
+
+.nav-button__logout:hover {
+    color: red;
+}
+
+.nav-button__logout:focus {
+    outline: none;
+}
+
+input {
+    width: 80px;
+    margin-right: 5px;
+    outline: none;
+    border: 1px solid darkgray;
+    border-radius: 4px 4px 4px 4px;
+    padding-left: 10px;
+}
+
+#jm-id-input {
+    margin-left: 182px;
+}

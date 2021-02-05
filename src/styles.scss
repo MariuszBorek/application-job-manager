@@ -4,3 +4,20 @@ body {
     margin: 0px;
     color: white;
 }
+
+main {
+    margin-top: 0px;
+    width: 900px;
+    min-height: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.empty-list {
+    color: #d3d3d3;
+    margin-top: 100px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}

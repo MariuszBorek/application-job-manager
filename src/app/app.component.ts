@@ -11,7 +11,7 @@ export class AppComponent {
 
   title = 'j-manager';
 
-  constructor(public authenticationService: AuthenticationService, private loginSevice: LoginService) { }
+  constructor() { }
 
   ngOnInit(): void {
 

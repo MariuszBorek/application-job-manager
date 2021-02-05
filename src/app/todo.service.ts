@@ -9,7 +9,9 @@ import { TaskArchive } from './task-archive';
 })
 export class TodoService {
 
-  private tasksUrl = 'https://jm-backend.herokuapp.com/api/users/projects/tasks';
+  // private tasksUrl = 'https://jm-backend.herokuapp.com/api/users/projects/tasks';
+  private tasksUrl = 'http://localhost:8080/api/users/projects/tasks';
+
 
   constructor(private http: HttpClient) { }
 

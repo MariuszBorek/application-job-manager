@@ -28,5 +28,7 @@
                 </li>
             </ul>
         </div>
-
+        <div class="empty-list" *ngIf="!checkIfProjectsExist()">
+            You do not have a project yet. Above you can create one.
+        </div>
     </div>

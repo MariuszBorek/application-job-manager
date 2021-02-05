@@ -33,6 +33,11 @@
             </div>
         </li>
     </ul>
+
+
+    <div class="empty-list" *ngIf="!checkIfTasksExist()">
+        You do not have any task yet. Above you can create one.<br> Remember to first select the project for which you want to create a new task.
+    </div>
 </div>
 
 

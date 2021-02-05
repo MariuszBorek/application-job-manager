@@ -1,0 +1,29 @@
+<div class="nav-bar">
+    <div id="nav-conteiner">
+        <div class="nav-button">
+            <button class="nav-button__a" routerLink="/jm">𝓙𝓜</button>
+        </div>
+        <div class="nav-button">
+            <button class="nav-button__a" *ngIf="authenticationService.isUserLoggedIn()" routerLink="/project">projects</button>
+        </div>
+        <div class="nav-button">
+            <button class="nav-button__a" *ngIf="authenticationService.isUserLoggedIn()" routerLink="/todo">todo</button>
+        </div>
+        <div class="nav-button">
+            <button class="nav-button__a" *ngIf="authenticationService.isUserLoggedIn()" routerLink="/drawings">drawings</button>
+        </div>
+        <div class="nav-button">
+            <button class="nav-button__a" *ngIf="authenticationService.isUserLoggedIn()" routerLink="/notes">notes</button>
+        </div>
+        <div class="nav-button">
+            <button class="nav-button__a" *ngIf="authenticationService.isUserLoggedIn()" routerLink="/tools-scupper-calculator">tools</button>
+        </div>
+        <div class="nav-button">
+            <button class="nav-button__logout" *ngIf="authenticationService.isUserLoggedIn()" routerLink="/log-out">log out</button>
+        </div>
+        <div class="nav-button">
+            <button class="nav-button__login" *ngIf="!authenticationService.isUserLoggedIn()" routerLink="/log-in">log in</button>
+        </div>
+        <div style="clear: both;"></div>
+    </div>
+</div>
