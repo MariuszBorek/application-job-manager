@@ -9,8 +9,8 @@ import { Project } from './project';
 })
 export class LoginService {
 
-  // private loginUrl = 'https://jm-backend.herokuapp.com/api/users';
-  private loginUrl = 'http://localhost:8080/api/users';
+  private loginUrl = 'https://jm-backend.herokuapp.com/api/users';
+  // private loginUrl = 'http://localhost:8080/api/users';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
