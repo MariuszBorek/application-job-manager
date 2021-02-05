@@ -12,7 +12,7 @@ export class Message {
 })
 export class AuthenticationService {
 
-  baseUrl = 'http://localhost:8080';
+  baseUrl = 'https://jm-backend.herokuapp.com';
 
   constructor(private httpClient: HttpClient) { }
 
