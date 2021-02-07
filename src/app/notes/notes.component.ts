@@ -31,10 +31,8 @@ export class NotesComponent implements OnInit {
   }
 
   getNotes(): void {
-    if (this.choosenProject) {
       this.noteService.getNotes()
         .subscribe(notes => this.notes = notes);
-    }
   }
 
 
@@ -42,7 +40,7 @@ export class NotesComponent implements OnInit {
     if (this.choosenProject) {
       const newNote: Note = {
         id: null,
-        text: 'Click on a note and edit'
+        text: 'Click on a note, edit and save it'
       };
       this.noteService.addNote(newNote)
         .subscribe(note => this.notes.push(note));

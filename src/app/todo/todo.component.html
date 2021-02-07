@@ -1,62 +1,64 @@
-<div>
-    <h2>tasks</h2>
+<div class="route-container">
     <div>
-        <button id="add-task-button" (click)="addRow()">add task</button>
-        <button id="archive-tasks-button" (click)="archiveTasks()">archive finished</button>
-        <button id="show-task-history-button" (click)="showHistory()">print history</button>
-        <button id="clear-tasks-button" (click)="clearfinishedTasks()">clear finished</button>
-    </div>
-    <div id="sort-toolbar">
+        <h2>tasks</h2>
         <div>
-            <div class="sort-description">sort by:</div>
-            <div class="sort-button" (click)="sortByNo()">order of addition</div>
-            <div class="sort-description">/</div>
-            <div class="sort-button" (click)="sortByOldest()">oldest</div>
-            <div class="sort-description">/</div>
-            <div class="sort-button" (click)="sortByNewest()">newest</div>
-            <div class="sort-description">/</div>
-            <div class="sort-button" (click)="sortByPriority()">priority</div>
-            <div class="sort-description">/</div>
-            <div class="sort-button" (click)="sortByUnfinished()">unfinished</div>
+            <button id="add-task-button" (click)="addRow()">add task</button>
+            <button id="archive-tasks-button" (click)="archiveTasks()">archive finished</button>
+            <button id="show-task-history-button" (click)="showHistory()">print history</button>
+            <button id="clear-tasks-button" (click)="clearfinishedTasks()">clear finished</button>
         </div>
-    </div>
-    <ul id="ul-task">
-        <li id="li-task" *ngFor="let task of tasks">
-            <div class="single-task">
-                <button class="save-button" (click)="addTask(task)">save</button>
-                <input class="topic-input" [(ngModel)]="task.topic" placeholder="topic">
-                <input class="text-input" [(ngModel)]="task.text" placeholder="task">
-                <input class="data-input" type="date" ngDefaultControl [(ngModel)]="task.date">
-                <button class="priority-button" ngDefaultControl [ngStyle]="{'background-color': task.priority ? '#1582f4' : 'white', 'color': task.priority ? 'white' : 'black'}" [(ngModel)]="task.priority" (click)="setPriority(task)">priority</button>
-                <button class="execution-button" ngDefaultControl [ngStyle]="{'background-color': task.execution ? '#4aca3d' : 'white', 'color': task.execution ? 'white' : 'black'}" [(ngModel)]="task.priority" (click)="setExecution(task)">done</button>
-                <button class="delete-button" (click)="deleteTask(task)">delete</button>
+        <div id="sort-toolbar">
+            <div>
+                <div class="sort-description">sort by:</div>
+                <div class="sort-button" (click)="sortByNo()">order of addition</div>
+                <div class="sort-description">/</div>
+                <div class="sort-button" (click)="sortByOldest()">oldest</div>
+                <div class="sort-description">/</div>
+                <div class="sort-button" (click)="sortByNewest()">newest</div>
+                <div class="sort-description">/</div>
+                <div class="sort-button" (click)="sortByPriority()">priority</div>
+                <div class="sort-description">/</div>
+                <div class="sort-button" (click)="sortByUnfinished()">unfinished</div>
             </div>
-        </li>
-    </ul>
-
-
-    <div class="empty-list" *ngIf="!checkIfTasksExist()">
-        You do not have any task yet. Above you can create one.<br> Remember to first select the project for which you want to create a new task.
-    </div>
-</div>
-
-
-<div id="history-field">
-
-    <div *ngIf="isHisotryTaskShown; then thenBlock else elseBlock"></div>
-
-    <ng-template #thenBlock>
-        <ul id="ul-history">
-            <li id="li-history" *ngFor="let task of archivedTasks">
-                <div class="task-history">
-                    <span>{{ task.topic }} / {{ task.text }} / {{ task.date }}</span>
+        </div>
+        <ul id="ul-task">
+            <li id="li-task" *ngFor="let task of tasks">
+                <div class="single-task">
+                    <button class="save-button" (click)="addTask(task)">save</button>
+                    <input class="topic-input" [(ngModel)]="task.topic" placeholder="topic">
+                    <input class="text-input" [(ngModel)]="task.text" placeholder="task">
+                    <input class="data-input" type="date" ngDefaultControl [(ngModel)]="task.date">
+                    <button class="priority-button" ngDefaultControl [ngStyle]="{'background-color': task.priority ? '#1582f4' : 'white', 'color': task.priority ? 'white' : 'black'}" [(ngModel)]="task.priority" (click)="setPriority(task)">priority</button>
+                    <button class="execution-button" ngDefaultControl [ngStyle]="{'background-color': task.execution ? '#4aca3d' : 'white', 'color': task.execution ? 'white' : 'black'}" [(ngModel)]="task.priority" (click)="setExecution(task)">done</button>
+                    <button class="delete-button" (click)="deleteTask(task)">delete</button>
                 </div>
             </li>
         </ul>
-    </ng-template>
 
-    <ng-template #elseBlock>
 
-    </ng-template>
+        <div class="empty-list" *ngIf="!checkIfTasksExist()">
+            You do not have any task yet. Above you can create one.<br> Remember to first select the project for which you want to create a new task.
+        </div>
+    </div>
 
+
+    <div id="history-field">
+
+        <div *ngIf="isHisotryTaskShown; then thenBlock else elseBlock"></div>
+
+        <ng-template #thenBlock>
+            <ul id="ul-history">
+                <li id="li-history" *ngFor="let task of archivedTasks">
+                    <div class="task-history">
+                        <span>{{ task.topic }} / {{ task.text }} / {{ task.date }}</span>
+                    </div>
+                </li>
+            </ul>
+        </ng-template>
+
+        <ng-template #elseBlock>
+
+        </ng-template>
+
+    </div>
 </div>

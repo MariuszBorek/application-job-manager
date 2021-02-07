@@ -1,24 +1,26 @@
-<app-tools></app-tools>
-<div>
-    <h3>stair calculator</h3>
-    <div id="calculator">
-        <input id="calculator__input-H" type="number" [(ngModel)]="valueH" placeholder="H [cm]">
-        <input id="calculator__input-S" type="number" [(ngModel)]="valueS" placeholder="S [cm]">
-        <div style="clear: both;"></div>
-        <div id="button-container">
-            <button id="button-container__check" (click)="checkStairs()">check</button>
-        </div>
-    </div>
-
-    <div id="display">
-        <div [ngSwitch]="isStairsCorrect">
-            <div id="display__green-ligth" *ngSwitchCase="true"></div>
-            <div id="display__red-ligth" *ngSwitchCase="false"></div>
-            <div id="display__gray-ligth" *ngSwitchDefault></div>
+<div class="route-container">
+    <app-tools></app-tools>
+    <div>
+        <h3>stair calculator</h3>
+        <div id="calculator">
+            <input id="calculator__input-H" type="number" [(ngModel)]="valueH" placeholder="H [cm]">
+            <input id="calculator__input-S" type="number" [(ngModel)]="valueS" placeholder="S [cm]">
+            <div style="clear: both;"></div>
+            <div id="button-container">
+                <button id="button-container__check" (click)="checkStairs()">check</button>
+            </div>
         </div>
 
-        <p>score (60/65): {{ score }}</p>
-        <p>The stairs are: {{ information }}</p>
-    </div>
+        <div id="display">
+            <div [ngSwitch]="isStairsCorrect">
+                <div id="display__green-ligth" *ngSwitchCase="true"></div>
+                <div id="display__red-ligth" *ngSwitchCase="false"></div>
+                <div id="display__gray-ligth" *ngSwitchDefault></div>
+            </div>
 
+            <p>score (60/65): {{ score }}</p>
+            <p>The stairs are: {{ information }}</p>
+        </div>
+
+    </div>
 </div>
