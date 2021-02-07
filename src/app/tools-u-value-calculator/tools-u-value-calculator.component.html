@@ -1,38 +1,40 @@
-<app-tools></app-tools>
-<div>
-    <h3>U value calculator</h3>
-    <div id="toolbar">
-        <button id="add-row-button" (click)="addRow()">add material</button>
-    </div>
-
-    <div id="rsi-rse-margin">
-    </div>
-
-    <div class="rsi-rse">
-        <div>
-            <input type="number" class="rsi-rse__input" [(ngModel)]="rsi" placeholder="Rsi">
+<div class="route-container">
+    <app-tools></app-tools>
+    <div>
+        <h3>U value calculator</h3>
+        <div id="toolbar">
+            <button id="add-row-button" (click)="addRow()">add material</button>
         </div>
-        <div>
-            <input type="number" class="rsi-rse__input" [(ngModel)]="rse" placeholder="Rse">
-        </div>
-    </div>
-    <div style="clear: both;"></div>
 
-    <ul id="ul-row">
-        <li id="li-row" *ngFor="let row of rows">
-            <div class="single-row">
-                <span class="badge">{{ row.id }}</span>
-                <input class="material-input" [(ngModel)]="row.material" placeholder="material(optional)">
-                <input class="thickness-input" type="number" [(ngModel)]="row.thickness" placeholder="thickness">
-                <input class="lambda-input" type="number" [(ngModel)]="row.lambda" placeholder="lambda">
-                <input class="r-input" type="number" [(ngModel)]="row.resistance" placeholder="R(optional)">
-                <button class="count-button" (click)="countRow(row)">count R</button>
-                <button class="delete-button" (click)="deleteRow(row)">delete</button>
+        <div id="rsi-rse-margin">
+        </div>
+
+        <div class="rsi-rse">
+            <div>
+                <input type="number" class="rsi-rse__input" [(ngModel)]="rsi" placeholder="Rsi">
             </div>
-        </li>
-    </ul>
-    <div id="display">
-        U vlaue: {{ uValue }}
+            <div>
+                <input type="number" class="rsi-rse__input" [(ngModel)]="rse" placeholder="Rse">
+            </div>
+        </div>
+        <div style="clear: both;"></div>
+
+        <ul id="ul-row">
+            <li id="li-row" *ngFor="let row of rows">
+                <div class="single-row">
+                    <span class="badge">{{ row.id }}</span>
+                    <input class="material-input" [(ngModel)]="row.material" placeholder="material(optional)">
+                    <input class="thickness-input" type="number" [(ngModel)]="row.thickness" placeholder="thickness">
+                    <input class="lambda-input" type="number" [(ngModel)]="row.lambda" placeholder="lambda">
+                    <input class="r-input" type="number" [(ngModel)]="row.resistance" placeholder="R(optional)">
+                    <button class="count-button" (click)="countRow(row)">count R</button>
+                    <button class="delete-button" (click)="deleteRow(row)">delete</button>
+                </div>
+            </li>
+        </ul>
+        <div id="display">
+            U vlaue: {{ uValue }}
+        </div>
+        <button class="count-button" (click)="countU()">count U</button>
     </div>
-    <button class="count-button" (click)="countU()">count U</button>
 </div>

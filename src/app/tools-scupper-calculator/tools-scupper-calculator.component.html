@@ -1,131 +1,133 @@
-<app-tools></app-tools>
+<div class="route-container">
+    <app-tools></app-tools>
 
-<div>
-    <h3>scuppers counter</h3>
-    <div class="add-check-scupper">
-        <div>
-            <input type="text" class="add-check-scupper__input-project-name" placeholder="name" id="projectName" #projectName>
-        </div>
-        <div>
-            <input class="add-check-scupper__input-roof-area" type="number" placeholder="roof area [m2] *required" id="roofArea" #roofArea>
-        </div>
-        <div>
-            <input class="add-check-scupper__input-scupper-bottom" type="number" placeholder="S - level of the scupper [cm]" id="bottomScupperLevelOverRoof" #bottomScupperLevelOverRoof>
-        </div>
-        <div>
-            <input class="add-check-scupper__input-water-level" type="number" placeholder="W - water level [cm]" id="waterLevel" #waterLevel>
-        </div>
-
-        <div>
-            <input class="add-check-scupper__input-x-side" type="number" placeholder="X side [cm]" id="scupperSideX" #scupperSideX>
-        </div>
-        <div>
-            <input class="add-check-scupper__input-y-side" type="number" placeholder="Y side [cm]" id="scupperSideY" #scupperSideY>
-        </div>
-
-        <div id="button-container">
+    <div>
+        <h3>scuppers counter</h3>
+        <div class="add-check-scupper">
             <div>
-                <button id="button-container__count" (click)="checkScuppers(projectName.value,
+                <input type="text" class="add-check-scupper__input-project-name" placeholder="name" id="projectName" #projectName>
+            </div>
+            <div>
+                <input class="add-check-scupper__input-roof-area" type="number" placeholder="roof area [m2] *required" id="roofArea" #roofArea>
+            </div>
+            <div>
+                <input class="add-check-scupper__input-scupper-bottom" type="number" placeholder="S - level of the scupper [cm]" id="bottomScupperLevelOverRoof" #bottomScupperLevelOverRoof>
+            </div>
+            <div>
+                <input class="add-check-scupper__input-water-level" type="number" placeholder="W - water level [cm]" id="waterLevel" #waterLevel>
+            </div>
+
+            <div>
+                <input class="add-check-scupper__input-x-side" type="number" placeholder="X side [cm]" id="scupperSideX" #scupperSideX>
+            </div>
+            <div>
+                <input class="add-check-scupper__input-y-side" type="number" placeholder="Y side [cm]" id="scupperSideY" #scupperSideY>
+            </div>
+
+            <div id="button-container">
+                <div>
+                    <button id="button-container__count" (click)="checkScuppers(projectName.value,
             roofArea.value,
             scupperSideX.value,
             scupperSideY.value,
             bottomScupperLevelOverRoof.value,
             waterLevel.value);">count scupper quantity</button>
-            </div>
-
-            <div>
-                <button id="button-container__save" (click)="saveScupper()">save scupper</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="display">
-
-        <div class="display__main-info">
-            <span class="display__title">main information</span>
-            <div class="display__main-info__scupper-number">{{ scupper.numberOfScuppersRound }}
-                <span class="display__desc">/scupper quantity</span>
-            </div>
-            <div class="display__main-info__scupper-side-x">{{ scupper.scupperSideX }}
-                <span class="display__desc">/X side of the scupper</span>
-            </div>
-            <div class="display__main-info__scupper-side-y">{{ scupper.scupperSideY }}
-                <span class="display__desc">/Y side of the scupper</span>
-            </div>
-        </div>
-        <div class="display__detailed-info">
-            <span class="display__title">detailed information</span>
-            <div class="display__detailed-info__rest">{{ scupper.projectName }} <span class="display__desc">/project name</span></div>
-            <div class="display__detailed-info__rest">{{ scupper.roofArea }} <span class="display__desc">/roof area</span></div>
-            <div class="display__detailed-info__rest">{{ scupper.realScupperArea }} <span class="display__desc">/real scuper area</span></div>
-            <div class="display__detailed-info__rest">{{ scupper.activeScupperArea }} <span class="display__desc">/active scuper area</span></div>
-            <div class="display__detailed-info__rest">{{ scupper.waterLevel }} <span class="display__desc">/water level</span></div>
-            <div class="display__detailed-info__rest">{{ scupper.bottomScupperLevelOverRoof }} <span class="display__desc">/level of the scupper(bottom)</span></div>
-            <div class="display__detailed-info__rest">{{ scupper.numberOfScuppers }} <span class="display__desc">/precise number of scuppers</span></div>
-        </div>
-    </div>
-    <div class="instruction">
-        <div>
-            <img class="instruction__img" [src]="instructionImg">
-        </div>
-        <div id="img-description">
-            <div>
-                W - water level (defaul 10 cm)
-            </div>
-            <div>
-                S - bottom of the scupper (defaul 5 cm)
-            </div>
-            <div>
-                X - width (defaul 10 cm)
-            </div>
-            <div>
-                Y - height (defaul 10 cm)
-            </div>
-            <br> default - fields with default values ​​may be empty
-        </div>
-    </div>
-
-    <div id="next-line"></div>
-    <div>
-        <div>
-            <div class="find">
-                <div class="find__input">
-                    <input class="find__input__field" type="text" placeholder="find by name" id="find-project-name" #findProjectName>
                 </div>
-                <div class="find__button">
-                    <button class="find__button__find" (click)="findByProjectName(findProjectName.value)">find</button>
+
+                <div>
+                    <button id="button-container__save" (click)="saveScupper()">save scupper</button>
                 </div>
             </div>
-
-            <button class="find__button__all" (click)="findAllScuppers()">show saved scuppers</button>
-            <button class="find__button__all" (click)="hideScuppers()">hide saved scuppers</button>
-            <button class="find__button__clean" (click)="cleanAllScuppers()">clean all</button>
-            <div id="next"></div>
-
         </div>
-        <div id="display-founded-scuppers">
+
+        <div class="display">
+
+            <div class="display__main-info">
+                <span class="display__title">main information</span>
+                <div class="display__main-info__scupper-number">{{ scupper.numberOfScuppersRound }}
+                    <span class="display__desc">/scupper quantity</span>
+                </div>
+                <div class="display__main-info__scupper-side-x">{{ scupper.scupperSideX }}
+                    <span class="display__desc">/X side of the scupper</span>
+                </div>
+                <div class="display__main-info__scupper-side-y">{{ scupper.scupperSideY }}
+                    <span class="display__desc">/Y side of the scupper</span>
+                </div>
+            </div>
+            <div class="display__detailed-info">
+                <span class="display__title">detailed information</span>
+                <div class="display__detailed-info__rest">{{ scupper.projectName }} <span class="display__desc">/project name</span></div>
+                <div class="display__detailed-info__rest">{{ scupper.roofArea }} <span class="display__desc">/roof area</span></div>
+                <div class="display__detailed-info__rest">{{ scupper.realScupperArea }} <span class="display__desc">/real scuper area</span></div>
+                <div class="display__detailed-info__rest">{{ scupper.activeScupperArea }} <span class="display__desc">/active scuper area</span></div>
+                <div class="display__detailed-info__rest">{{ scupper.waterLevel }} <span class="display__desc">/water level</span></div>
+                <div class="display__detailed-info__rest">{{ scupper.bottomScupperLevelOverRoof }} <span class="display__desc">/level of the scupper(bottom)</span></div>
+                <div class="display__detailed-info__rest">{{ scupper.numberOfScuppers }} <span class="display__desc">/precise number of scuppers</span></div>
+            </div>
+        </div>
+        <div class="instruction">
+            <div>
+                <img class="instruction__img" [src]="instructionImg">
+            </div>
+            <div id="img-description">
+                <div>
+                    W - water level (defaul 10 cm)
+                </div>
+                <div>
+                    S - bottom of the scupper (defaul 5 cm)
+                </div>
+                <div>
+                    X - width (defaul 10 cm)
+                </div>
+                <div>
+                    Y - height (defaul 10 cm)
+                </div>
+                <br> default - fields with default values ​​may be empty
+            </div>
+        </div>
+
+        <div id="next-line"></div>
+        <div>
+            <div>
+                <div class="find">
+                    <div class="find__input">
+                        <input class="find__input__field" type="text" placeholder="find by name" id="find-project-name" #findProjectName>
+                    </div>
+                    <div class="find__button">
+                        <button class="find__button__find" (click)="findByProjectName(findProjectName.value)">find</button>
+                    </div>
+                </div>
+
+                <button class="find__button__all" (click)="findAllScuppers()">show saved scuppers</button>
+                <button class="find__button__all" (click)="hideScuppers()">hide saved scuppers</button>
+                <button class="find__button__clean" (click)="cleanAllScuppers()">clean all</button>
+                <div id="next"></div>
+
+            </div>
+            <div id="display-founded-scuppers">
 
 
-            <ul id="ul-task">
-                <span class="decription-list">name / quantity x X-side x Y-side // roof area / real scupper area / active scupper area / water level / scupper level / unrounded quantity scuppers</span>
-                <li id="li-task" *ngFor="let scupper of scuppers">
-                    <div class="single-scupper">
-                        <span>{{ scupper.projectName }} / </span>
-                        <span>{{ scupper.numberOfScuppersRound }} x </span>
-                        <span>{{ scupper.scupperSideX }} x </span>
-                        <span>{{ scupper.scupperSideY }} // </span>
-                        <span>{{ scupper.roofArea }} / </span>
-                        <span>{{ scupper.realScupperArea }} / </span>
-                        <span>{{ scupper.activeScupperArea }} / </span>
-                        <span>{{ scupper.waterLevel }} / </span>
-                        <span>{{ scupper.bottomScupperLevelOverRoof }} / </span>
-                        <span>{{ scupper.numberOfScuppers }}</span>
-                    </div>
-                    <div>
-                        <button class="delete-button__delete-scupper-from-list" (click)="deleteScupper(scupper)">delete</button>
-                    </div>
-                </li>
-            </ul>
+                <ul id="ul-task">
+                    <span class="decription-list">name / quantity x X-side x Y-side // roof area / real scupper area / active scupper area / water level / scupper level / unrounded quantity scuppers</span>
+                    <li id="li-task" *ngFor="let scupper of scuppers">
+                        <div class="single-scupper">
+                            <span>{{ scupper.projectName }} / </span>
+                            <span>{{ scupper.numberOfScuppersRound }} x </span>
+                            <span>{{ scupper.scupperSideX }} x </span>
+                            <span>{{ scupper.scupperSideY }} // </span>
+                            <span>{{ scupper.roofArea }} / </span>
+                            <span>{{ scupper.realScupperArea }} / </span>
+                            <span>{{ scupper.activeScupperArea }} / </span>
+                            <span>{{ scupper.waterLevel }} / </span>
+                            <span>{{ scupper.bottomScupperLevelOverRoof }} / </span>
+                            <span>{{ scupper.numberOfScuppers }}</span>
+                        </div>
+                        <div>
+                            <button class="delete-button__delete-scupper-from-list" (click)="deleteScupper(scupper)">delete</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>

@@ -28,10 +28,8 @@ export class DrawingsComponent implements OnInit {
 
 
   getSheets(): void {
-    if (this.choosenProject) {
       this.sheetService.getSheets()
         .subscribe(sheets => this.sheets = sheets);
-    }
   }
 
   addRow(): void {
@@ -52,7 +50,6 @@ export class DrawingsComponent implements OnInit {
   }
 
   addSheet(sheet: Sheet): void {
-    if (this.choosenProject) {
     const newSheet: Sheet = {
       id: sheet.id,
       no: sheet.no,
@@ -63,12 +60,10 @@ export class DrawingsComponent implements OnInit {
     };
     this.sheetService.updateSheet(newSheet)
       .subscribe();
-    }
-
   }
 
   deleteSheet(sheet: Sheet): void {
-    if (this.choosenProject && confirm('Are you sure you want to delete this sheet?')) {
+    if (confirm('Are you sure you want to delete this sheet?')) {
       this.sheets = this.sheets.filter(s => s !== sheet);
       this.sheetService.deleteSheet(sheet).subscribe();
     }

@@ -24,7 +24,7 @@ export class ToolsScupperCalculatorComponent implements OnInit {
   }
 
   checkIfProjectChoosen() {
-    if(this.choosenProject ===null) {
+    if(this.choosenProject === null) {
       alert('if you want save scupper');
     }
   }

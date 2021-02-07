@@ -29,10 +29,8 @@ export class TodoComponent implements OnInit {
   }
 
   getTasks(): void {
-    if (this.choosenProject) {
     this.todoService.getTasks()
       .subscribe(tasks => this.tasks = tasks);
-    }
   }
 
 
@@ -71,14 +69,14 @@ export class TodoComponent implements OnInit {
   }
 
   deleteTask(task: Task): void {
-    if (this.choosenProject && confirm('Are you sure you want to delete this sheet?')) {
+    if (confirm('Are you sure you want to delete this sheet?')) {
     this.tasks = this.tasks.filter(t => t !== task);
     this.todoService.deleteTask(task).subscribe();
     }
   }
 
   archiveTasks(): void {
-    if (this.choosenProject && confirm('Are you sure you want to archived finished tasks?')) {
+    if (confirm('Are you sure you want to archived finished tasks?')) {
     this.todoService.archiveTasks(this.tasks)
       .subscribe(archivedTasks => this.archivedTasks = archivedTasks);
     this.clearfinishedTasks();
@@ -87,7 +85,6 @@ export class TodoComponent implements OnInit {
 
   clearfinishedTasks(): void {
     const tasksToDelete: Task[] = [];
-    if (this.choosenProject) {
     if (confirm('Are you sure you want to clear finished tasks?')) {
       this.tasks.forEach(task => {
         if (task.execution === true) {
@@ -96,7 +93,6 @@ export class TodoComponent implements OnInit {
       });
       this.todoService.deleteFinishedTasks(tasksToDelete)
         .subscribe(tasks => this.tasks = tasks);
-    }
     }
   }
 
